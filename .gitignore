@@ -1,1 +1,7 @@
 .idea
+.settings
+.classpath
+.project
+build
+.metadata
+.recommenders

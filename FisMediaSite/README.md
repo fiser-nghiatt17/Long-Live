@@ -1,4 +1,4 @@
-# 5 small setups to run
+# 5 small steps to run
 
 1. Install Maven
 https://maven.apache.org/install.html

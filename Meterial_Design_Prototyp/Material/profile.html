@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+
+<body>
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title" style="cursor: pointer">Profile</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" style="position: relative; top: 3px"
+                           for="fixed-header-drawer-exp">
+                        <i class="material-icons">search</i>
+                    </label>
+                    <div class="mdl-textfield__expandable-holder">
+                        <input class="mdl-textfield__input" type="text" name="sample"
+                               id="fixed-header-drawer-exp">
+                    </div>
+                </div>
+                <a class="mdl-navigation__link hidden" data-toggle="modal" data-target="#fis-signup-container">Sign Up</a>
+                <a class="mdl-navigation__link hidden" data-toggle="modal" data-target="#fis-login-container">Log In</a>
+                <a class="mdl-navigation__link  fis-after-login" id="fis-menu-lower-right">User_Name</a>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                    for="fis-menu-lower-right">
+                    <li class="mdl-menu__item"><a style="color: black" href="setting.html">Setting</a></li>
+                    <li class="mdl-menu__item"><a style="color: black" href="profile.html">Profile</a></li>
+                    <li class="mdl-menu__item"><a style="color: black" href="index.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Profile</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="index.html">Home</a>
+            <ul class="fis-sub-nav">
+                <li><a href="index.html">Newest</a></li>
+                <li><a href="index.html">Most view</a></li>
+                <li><a href="index.html">Most favorite</a></li>
+            </ul>
+            <a class="mdl-navigation__link fis-nav-active" href="profile.html">Profile</a>
+            <a class="mdl-navigation__link" href="setting.html">Setting</a>
+            <a class="mdl-navigation__link" href="index.html">Log out</a>
+
+        </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <div class="page-content"><!-- Your content goes here -->
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--3-col"><!-- New album -->
+                    <div class="fis-edit-album-section mdl-shadow--3dp">
+                        <button class="fis-add-album mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                                data-toggle="modal" data-target="#fis-new-album-container">
+                            New Album
+                        </button>
+                        <span>Total: 15</span>
+                    </div>
+                </div><!-- End New album -->
+
+                <div class="mdl-cell mdl-cell--3-col">
+                    <div class="fis-card-container">
+                            <div class="fis-card  mdl-card mdl-shadow--6dp" style="background: url('images/image%20(10).jpg') center / cover">
+                                <div class="mdl-card__title">
+            <!-- Edit album -->    <button id="fis-edit-album-right-1"
+                                            class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon">
+                                        <i class="material-icons">more_vert</i>
+                                     </button>
+                                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                                        for="fis-edit-album-right-1">
+                                        <li class="mdl-menu__item"><a href="edit_album.html" style="color: #616161">Edit</a></li>
+                                        <li class="mdl-menu__item"><a href="edit_album.html" style="color: #616161"
+                                                                      data-toggle="modal" data-target="#fis-delete-popup">Delete</a></li>
+                                    </ul>
+    <!-- End Edit album -->    </div>
+                                <div class="mdl-card--expand"></div>
+                                <a style="cursor: pointer" href="view_album.html"> <!-- Link to See album -->
+                                    <div class="fis-card-hover mdl-card__actions">
+                                            <p class="fis-card-title">Nature</p>
+                                            <p class="fis-card-user">Jenefer lawrence</p>
+                                        <div class="fis-card-hover-icon">
+                                            <span>
+                                                <i class="icon material-icons">visibility
+                                                </i><span class="fis-card-hover-icon-plus">269</span>
+                                            </span>
+                                            <span style="position: relative; left: 7px">
+                                                <i class="icon material-icons">favorite
+                                                </i><span class="fis-card-hover-icon-plus">60</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a> <!-- End link to See album -->
+                            </div>
+                    </div>
+                    <div class="fis-card-container">
+                        <div class="fis-card  mdl-card mdl-shadow--6dp" style="background: url('images/image%20(6).jpg') center / cover">
+                            <div class="mdl-card__title">
+                                <button id="fis-edit-album-right-2"
+                                        class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon">
+                                    <i class="material-icons">more_vert</i>
+                                </button>
+                                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                                    for="fis-edit-album-right-2">
+                                    <li class="mdl-menu__item"><a href="edit_album.html" style="color: #616161">Edit</a></li>
+                                    <li class="mdl-menu__item"><a href="edit_album.html" style="color: #616161"
+                                                                  data-toggle="modal" data-target="#fis-delete-popup">Delete</a></li>
+                                </ul>
+                            </div>
+                            <div class="mdl-card--expand"></div>
+                            <a style="cursor: pointer" href="view_album.html">
+                                <div class="fis-card-hover mdl-card__actions">
+                                    <p class="fis-card-title">Nature</p>
+                                    <p class="fis-card-user">Jenefer lawrence</p>
+                                    <div class="fis-card-hover-icon">
+                                            <span>
+                                                <i class="icon material-icons">visibility
+                                                </i><span class="fis-card-hover-icon-plus">269</span>
+                                            </span>
+                                            <span style="position: relative; left: 7px">
+                                                <i class="icon material-icons">favorite
+                                                </i><span class="fis-card-hover-icon-plus">60</span>
+                                            </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--3-col">
+                    <div class="fis-card-container">
+                        <div class="fis-card  mdl-card mdl-shadow--6dp" style="background: url('images/image%20(9).jpg') center / cover">
+                            <div class="mdl-card__title">
+                                <button id="fis-edit-album-right-3"
+                                        class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon">
+                                    <i class="material-icons">more_vert</i>
+                                </button>
+                                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                                    for="fis-edit-album-right-3">
+                                    <li class="mdl-menu__item" ><a href="edit_album.html" style="color: #616161">Edit</a></li>
+                                    <li class="mdl-menu__item"><a href="edit_album.html" style="color: #616161"
+                                                                  data-toggle="modal" data-target="#fis-delete-popup">Delete</a></li>
+                                </ul>
+                            </div>
+                            <div class="mdl-card--expand"></div>
+                            <a style="cursor: pointer" href="view_album.html">
+                                <div class="fis-card-hover mdl-card__actions">
+                                    <p class="fis-card-title">Nature</p>
+                                    <p class="fis-card-user">Jenefer lawrence</p>
+                                    <div class="fis-card-hover-icon">
+                                            <span>
+                                                <i class="icon material-icons">visibility
+                                                </i><span class="fis-card-hover-icon-plus">269</span>
+                                            </span>
+                                            <span style="position: relative; left: 7px">
+                                                <i class="icon material-icons">favorite
+                                                </i><span class="fis-card-hover-icon-plus">60</span>
+                                            </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--3-col">
+                    <div class="fis-card-container">
+                        <div class="fis-card  mdl-card mdl-shadow--6dp" style="background: url('images/image%20(2).jpg') center / cover">
+                            <div class="mdl-card__title">
+                                <button id="fis-edit-album-right-4"
+                                        class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon">
+                                    <i class="material-icons">more_vert</i>
+                                </button>
+                                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                                    for="fis-edit-album-right-4">
+                                    <li class="mdl-menu__item"><a href="edit_album.html" style="color: #616161">Edit</a></li>
+                                    <li class="mdl-menu__item"><a href="edit_album.html" style="color: #616161"
+                                                                  data-toggle="modal" data-target="#fis-delete-popup">Delete</a></li>
+                                </ul>
+                            </div>
+                            <div class="mdl-card--expand"></div>
+                            <a style="cursor: pointer" href="view_album.html">
+                                <div class="fis-card-hover mdl-card__actions">
+                                    <p class="fis-card-title">Nature</p>
+                                    <p class="fis-card-user">Jenefer lawrence</p>
+                                    <div class="fis-card-hover-icon">
+                                            <span>
+                                                <i class="icon material-icons">visibility
+                                                </i><span class="fis-card-hover-icon-plus">269</span>
+                                            </span>
+                                            <span style="position: relative; left: 7px">
+                                                <i class="icon material-icons">favorite
+                                                </i><span class="fis-card-hover-icon-plus">60</span>
+                                            </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- New album Popup -->
+    <div class="modal fade" id="fis-new-album-container">
+        <form class="fis-new-album-container" action="profile.html">
+            <input type="file" class="fis-choose-file">
+            <div class="mdl-textfield mdl-js-textfield">
+                <textarea class="mdl-textfield__input" type="text" rows= "3" id="fis-title-file" ></textarea>
+                <label class="mdl-textfield__label" for="fis-title-file">Enter Album Name here ...</label>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored fis-add-album-btn">
+                Create
+            </button>
+        </form>
+    </div><!-- End New album Popup -->
+
+    <!--Delete Album Popup-->
+    <div class="modal fade" id="fis-delete-popup">
+        <div class="fis-ask">
+            <p>Are you sure to delete this album ?</p>
+            <button class="mdl-button mdl-js-button mdl-button--raised  mdl-button--accent" data-dismiss="modal">Yes</button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-dismiss="modal">No</button>
+        </div>
+    </div><!--End Delete Album Popup -->
+
+</div>
+
+
+<script src="lib/jquery-2.1.4.min.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<script src="lib/material.min.js"></script>
+
+<script src="js/main.js"></script>
+</body>
+</html>

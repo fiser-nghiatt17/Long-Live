@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ViewAlbum</title>
+
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <link rel="stylesheet" href="lib/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="lib/galleria.classic.css">
+    <link rel="stylesheet" href="css/main.css">
+
+
+</head>
+
+<body>
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title" style="cursor: pointer">Images</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-right">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" style="position: relative; top: 3px"
+                           for="fixed-header-drawer-exp">
+                        <i class="material-icons">search</i>
+                    </label>
+                    <div class="mdl-textfield__expandable-holder">
+                        <input class="mdl-textfield__input" type="text" name="sample"
+                               id="fixed-header-drawer-exp">
+                    </div>
+                </div>
+
+                <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-signup-container">Sign Up</a>
+                <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-login-container">Log In</a>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                    for="fis-menu-lower-right">
+                    <li class="mdl-menu__item"><a style="color: black" href="setting.html">Setting</a></li>
+                    <li class="mdl-menu__item"><a style="color: black" href="profile.html">Profile</a></li>
+                    <li class="mdl-menu__item"><a style="color: black" href="index.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Album</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="index.html">Home</a>
+            <ul class="fis-sub-nav">
+                <li><a href="index.html">Newest</a></li>
+                <li><a href="index.html">Most view</a></li>
+                <li><a href="index.html">Most favorite</a></li>
+                <li class="fis-nav-active"><a href="view_album.html">View A Album</a></li>
+            </ul>
+            <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-signup-container">Sign Up</a>
+            <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-login-container">Log In</a>
+        </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <div class="page-content"><!-- Your content goes here -->
+
+            <div class="galleria">
+                <img src="images/image%20(1).jpg">
+                <img src="images/image%20(2).jpg">
+                <img src="images/image%20(3).jpg">
+                <img src="images/image%20(4).jpg">
+                <img src="images/image%20(5).jpg">
+                <img src="images/image%20(6).jpg">
+                <img src="images/image%20(7).jpg">
+                <img src="images/image%20(8).jpg">
+                <img src="images/image%20(9).jpg">
+                <img src="images/image%20(10).jpg">
+                <img src="images/image%20(1).jpg">
+                <img src="images/image%20(2).jpg">
+                <img src="images/image%20(3).jpg">
+                <img src="images/image%20(4).jpg">
+                <img src="images/image%20(5).jpg">
+                <img src="images/image%20(6).jpg">
+                <img src="images/image%20(7).jpg">
+                <img src="images/image%20(8).jpg">
+                <img src="images/image%20(9).jpg">
+                <img src="images/image%20(10).jpg">
+                <img src="images/image%20(2).jpg">
+                <img src="images/image%20(3).jpg">
+                <img src="images/image%20(4).jpg">
+                <img src="images/image%20(5).jpg">
+                <img src="images/image%20(6).jpg">
+                <img src="images/image%20(7).jpg">
+                <img src="images/image%20(8).jpg">
+                <img src="images/image%20(9).jpg">
+                <img src="images/image%20(10).jpg">
+            </div>
+            <div class="fis-album-info mdl-shadow--3dp">
+                <p><span style="font-size: 30px">Nature</span>
+                </p>
+                <p>
+                    Author: Jenifer Nghia
+                </p>
+                <div class="fis-album-info-icon">
+                    <span style="cursor: pointer">
+                        <i class="icon material-icons">visibility
+                        </i><span class="fis-card-hover-icon-plus">666</span>
+                    </span>
+                    <span style="margin-left: 5px; cursor: pointer">
+                        <i class="icon material-icons">favorite
+                        </i><span class="fis-card-hover-icon-plus">888</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="fis-comment mdl-shadow--3dp">
+                <div style="margin: 5px auto;">
+                    <h4 style="margin: 5px">Comment section</h4>
+                    <h4 style="margin: 5px">Coming soon ...</h4>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+
+    <div class="modal fade" id="fis-login-container">
+        <div class="fis-login-container">
+            <form>
+                <div class="fis-login-title">
+                    <h3>Log In</h3>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield user-name">
+                    <input class="mdl-textfield__input" type="text" id="userName" pattern="[A-Z,a-z, ]*">
+                    <label class="mdl-textfield__label" for="userName">User name</label>
+                    <span class="mdl-textfield__error">Letters and spaces only</span>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="password" id="password" pattern="[A-Z,a-z, ]*">
+                    <label class="mdl-textfield__label" for="password">Password</label>
+                    <span class="mdl-textfield__error">Letters and spaces only</span>
+                </div>
+                <div>
+                    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
+                        <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input">
+                        <span class="mdl-checkbox__label">Remember Me</span>
+                    </label>
+                </div>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored fis-login-btn">
+                    Log In
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="fis-signup-container">
+        <div class="fis-login-container">
+            <form action="">
+                <div class="fis-login-title">
+                    <h3>Sign Up</h3>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield user-name">
+                    <input class="mdl-textfield__input" type="text" id="signUpUserName" pattern="[A-Z,a-z, ]*">
+                    <label class="mdl-textfield__label" for="signUpUserName">User name</label>
+                    <span class="mdl-textfield__error">Letters and spaces only</span>
+                </div>
+
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="password" id="signUpPassword" pattern="[A-Z,a-z, ]*">
+                    <label class="mdl-textfield__label" for="signUpPassword">Password</label>
+                    <span class="mdl-textfield__error">Letters and spaces only</span>
+                </div>
+
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="password" id="retypePassword" pattern="[A-Z,a-z, ]*">
+                    <label class="mdl-textfield__label" for="retypePassword">Retype Password</label>
+                    <span class="mdl-textfield__error">Letters and spaces only</span>
+                </div>
+
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="password" id="signUpEmail" pattern="[A-Z,a-z, ]*">
+                    <label class="mdl-textfield__label" for="signUpEmail">Email Address</label>
+                    <span class="mdl-textfield__error">Letters and spaces only</span>
+                </div>
+
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored fis-signup-btn">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="fis-upload-container">
+        <div class="fis-upload-container">
+            <input type="file" class="fis-choose-file">
+            <div class="mdl-textfield mdl-js-textfield">
+                <textarea class="mdl-textfield__input" type="text" rows= "3" id="fis-title-file" ></textarea>
+                <label class="mdl-textfield__label" for="fis-title-file">Enter Title here...</label>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored fis-signup-btn">
+                Upload
+            </button>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="lib/jquery-2.1.4.min.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<script src="lib/material.min.js"></script>
+<script src="lib/galleria-1.4.2.min.js"></script>
+
+<script>
+    Galleria.loadTheme('lib/galleria.classic.min.js');
+    Galleria.run('.galleria');
+</script>
+
+<script src="js/main.js"></script>
+</body>
+</html>

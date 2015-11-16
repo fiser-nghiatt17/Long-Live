@@ -2,9 +2,9 @@ package fis.longlive.actions;
 
 public class HomeAction {
 	
-	private String test = "It worked! from HomeAction";
+	private String test = "Message from HomeAction";
 	
-	public String getHome(){
+	public String execute(){
 		return "success";
 	}
 

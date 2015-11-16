@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `db` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
-USE `db`;
+CREATE DATABASE  IF NOT EXISTS `longlive` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+USE `longlive`;
 -- MySQL dump 10.13  Distrib 5.5.44, for debian-linux-gnu (i686)
 --
--- Host: localhost    Database: db
+-- Host: 127.0.0.1    Database: longlive
 -- ------------------------------------------------------
 -- Server version	5.5.44-0+deb8u1
 
@@ -27,14 +27,14 @@ DROP TABLE IF EXISTS `album`;
 CREATE TABLE `album` (
   `albumID` int(11) NOT NULL AUTO_INCREMENT,
   `user` int(11) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL,
+  `name` varchar(200) DEFAULT NULL,
   `category` int(11) DEFAULT NULL,
   PRIMARY KEY (`albumID`),
   KEY `show_user` (`user`),
   KEY `show_type` (`category`),
   CONSTRAINT `show_type` FOREIGN KEY (`category`) REFERENCES `type` (`typeID`),
   CONSTRAINT `show_user` FOREIGN KEY (`user`) REFERENCES `user` (`userId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,6 +43,7 @@ CREATE TABLE `album` (
 
 LOCK TABLES `album` WRITE;
 /*!40000 ALTER TABLE `album` DISABLE KEYS */;
+INSERT INTO `album` VALUES (1,1,'lion',4);
 /*!40000 ALTER TABLE `album` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,15 +56,15 @@ DROP TABLE IF EXISTS `comment`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `comment` (
   `commentID` int(11) NOT NULL AUTO_INCREMENT,
-  `user` int(11) DEFAULT NULL,
-  `picture` int(11) DEFAULT NULL,
-  `time` datetime DEFAULT NULL,
+  `user` int(11) NOT NULL,
+  `picture` int(11) NOT NULL,
+  `time` date DEFAULT NULL,
   `content` mediumtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`commentID`),
-  KEY `find_user` (`user`),
+  KEY `view_user` (`user`),
   KEY `on_picture` (`picture`),
-  CONSTRAINT `find_user` FOREIGN KEY (`user`) REFERENCES `user` (`userID`),
-  CONSTRAINT `on_picture` FOREIGN KEY (`picture`) REFERENCES `picture` (`pictureID`)
+  CONSTRAINT `on_picture` FOREIGN KEY (`picture`) REFERENCES `picture` (`pictureID`),
+  CONSTRAINT `view_user` FOREIGN KEY (`user`) REFERENCES `user` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -85,17 +86,16 @@ DROP TABLE IF EXISTS `picture`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `picture` (
   `pictureID` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
   `album` int(11) DEFAULT NULL,
-  `title` varchar(50) DEFAULT NULL,
-  `icon` varchar(50) DEFAULT NULL,
-  `url` varchar(50) DEFAULT NULL,
+  `url` varchar(256) DEFAULT NULL,
   `dateUpdate` date DEFAULT NULL,
   `view` int(11) DEFAULT NULL,
   `description` text,
   PRIMARY KEY (`pictureID`),
   KEY `show_album` (`album`),
   CONSTRAINT `show_album` FOREIGN KEY (`album`) REFERENCES `album` (`albumId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,6 +104,7 @@ CREATE TABLE `picture` (
 
 LOCK TABLES `picture` WRITE;
 /*!40000 ALTER TABLE `picture` DISABLE KEYS */;
+INSERT INTO `picture` VALUES (1,'Great lion',1,'http://localhost/picture/great_lion.jpg','2015-11-14',34,'A big lion');
 /*!40000 ALTER TABLE `picture` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,13 +141,13 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `userID` int(11) NOT NULL AUTO_INCREMENT,
-  `fullName` varchar(80) DEFAULT NULL,
+  `fullname` varchar(80) DEFAULT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(25) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
-  `privateID` bit(1) DEFAULT NULL,
+  `privateID` bit(1) DEFAULT b'0',
   PRIMARY KEY (`userID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +156,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Tr?n Tu?n Ngh?a','nghiatt17','nghiatt17','nghiatt17@fpt.com.vn',''),(2,'L?u Tr??ng Sinh','sinhlt3','sinhlt3','sinhlt3@fpt.com.vn','\0'),(3,'Chu Thành H?ng','hungct2','hungct2','hungct2@fpt.com.vn','\0'),(4,'Thái Tu?n Anh','anhtt50','anhtt50','anhtt50@fpt.com.vn','\0'),(5,'Lê V?n C??ng','cuonglv13','cuonglv13','cuonglv13@fpt.com.vn','\0'),(6,'Ma V?n T?','tumv2','tumv2','tumv2@fpt.com.vn','\0');
+INSERT INTO `user` VALUES (1,'Tran Tuan Nghia','nghiatt17','nghiatt17','nghiatt17@fpt.com.vn',''),(2,'Luu Truong Sinh','sinhlt3','sinhlt3','sinhlt3@fpt.com.vn','\0'),(3,'Chu Thanh Hung','hungct2','hungct2','hungct2@fpt.com.vn','\0'),(4,'Thai Tuan Anh','anhtt50','anhtt50','anhtt50@fpt.com.vn','\0'),(5,'Le Van Cuong','cuonglv13','cuonglv13','cuonglv13@fpt.com.vn','\0'),(6,'Ma Van Tu','tumv2','tumv2','tumv2@fpt.com.vn','\0'),(7,'Nguyen Anh Tuan','tuanna80','tuanna80','tuanna80@fpt.com.vn',''),(8,'Nguyen Manh Cuong','cuongnm37','cuongnm37','cuongnm37@fpt.com.vn','\0'),(9,'Nguyen Kieu Linh','linhnk7','linhnk7','linhnk7@fpt.com.vn','\0'),(10,'Nguyen Thi Khuyen','khuyennt7','khuyennt7','khuyennt7@fpt.com.vn','\0');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -168,4 +169,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-13  6:59:17
+-- Dump completed on 2015-11-16  7:17:42

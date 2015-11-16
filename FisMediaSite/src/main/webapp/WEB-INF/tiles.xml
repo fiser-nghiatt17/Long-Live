@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+  <definition name="baseLayout" template="/layout/base_layout.jsp">
+      <put-attribute name="title"  value="Template"/>
+      <put-attribute name="cssLib" value="/layout/load_css_lib.jsp"/>
+      <put-attribute name="jsLib" value="/layout/load_js_lib.jsp"/>
+      <put-attribute name="nav"   value="/layout/nav.jsp"/>
+      <put-attribute name="footer"   value="/layout/footer.jsp"/>
+      <put-attribute name="body"  value="/pages/body.jsp"/>
+      <put-attribute name="galleria"  value=""/>
+  </definition>
+  
+  <definition name="home" extends="baseLayout">
+      <put-attribute name="title"  value="Home"/>
+      <put-attribute name="body"   value="/pages/home.jsp"/>      
+  </definition>
+  
+  <definition name="viewAAlbum" extends="baseLayout">
+      <put-attribute name="title"  value="ViewAAlbum"/>
+      <put-attribute name="body"   value="/pages/view_a_album.jsp"/>
+      <put-attribute name="galleria" value="/layout/galleria.jsp"/>    
+  </definition>
+  
+  <definition name="editAAlbum" extends="baseLayout">
+      <put-attribute name="title"  value="Edit A Album"/>
+      <put-attribute name="body"   value="/pages/edit_a_album.jsp"/>      
+  </definition>
+  
+  <definition name="profile" extends="baseLayout">
+      <put-attribute name="title"  value="Profile"/>
+      <put-attribute name="body"   value="/pages/profile.jsp"/>      
+  </definition>
+  
+  <definition name="setting" extends="baseLayout">
+      <put-attribute name="title"  value="Setting"/>
+      <put-attribute name="body"   value="/pages/setting.jsp"/>      
+  </definition>
+  
+</tiles-definitions>

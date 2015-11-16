@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<web-app>  
+<web-app>
+
+  <!-- tile2 config -->  
+  <context-param>
+		<param-name> org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG </param-name>
+		<param-value>/WEB-INF/tiles.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.apache.struts2.tiles.StrutsTilesListener </listener-class>
+	</listener>		
+  <!-- end tile2 config --> 
+  
   <display-name>FisMediaSite</display-name>
-	<welcome-file-list>
+	<!--  <welcome-file-list>
 	      <welcome-file>index.jsp</welcome-file>
-	  </welcome-file-list>
+	  </welcome-file-list> -->
 	<filter>
 	  <filter-name>struts2</filter-name>
 	  <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>

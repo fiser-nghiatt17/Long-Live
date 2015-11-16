@@ -28,7 +28,12 @@
     	<artifactId>mysql-connector-java</artifactId>
     	<version>5.1.37</version>
     </dependency>
-
+	
+	<dependency>
+		<groupId>org.apache.struts</groupId>
+		<artifactId>struts2-tiles-plugin</artifactId>
+		<version>2.3.24.1</version>
+	</dependency>
 	
   </dependencies>
   

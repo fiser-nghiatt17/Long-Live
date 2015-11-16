@@ -6,14 +6,29 @@
 <struts>
  
     <constant name="struts.devMode" value="true" />
- 
-    <package name="basicstruts2" extends="struts-default">
-        <action name="index">
-            <result>/index.jsp</result>
-        </action>
-        <action name="home" class="fis.longlive.actions.HomeAction">
-        	<result name="success">/index.jsp</result>
-        </action>
-    </package>
- 
+ 	
+ 	<package name="defaultTile" extends="struts-default">
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+		<action name="">
+			<result type="tiles">home</result>
+		</action>
+		<action name="viewAAlbum">
+			<result type="tiles">viewAAlbum</result>
+		</action>
+		<action name="editAAlbum">
+			<result type="tiles">editAAlbum</result>
+		</action>
+		<action name="profile">
+			<result type="tiles">profile</result>
+		</action>
+		<action name="setting">
+			<result type="tiles">setting</result>
+		</action>
+		<action name="home">
+			<result type="tiles">home</result>
+		</action>
+	</package>
+ 	
 </struts>

@@ -10,44 +10,50 @@
   <url>http://maven.apache.org</url>
   
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>3.8.1</version>
+          <scope>test</scope>
+      </dependency>
     
-    <dependency>
-	    <groupId>org.apache.struts</groupId>
-	    <artifactId>struts2-core</artifactId>
-    	<version>2.3.24.1</version>
-	</dependency>
+      <dependency>
+          <groupId>org.apache.struts</groupId>
+          <artifactId>struts2-core</artifactId>
+          <version>2.3.24.1</version>
+      </dependency>
 	
-	<dependency>
-    	<groupId>mysql</groupId>
-    	<artifactId>mysql-connector-java</artifactId>
-    	<version>5.1.37</version>
-    </dependency>
-	
-	<dependency>
-		<groupId>org.apache.struts</groupId>
-		<artifactId>struts2-tiles-plugin</artifactId>
-		<version>2.3.24.1</version>
-	</dependency>
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>5.1.37</version>
+      </dependency>
+      
+      <dependency>
+          <groupId>org.apache.struts</groupId>
+          <artifactId>struts2-tiles-plugin</artifactId>
+          <version>2.3.24.1</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.eclipse.persistence</groupId>
+          <artifactId>eclipselink</artifactId>
+          <version>2.5.0</version>
+      </dependency>
 	
   </dependencies>
   
   <build>
-    <finalName>FisMediaSite</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				  <artifactId>tomcat7-maven-plugin</artifactId>
-				  <version>2.2</version>
-				  <configuration>
-				  </configuration>
-			</plugin>		
-		</plugins>
+      <finalName>FisMediaSite</finalName>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.tomcat.maven</groupId>
+              <artifactId>tomcat7-maven-plugin</artifactId>
+              <version>2.2</version>
+              <configuration>
+              </configuration>
+          </plugin>		
+      </plugins>
   </build>
   
 </project>

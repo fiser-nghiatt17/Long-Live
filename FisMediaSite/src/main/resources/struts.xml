@@ -29,6 +29,18 @@
 		<action name="home">
 			<result type="tiles">home</result>
 		</action>
+		<action name="logOut">
+			<result type="tiles">home</result>
+		</action>
+		<action name="newest">
+			<result type="tiles">home</result>
+		</action>
+		<action name="mostView">
+			<result type="tiles">home</result>
+		</action>
+		<action name="mostFavorite">
+			<result type="tiles">home</result>
+		</action>
 	</package>
  	
 </struts>

@@ -29,19 +29,19 @@
         <span class="mdl-layout-title">Home</span>
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="home">Home</a>
-            <ul class="fis-sub-nav">
-                <li><a href="home">Newest</a></li>
-                <li><a href="home">Most view</a></li>
-                <li><a href="home">Most favorite</a></li>
-                <li><a href="viewAAlbum">View a album</a></li>
-            </ul>
+            <div class="fis-sub-nav">
+                <a class="mdl-navigation__link"  href="newest">Newest</a>
+                <a class="mdl-navigation__link"  href="mostView">Most view</a>
+                <a class="mdl-navigation__link"  href="mostFavorite">Most favorite</a>
+                <a class="mdl-navigation__link"  href="viewAAlbum">View a album</a>
+            </div>
             <a class="mdl-navigation__link" href="profile">Profile</a>
-            <ul class="fis-sub-nav">
-                <li><a href="editAAlbum">Edit a album</a></li>
-            </ul>
+            <div class="fis-sub-nav">
+                <a class="mdl-navigation__link"  href="editAAlbum">Edit A Album</a>
+            </div>
             <a class="mdl-navigation__link" href="setting">Setting</a>
             <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-signup-container">Sign Up</a>
             <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-login-container">Log In</a>
-            <a class="mdl-navigation__link" href="home">Log out</a>
+            <a class="mdl-navigation__link" href="logOut">Log out</a>
         </nav>
     </div>

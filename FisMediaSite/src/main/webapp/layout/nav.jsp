@@ -26,7 +26,7 @@
         </div>
     </header>
     <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Home</span>
+        <span class="mdl-layout-title">Long Live</span>
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="home">Home</a>
             <div class="fis-sub-nav">

@@ -1,0 +1,33 @@
+/*View Album Page-------------------------*/
+.galleria{
+  width: 1200px;
+  height: 550px;
+  background: white;
+  margin: 10px auto;
+}
+
+.fis-album-info {
+  width: 1200px;
+  margin: 10px auto;
+  background: #fff;
+  padding: 5px;
+  height: 70px;
+  p{
+    margin: 0 0 0 5px;
+  }
+}
+
+.fis-album-info-icon{
+  position: relative;
+  left: 1070px;
+  bottom: 28px;
+}
+
+/*comment section*/
+.fis-comment{
+  margin: 5px auto;
+  width: 1200px;
+  height: 500px;
+  background: #fff;
+}
+/*End View Album Page-------------------------*/

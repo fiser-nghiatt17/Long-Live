@@ -1,0 +1,33 @@
+/*Profile Page--------------------------------*/
+.fis-edit-album-section{
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  span{
+    font-size: 20px;
+    margin: 20px;
+  }
+}
+.fis-add-album{
+  margin-top: 20px;
+}
+
+.fis-new-album-container{
+  width: 300px;
+  margin: 100px auto;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+.fis-edit-album-right{
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}
+
+/*End Profile Page---------------------------*/

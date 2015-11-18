@@ -18,12 +18,15 @@
                                             class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon">
                                         <i class="material-icons">more_vert</i>
                                      </button>
-                                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                                    <div class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                                         for="fis-edit-album-right-1">
-                                        <li class="mdl-menu__item"><a href="editAAlbum" style="color: #616161">Edit</a></li>
-                                        <li class="mdl-menu__item"><a href="#" style="color: #616161"
-                                                                      data-toggle="modal" data-target="#fis-delete-popup">Delete</a></li>
-                                    </ul>
+                                        <a href="editAAlbum" style="color: #616161">
+                                            <li class="mdl-menu__item">Edit</li>
+                                        </a>
+                                        <a href="#" style="color: #616161" data-toggle="modal" data-target="#fis-delete-popup">
+                                           <li class="mdl-menu__item">Delete</li>
+                                        </a>
+                                    </div>
     <!-- End Edit album -->    </div>
                                 <div class="mdl-card--expand"></div>
                                 <a style="cursor: pointer" href="viewAAlbum"> <!-- Link to See album -->

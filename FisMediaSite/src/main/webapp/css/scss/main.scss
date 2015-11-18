@@ -1,0 +1,14 @@
+@import "nav";
+@import "home";
+@import "view_a_album";
+@import "profile";
+@import "edit_a_album";
+@import "setting";
+
+a {
+    cursor: pointer;
+}
+
+body{
+    background: #cacaca;
+}

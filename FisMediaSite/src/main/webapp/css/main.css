@@ -1,232 +1,208 @@
-a {
-    cursor: pointer;
-}
-
-body{
-    background: #cacaca;
-}
-
-/*Navigation*/
 .fis-nav-active {
-    background: #dedede;
-}
-.fis-sub-nav{
-    list-style: none;
-}
-.fis-sub-nav a{
-    margin: 15px;
+  background: #dedede; }
+
+.fis-sub-nav {
+  text-decoration: none;
+  height: 100%; }
+  .fis-sub-nav a {
+    text-indent: 20px;
     text-decoration: none;
-    color: #757575;
-}
-.fis-sub-nav li{
-    cursor: pointer;
-    width: 100%;
-    padding: 7px;
-}
-.fis-sub-nav li:hover{
-    background: #dedede;
-}
-/*End navigation*/
+    font-weight: 500; }
+
+.mdl-navigation__link {
+  font-weight: 700; }
+
 /*Home Page--------------------------*/
 /*User*/
-.fis-login-container{
-    width: 400px;
-    margin: 50px auto;
+.fis-login-container {
+  width: 400px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: white; }
+  .fis-login-container form {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background: white;
-}
-
-.fis-login-container form{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 80%;
-}
-
-.fis-login-container button{
+    width: 80%; }
+  .fis-login-container button {
     width: 100%;
-    margin: 50px;
-}
+    margin: 50px; }
+  .fis-login-container div {
+    width: 100%; }
 
-.fis-login-container div{
-    width: 100%;
-}
+.fis-error {
+  color: #ff0a00; }
 
-.fis-upload-container{
-    margin: 120px auto;
-    width: 400px;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.fis-upload-container {
+  margin: 120px auto;
+  width: 400px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .fis-upload-container div, .fis-upload-container button {
+    width: 80%; }
 
-}
+.fis-upload-container button {
+  margin: 20px; }
 
-.fis-upload-container div, button{
-    width: 80%;
-}
-
-.fis-upload-container button{
-    margin: 20px;
-}
 .fis-choose-file {
-    margin: 20px;
-    align-self: center;
-}
+  margin: 20px;
+  align-self: center; }
+
 /*End user*/
-.fis-hide{
-    display: none;
-}
 /*Card*/
+.fis-card {
+  width: 100%;
+  height: 300px;
+  margin: 5px auto; }
 
-.fis-card{
-    width: 100%;
-    height: 300px;
-    margin: 5px auto;
-}
-
-.fis-card-container{
-    background: #fff;
-    padding: 0;
-    margin-bottom: 15px;
-}
+.fis-card-container {
+  background: #fff;
+  padding: 0;
+  margin-bottom: 15px; }
 
 /*Card icon*/
-
-.fis-card-hover{
-    display: inline-block;
-    color: #fff;
-    background: rgba(0,0,0,0.2);
-}
-
-.fis-card-hover p{
+.fis-card-hover {
+  display: inline-block;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.2); }
+  .fis-card-hover p {
     width: 50%;
-    margin: 0;
-}
+    margin: 0; }
 
-.fis-card-title{
-    font-size: larger;
-}
+.fis-card-title {
+  font-size: larger; }
 
-.fis-card-user{
-    font-size: small;
-}
+.fis-card-user {
+  font-size: small; }
 
-.fis-card-hover-icon{
-    position: absolute;
-    right: 18px;
-    bottom: 8px;
-}
+.fis-card-hover-icon {
+  position: absolute;
+  right: 18px;
+  bottom: 8px; }
 
 .fis-card-hover-icon-plus {
-    position: relative;
-    top: -6px;
-    left: 3px
-}
-/*End Home Page--------------------------*/
+  position: relative;
+  top: -6px;
+  left: 3px; }
 
+/*End Home Page--------------------------*/
 /*View Album Page-------------------------*/
-.galleria{
-    width: 1200px;
-    height: 550px;
-    background: white;
-    margin: 10px auto;
-}
+.galleria {
+  width: 1200px;
+  height: 550px;
+  background: white;
+  margin: 10px auto; }
 
 .fis-album-info {
-    width: 1200px;
-    margin: 10px auto;
-    background: #fff;
-    padding: 5px;
-    height: 70px;
-}
+  width: 1200px;
+  margin: 10px auto;
+  background: #fff;
+  padding: 5px;
+  height: 70px; }
+  .fis-album-info p {
+    margin: 0 0 0 5px; }
 
-.fis-album-info p{
-    margin: 0 0 0 5px;
-}
-.fis-album-info-icon{
-    position: relative;
-    left: 1070px;
-    bottom: 28px;
-}
+.fis-album-info-icon {
+  position: relative;
+  left: 1070px;
+  bottom: 28px; }
 
 /*comment section*/
-.fis-comment{
-    margin: 5px auto;
-    width: 1200px;
-    height: 500px;
-    background: #fff;
-}
+.fis-comment {
+  margin: 5px auto;
+  width: 1200px;
+  height: 500px;
+  background: #fff; }
+
 /*End View Album Page-------------------------*/
-
-
 /*Profile Page--------------------------------*/
-.fis-edit-album-section{
-    width: 100%;
-    margin: 0 auto;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.fis-add-album{
-    margin-top: 20px;
-}
-.fis-edit-album-section span{
+.fis-edit-album-section {
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .fis-edit-album-section span {
     font-size: 20px;
-    margin: 20px;
-}
-.fis-new-album-container{
-    width: 300px;
-    margin: 100px auto;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px;
-}
-.fis-edit-album-right{
-    position: relative;
-    left: 275px;
-    bottom: 15px;
-}
+    margin: 20px; }
+
+.fis-add-album {
+  margin-top: 20px; }
+
+.fis-new-album-container {
+  width: 300px;
+  margin: 100px auto;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px; }
+
+.fis-edit-album-right {
+  position: absolute;
+  right: 8px;
+  top: 8px; }
 
 /*End Profile Page---------------------------*/
-
-
 /*Edit album page----------------------------*/
-.fis-album-detail{
-    width: 100%;
-    background: #fff;
-    padding: 30px;
-}
-.fis-album-detail p{
+.fis-album-detail {
+  width: 100%;
+  background: #fff;
+  padding: 30px; }
+  .fis-album-detail p {
     margin: 0;
-    font-weight: 600;
-}
-.fis-album-detail button{
+    font-weight: 600; }
+  .fis-album-detail button {
     width: 100%;
-    margin-top: 10px;
-}
-.fis-ask{
-    margin: 200px auto;
-    width: 400px;
-    background: #fff;
-    padding: 40px;
-}
-.fis-ask button{
+    margin-top: 10px; }
+
+.fis-ask {
+  margin: 200px auto;
+  width: 400px;
+  background: #fff;
+  padding: 40px; }
+  .fis-ask button {
     margin: 5px;
     display: inline;
-    width: 40%;
-}
+    width: 40%; }
 
 /*End Edit album page----------------------------*/
+.fis-setting {
+  width: 40%;
+  background: #fff;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .fis-setting .fis-setting-item {
+    width: 80%;
+    display: flex;
+    flex-direction: row; }
+    .fis-setting .fis-setting-item div {
+      align-items: flex-end;
+      width: 70%; }
+    .fis-setting .fis-setting-item p {
+      font-size: medium;
+      font-weight: bold;
+      padding-top: 20px;
+      text-align: left;
+      vertical-align: middle;
+      width: 30%; }
+  .fis-setting button {
+    width: 80%;
+    margin: 20px auto; }
 
+a {
+  cursor: pointer; }
 
-/*Setting  Page-------------------------------*/
+body {
+  background: #cacaca; }
 
-/*End Setting  Page-------------------------------*/
+/*# sourceMappingURL=main.css.map */

@@ -32,4 +32,4 @@
    
    </div><!-- End Your content goes here -->
 </main>
-<%@ include file="login_signup_pop_up.jsp" %>>
+<%@ include file="login_signup_pop_up.jsp" %>

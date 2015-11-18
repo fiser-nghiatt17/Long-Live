@@ -1,19 +1,17 @@
 <!-- Login Popup -->
     <div class="modal fade" id="fis-login-container">
             <div class="fis-login-container">
-                <form action="profile">
+                <form action="home" id="loginForm">
                     <div class="fis-login-title">
                         <h3>Log In</h3>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield user-name">
-                        <input class="mdl-textfield__input" type="text" id="userName" pattern="[A-Z,a-z, ]*">
+                        <input class="mdl-textfield__input" type="text" id="userName">
                         <label class="mdl-textfield__label" for="userName">User name</label>
-                        <span class="mdl-textfield__error">Letters and spaces only</span>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" type="password" id="password" pattern="[A-Z,a-z, ]*">
+                        <input class="mdl-textfield__input" type="password" id="password">
                         <label class="mdl-textfield__label" for="password">Password</label>
-                        <span class="mdl-textfield__error">Letters and spaces only</span>
                     </div>
                     <div>
                         <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">

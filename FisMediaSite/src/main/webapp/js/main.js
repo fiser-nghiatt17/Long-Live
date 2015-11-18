@@ -1,9 +1,6 @@
 $(document).ready(function(){
     checkUrlToActiveNav();
-    var $loginBtn = $(".fis-login-btn");
-    var $signUpBtn = $(".fis-signup-btn");
-
-
+    validations();
 
 });
 
@@ -22,4 +19,19 @@ function checkUrlToActiveNav(){
         if($(this).attr("href") == url || $(this).attr("href") == '' )
             $(this).addClass("fis-nav-active");
     })
+
+}
+
+function validations(){
+    var loginForm = $("#loginForm");
+
+    loginForm.validate({
+        rules:{
+            userName: "required"
+        },
+        messages:{
+            userName: "requireds"
+        },
+        errorClass: "fis-error"
+    });
 }

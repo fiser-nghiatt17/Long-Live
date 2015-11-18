@@ -11,6 +11,9 @@
 		<result-types>
 			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
 		</result-types>
+		<action name="">
+			<result type="tiles">home</result>
+		</action>
 		<action name="viewAAlbum">
 			<result type="tiles">viewAAlbum</result>
 		</action>

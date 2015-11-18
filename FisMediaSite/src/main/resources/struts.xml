@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC
-    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-    "http://struts.apache.org/dtds/struts-2.0.dtd">
- 
+		"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+		"http://struts.apache.org/dtds/struts-2.0.dtd">
+
 <struts>
- 
-    <constant name="struts.devMode" value="true" />
- 	
- 	<package name="defaultTile" extends="struts-default">
+
+	<constant name="struts.devMode" value="true"/>
+
+	<package name="defaultTile" extends="struts-default">
 		<result-types>
-			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
 		</result-types>
-		<action name="">
-			<result type="tiles">home</result>
-		</action>
 		<action name="viewAAlbum">
 			<result type="tiles">viewAAlbum</result>
 		</action>
 		<action name="editAAlbum">
 			<result type="tiles">editAAlbum</result>
-		</action>
-		<action name="profile">
-			<result type="tiles">profile</result>
 		</action>
 		<action name="setting">
 			<result type="tiles">setting</result>
@@ -41,6 +35,16 @@
 		<action name="mostFavorite">
 			<result type="tiles">home</result>
 		</action>
+		<action name="profile" class="fis.longlive.actions.LoginAction" method="checkSession">
+			<result type="tiles" name="login">home</result>
+			<result type="tiles" name="success">profile</result>
+		</action>
 	</package>
- 	
+
+	<package name="default" extends="defaultTile">
+		<action name="login" class="fis.longlive.actions.LoginAction">
+			<result type="tiles" name="success">profile</result>
+			<result type="tiles" name="login">home</result>
+		</action>
+	</package>
 </struts>

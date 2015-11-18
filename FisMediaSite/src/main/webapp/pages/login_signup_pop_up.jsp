@@ -1,16 +1,16 @@
 <!-- Login Popup -->
     <div class="modal fade" id="fis-login-container">
             <div class="fis-login-container">
-                <form action="home" id="loginForm">
+                <form action="login" method="post">
                     <div class="fis-login-title">
                         <h3>Log In</h3>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield user-name">
-                        <input class="mdl-textfield__input" type="text" id="userName">
+                        <input class="mdl-textfield__input" type="text" id="userName" name="username">
                         <label class="mdl-textfield__label" for="userName">User name</label>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" type="password" id="password">
+                        <input class="mdl-textfield__input" type="password" id="password" name="password">
                         <label class="mdl-textfield__label" for="password">Password</label>
                     </div>
                     <div>
@@ -30,30 +30,30 @@
     <!-- Sign Up Popup -->
     <div class="modal fade" id="fis-signup-container">
         <div class="fis-login-container">
-            <form action="profile">
+            <form action="profile" method="post">
                 <div class="fis-login-title">
                     <h3>Sign Up</h3>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield user-name">
-                    <input class="mdl-textfield__input" type="text" id="signUpUserName" pattern="[A-Z,a-z, ]*">
+                    <input class="mdl-textfield__input" type="text" id="signUpUserName" name="username">
                     <label class="mdl-textfield__label" for="signUpUserName">User name</label>
                     <span class="mdl-textfield__error">Letters and spaces only</span>
                 </div>
 
                 <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input" type="password" id="signUpPassword" pattern="[A-Z,a-z, ]*">
+                    <input class="mdl-textfield__input" type="password" id="signUpPassword" name="password">
                     <label class="mdl-textfield__label" for="signUpPassword">Password</label>
                     <span class="mdl-textfield__error">Letters and spaces only</span>
                 </div>
 
                 <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input" type="password" id="retypePassword" pattern="[A-Z,a-z, ]*">
+                    <input class="mdl-textfield__input" type="password" id="retypePassword" name="retypePassword">
                     <label class="mdl-textfield__label" for="retypePassword">Retype Password</label>
                     <span class="mdl-textfield__error">Letters and spaces only</span>
                 </div>
 
                 <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input" type="email" id="signUpFullName" >
+                    <input class="mdl-textfield__input" type="email" id="signUpFullName" name="fullName">
                     <label class="mdl-textfield__label" for="signUpFullName">Full Name</label>
                     <span class="mdl-textfield__error">Letters and spaces only</span>
                 </div>

@@ -1,13 +1,16 @@
 package fis.longlive.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
+
 import fis.longlive.database.Connect;
+
 import org.apache.struts2.interceptor.SessionAware;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
 
+@SuppressWarnings("serial")
 public class LoginAction extends ActionSupport implements SessionAware {
 
     private String username;

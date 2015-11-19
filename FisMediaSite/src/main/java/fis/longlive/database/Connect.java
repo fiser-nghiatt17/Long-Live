@@ -9,7 +9,6 @@ import java.sql.SQLException;
 public class Connect {
 	private Connection con;
 	private PreparedStatement ps;
-	private ResultSet rs;
 	
 	public Connect() {
 		try {

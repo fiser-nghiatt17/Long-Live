@@ -18,7 +18,6 @@
 			<result type="tiles">viewAAlbum</result>
 		</action>
 		<action name="editAAlbum">
-			sakdjf;alskdfj;asdlkfjas;lkdfj
 			<result type="tiles">editAAlbum</result>
 		</action>
 		<action name="setting">

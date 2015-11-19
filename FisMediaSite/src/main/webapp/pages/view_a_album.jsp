@@ -29,7 +29,7 @@
                     <h4 style="margin: 5px">Coming soon ...</h4>
                 </div>
             </div>
-   
+   			<div class="fb-comments" data-href="http://localhost:8080/FisMediaSite/viewAAlbum" data-width="600" data-numposts="5"></div>
    </div><!-- End Your content goes here -->
 </main>
 <%@ include file="login_signup_pop_up.jsp" %>

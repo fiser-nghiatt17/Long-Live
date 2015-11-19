@@ -22,12 +22,19 @@
                 </div>
                 <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-signup-container">Sign Up</a>
                 <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-login-container">Log In</a>
+                <a class="mdl-navigation__link  fis-after-login" id="fis-menu-lower-right">User_Name</a>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                    for="fis-menu-lower-right">
+                    <a href="setting"><li class="mdl-menu__item">Setting</li></a>
+                    <a href="profile"><li class="mdl-menu__item">Profile</li></a>
+                    <a href="logOut"><li class="mdl-menu__item">Logout</li></a>
+                </ul>
             </nav>
         </div>
     </header>
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Long Live</span>
-        <nav class="mdl-navigation">
+        <nav class="mdl-navigation fis-main-nav">
             <a class="mdl-navigation__link" href="home">Home</a>
             <div class="fis-sub-nav">
                 <a class="mdl-navigation__link"  href="newest">Newest</a>

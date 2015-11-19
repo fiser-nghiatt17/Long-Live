@@ -15,7 +15,7 @@ function checkUrlToActiveNav(){
         url = pgurl.substr(0, indexOfQm);
     }
 
-    $("nav a").each(function(){
+    $(".fis-main-nav a").each(function(){
         if($(this).attr("href") == url || $(this).attr("href") == '' )
             $(this).addClass("fis-nav-active");
     })
@@ -27,11 +27,32 @@ function validations(){
 
     loginForm.validate({
         rules:{
-            userName: "required"
+            username: {
+                required: true,
+                minlength: 5,
+                maxlength: 15
+            },
+            password: {
+                required: true,
+                minlength: 5,
+                maxlength: 15
+            }
         },
         messages:{
-            userName: "requireds"
+            username: {
+                required: "This field is required",
+                minlength: "Too short",
+                maxlength: "Too long"
+            },
+            password: {
+                required: "This field is required",
+                minlength: "Too short",
+                maxlength: "Too long"
+            }
         },
-        errorClass: "fis-error"
+        errorClass: "fis-error",
+        submitHandler: function(form){
+            form.submit();
+        }
     });
 }

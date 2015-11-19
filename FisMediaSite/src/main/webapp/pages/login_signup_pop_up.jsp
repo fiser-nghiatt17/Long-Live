@@ -1,7 +1,7 @@
 <!-- Login Popup -->
     <div class="modal fade" id="fis-login-container">
             <div class="fis-login-container">
-                <form action="login" method="post">
+                <form action="login" method="post" id="loginForm">
                     <div class="fis-login-title">
                         <h3>Log In</h3>
                     </div>

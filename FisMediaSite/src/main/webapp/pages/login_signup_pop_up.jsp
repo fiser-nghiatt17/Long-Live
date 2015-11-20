@@ -1,6 +1,7 @@
 <!-- Login Popup -->
     <div class="modal fade" id="fis-login-container">
             <div class="fis-login-container">
+                <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate fis-loader"></div>
                 <form action="login" method="post" id="loginForm">
                     <div class="fis-login-title">
                         <h3>Log In</h3>

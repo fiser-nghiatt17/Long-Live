@@ -31,7 +31,8 @@ function handlerSubmit(){
 
 function loginHandle(){
     var loginForm = $("#loginForm");
-
+    var fisLoader = $(".fis-loader");
+    fisLoader.hide();
     loginForm.validate({
         rules:{
             username: {
@@ -59,12 +60,15 @@ function loginHandle(){
         },
         errorClass: "fis-error",
         submitHandler: function(form){
+            fisLoader.show();
+
             $.ajax({
                 url: form.action,
                 type: form.method,
                 dataType: 'json',
                 data: $(form).serialize(),
                 success: function(res){
+                    fisLoader.hide();
                    if(res.result == "login"){
                        loginForm.find(".fis-login-title")
                            .append("<label class='fis-error'>Wrong User Name or Password</label>");

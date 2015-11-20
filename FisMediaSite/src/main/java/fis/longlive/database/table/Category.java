@@ -15,7 +15,7 @@ public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int typeID;
+	private int categoryID;
 
 	@Lob
 	private String description;
@@ -25,12 +25,12 @@ public class Category implements Serializable {
 	public Category() {
 	}
 
-	public int getTypeID() {
-		return this.typeID;
+	public int getCategoryID() {
+		return this.categoryID;
 	}
 
-	public void setTypeID(int typeID) {
-		this.typeID = typeID;
+	public void setCategoryID(int categoryID) {
+		this.categoryID = categoryID;
 	}
 
 	public String getDescription() {

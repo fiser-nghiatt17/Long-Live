@@ -1,6 +1,6 @@
 $(document).ready(function(){
     checkUrlToActiveNav();
-    validations();
+    handlerSubmit();
 
 });
 
@@ -22,7 +22,14 @@ function checkUrlToActiveNav(){
 
 }
 
-function validations(){
+function handlerSubmit(){
+    loginHandle();
+    signupHandle();
+    settingHandle();
+    uploadImageHandle();
+}
+
+function loginHandle(){
     var loginForm = $("#loginForm");
 
     loginForm.validate({
@@ -52,7 +59,32 @@ function validations(){
         },
         errorClass: "fis-error",
         submitHandler: function(form){
-            form.submit();
+            $.ajax({
+                url: form.action,
+                type: form.method,
+                dataType: 'json',
+                data: $(form).serialize(),
+                success: function(res){
+                   if(res.result == "login"){
+                       loginForm.find(".fis-login-title")
+                           .append("<label class='fis-error'>Wrong User Name or Password</label>");
+                   }else{
+                       window.location.replace("http://localhost:8080/FisMediaSite/profile");
+                   }
+                }
+            });
         }
     });
+}
+
+function signupHandle(){
+
+}
+
+function settingHandle(){
+
+}
+
+function uploadImageHandle(){
+
 }

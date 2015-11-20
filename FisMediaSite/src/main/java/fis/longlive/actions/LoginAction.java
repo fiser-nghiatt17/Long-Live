@@ -16,6 +16,23 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private String username;
     private String password;
     Map<String, Object> sessionMap;
+    private String result;
+
+    public Map<String, Object> getSessionMap() {
+        return sessionMap;
+    }
+
+    public void setSessionMap(Map<String, Object> sessionMap) {
+        this.sessionMap = sessionMap;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
 
     public String execute() throws SQLException {
         Connect connect = new Connect();
@@ -26,9 +43,13 @@ public class LoginAction extends ActionSupport implements SessionAware {
         ResultSet resultSet = connect.queryDB(query, loginInfo);
         if (resultSet.next()) {
             sessionMap.put("login", username);
+            result = SUCCESS;
             return SUCCESS;
-        } else
+        } else{
+            result = LOGIN;
             return LOGIN;
+        }
+
     }
 
     public String checkSession() {

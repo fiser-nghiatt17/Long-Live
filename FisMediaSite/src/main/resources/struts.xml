@@ -44,10 +44,19 @@
 		</action>
 	</package>
 
-	<package name="default" extends="defaultTile">
+	<!-- <package name="default" extends="defaultTile">
 		<action name="login" class="fis.longlive.actions.LoginAction">
 			<result type="tiles" name="success">profile</result>
 			<result type="tiles" name="login">home</result>
 		</action>
+	</package> -->
+
+	<package name="loginAjax" extends="json-default">
+		<action name="login" class="fis.longlive.actions.LoginAction">
+			<result type="json" name="success">
+			</result>
+			<result type="json" name="login" />
+		</action>
 	</package>
+
 </struts>

@@ -59,6 +59,16 @@ public class Connect {
         
         return null;
 	}
+
+	public int insertQueryDB(String query, Object[] args) {
+		prepare(query, args);
+		try {
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return 0;
+	}
 	
 	public int updateDB(String sql, Object[] args) {
 		prepare(sql, args);

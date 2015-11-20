@@ -57,6 +57,11 @@
 			</result>
 			<result type="json" name="login" />
 		</action>
+		<action name="signup" class="fis.longlive.actions.SignUpAction" method="checkSignUp">
+			<result type="json" name="success">
+			</result>
+			<result type="json" name="login" />
+		</action>
 	</package>
 
 </struts>

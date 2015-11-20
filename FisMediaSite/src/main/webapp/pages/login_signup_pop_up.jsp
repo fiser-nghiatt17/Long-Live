@@ -31,32 +31,29 @@
     <!-- Sign Up Popup -->
     <div class="modal fade" id="fis-signup-container">
         <div class="fis-login-container">
-            <form action="profile" method="post">
+            <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate fis-loader"></div>
+            <form action="signup" method="post" id="loginSignUp">
                 <div class="fis-login-title">
                     <h3>Sign Up</h3>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield user-name">
                     <input class="mdl-textfield__input" type="text" id="signUpUserName" name="username">
                     <label class="mdl-textfield__label" for="signUpUserName">User name</label>
-                    <span class="mdl-textfield__error">Letters and spaces only</span>
                 </div>
 
                 <div class="mdl-textfield mdl-js-textfield">
                     <input class="mdl-textfield__input" type="password" id="signUpPassword" name="password">
                     <label class="mdl-textfield__label" for="signUpPassword">Password</label>
-                    <span class="mdl-textfield__error">Letters and spaces only</span>
                 </div>
 
                 <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input" type="password" id="retypePassword" name="retypePassword">
+                    <input class="mdl-textfield__input" type="password" id="retypePassword" name="confirmPassword">
                     <label class="mdl-textfield__label" for="retypePassword">Retype Password</label>
-                    <span class="mdl-textfield__error">Letters and spaces only</span>
                 </div>
 
                 <div class="mdl-textfield mdl-js-textfield">
-                    <input class="mdl-textfield__input" type="email" id="signUpFullName" name="fullName">
+                    <input class="mdl-textfield__input" type="text" id="signUpFullName" name="fullName">
                     <label class="mdl-textfield__label" for="signUpFullName">Full Name</label>
-                    <span class="mdl-textfield__error">Letters and spaces only</span>
                 </div>
 
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored fis-signup-btn">

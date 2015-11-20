@@ -61,7 +61,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     public String checkSession() {
-        String login = (String) sessionMap.get("login");
+        //String login = (String) sessionMap.get("login");
+        String login = (String) session.getAttribute("username");
 
         if (login == null) {
             return LOGIN;

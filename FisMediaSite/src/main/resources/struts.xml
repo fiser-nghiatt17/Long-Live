@@ -26,8 +26,8 @@
 		<action name="home">
 			<result type="tiles">home</result>
 		</action>
-		<action name="logOut">
-			<result type="tiles">home</result>
+		<action name="logOut" class="fis.longlive.actions.LoginAction" method="logout">
+			<result name="success" type="redirectAction">home</result>
 		</action>
 		<action name="newest">
 			<result type="tiles">home</result>
@@ -39,8 +39,8 @@
 			<result type="tiles">home</result>
 		</action>
 		<action name="profile" class="fis.longlive.actions.LoginAction" method="checkSession">
-			<result type="tiles" name="login">home</result>
-			<result type="tiles" name="success">profile</result>
+			<result name="login" type="redirectAction">home</result>
+			<result name="success" type="tiles">profile</result>
 		</action>
 	</package>
 

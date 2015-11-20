@@ -4,8 +4,10 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import fis.longlive.database.Connect;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
+import javax.servlet.http.HttpSession;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Map;
@@ -17,6 +19,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
     private String password;
     Map<String, Object> sessionMap;
     private String result;
+
+    HttpSession session = ServletActionContext.getRequest().getSession();
 
     public Map<String, Object> getSessionMap() {
         return sessionMap;
@@ -41,8 +45,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
         loginInfo[0] = username;
         loginInfo[1] = password;
         ResultSet resultSet = connect.queryDB(query, loginInfo);
+
         if (resultSet.next()) {
-            sessionMap.put("login", username);
+          //  sessionMap.put("login", username);
+            resultSet.last();
+            String fullName = resultSet.getString("fullname");
+            session.setAttribute("username", fullName);
             result = SUCCESS;
             return SUCCESS;
         } else{
@@ -71,7 +79,8 @@ public class LoginAction extends ActionSupport implements SessionAware {
     }
 
     public String logout() {
-        sessionMap.remove("login");
+        //sessionMap.remove("login");
+        session.removeAttribute("username");
         return SUCCESS;
     }
 

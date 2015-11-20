@@ -11,6 +11,9 @@ function checkUrlToActiveNav(){
 
     if (indexOfQm == -1){
         url = pgurl;
+        var indexOfDot = url.search("\\.");
+        url = (indexOfDot == -1) ? url : url.substr(0, indexOfDot);
+        console.log(url);
     }else{
         url = pgurl.substr(0, indexOfQm);
     }
@@ -67,7 +70,8 @@ function loginHandle(){
                 type: form.method,
                 dataType: 'json',
                 data: $(form).serialize(),
-                success: function(res){
+                success: function(res, status){
+                    console.log(status);
                     fisLoader.hide();
                    if(res.result == "login"){
                        loginForm.find(".fis-login-title")

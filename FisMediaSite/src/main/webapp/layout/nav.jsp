@@ -20,9 +20,15 @@
                                id="fixed-header-drawer-exp">
                     </div>
                 </div>
-                <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-signup-container">Sign Up</a>
-                <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-login-container">Log In</a>
-                <a class="mdl-navigation__link  fis-after-login" id="fis-menu-lower-right">User_Name</a>
+
+                <% if(session.getAttribute("username") != null) {%>
+                     <a class="mdl-navigation__link  fis-after-login" id="fis-menu-lower-right">
+                    <%= session.getAttribute("username")%></a>
+                <%} else {%>
+                    <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-signup-container">Sign Up</a>
+                    <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-login-container">Log In</a>
+                <%}%>
+
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                     for="fis-menu-lower-right">
                     <a href="setting"><li class="mdl-menu__item">Setting</li></a>
@@ -42,13 +48,17 @@
                 <a class="mdl-navigation__link"  href="mostFavorite">Most favorite</a>
                 <a class="mdl-navigation__link"  href="viewAAlbum">View a album</a>
             </div>
-            <a class="mdl-navigation__link" href="profile">Profile</a>
-            <div class="fis-sub-nav">
-                <a class="mdl-navigation__link"  href="editAAlbum">Edit A Album</a>
-            </div>
-            <a class="mdl-navigation__link" href="setting">Setting</a>
-            <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-signup-container">Sign Up</a>
-            <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-login-container">Log In</a>
-            <a class="mdl-navigation__link" href="logOut">Log out</a>
+            <% if(session.getAttribute("username") != null) {%>
+                <a class="mdl-navigation__link" href="profile">Profile</a>
+                <div class="fis-sub-nav">
+                    <a class="mdl-navigation__link"  href="editAAlbum">Edit A Album</a>
+                </div>
+                <a class="mdl-navigation__link" href="setting">Setting</a>
+                <a class="mdl-navigation__link" href="logOut">Log out</a>
+            <%} else {%>
+                <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-signup-container">Sign Up</a>
+                <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-login-container">Log In</a>
+            <%}%>
+
         </nav>
     </div>

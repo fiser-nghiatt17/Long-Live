@@ -30,7 +30,7 @@ public final class ProcessAlbum {
 	
 	public static void delete(int id) {
 		beginTransaction();
-		eManager.remove(select(id));
+		eManager.remove(eManager.find(Album.class, id));
 		eManager.getTransaction().commit();
 		endTransaction();
 	}
@@ -45,7 +45,7 @@ public final class ProcessAlbum {
 	private static void update(int id, String type, Object value) {
 		beginTransaction();
 		
-		Album album = select(id);
+		Album album = eManager.find(Album.class, id);
 		switch (type) {
 			case "albumID":
 				album.setAlbumID((Integer) value);

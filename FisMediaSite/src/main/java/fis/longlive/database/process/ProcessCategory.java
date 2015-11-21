@@ -30,7 +30,7 @@ public final class ProcessCategory {
 	
 	public static void delete(int id) {
 		beginTransaction();
-		eManager.remove(select(id));
+		eManager.remove(eManager.find(Category.class, id));
 		eManager.getTransaction().commit();
 		endTransaction();
 	}
@@ -45,7 +45,7 @@ public final class ProcessCategory {
 	private static void update(int id, String type, Object value) {
 		beginTransaction();
 		
-		Category category = select(id);
+		Category category = eManager.find(Category.class, id);
 		
 		switch (type) {
 			case "categoryID":

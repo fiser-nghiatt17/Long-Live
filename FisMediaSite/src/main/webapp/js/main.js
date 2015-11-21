@@ -164,7 +164,48 @@ function settingHandle(){
 }
 
 function uploadImageHandle(){
+    var $uploadForm = $(".fis-new-album-container");
+    var $uploadAImage = $(".upload-a-image");
 
+    $uploadForm.validate({
+        rules:{
+            userImage:{
+                required: true,
+                accept: "image/*",
+                fileSize: 1048576
+            },
+            albumName:{
+                required: true
+            }
+        },
+        messages:{
+            userImage:"File must be JPG, GIF or PNG, less than 1MB"
+        },
+        submitHandler: function(form){
+            //ajax here
+        },
+        errorClass: 'fis-error'
+    });
+
+    $uploadAImage.validate({
+        rules:{
+            userImage:{
+                required: true,
+                accept: "image/*",
+                fileSize: 1048576
+            },
+            albumName:{
+                required: true
+            }
+        },
+        messages:{
+            userImage:"File must be JPG, GIF or PNG, less than 1MB"
+        },
+        submitHandler: function(form){
+            //ajax here
+        },
+        errorClass: 'fis-error'
+    });
 }
 
 function viewAAlbum(){
@@ -184,5 +225,5 @@ function viewAAlbum(){
         plusIcon.html(newVal);
     });
 
-    //query here
+    //ajax here
 }

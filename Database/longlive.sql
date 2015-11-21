@@ -81,14 +81,14 @@ DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
   `commentID` int(11) NOT NULL AUTO_INCREMENT,
   `user` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `onPicture` int(11) NOT NULL,
+  `onAlbum` int(11) NOT NULL,
   `commentTime` datetime DEFAULT NULL,
   `content` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`commentID`),
   KEY `user` (`user`),
-  KEY `onPicture` (`onPicture`),
-  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`username`),
-  CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`onPicture`) REFERENCES `picture` (`pictureID`)
+  KEY `onPicture` (`onAlbum`),
+  CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`onAlbum`) REFERENCES `album` (`albumID`),
+  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -168,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-21  9:03:02
+-- Dump completed on 2015-11-21  9:39:55

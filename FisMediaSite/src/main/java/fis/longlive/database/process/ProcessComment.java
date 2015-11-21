@@ -55,8 +55,8 @@ public final class ProcessComment {
 				break;
 			case "user":
 				comment.setUser((Integer) value);
-			case "onPicture":
-				comment.setOnPicture((Integer) value);
+			case "onAlbum":
+				comment.setOnAlbum((Integer) value);
 				break;
 			case "content":
 				comment.setContent((String) value);
@@ -82,7 +82,7 @@ public final class ProcessComment {
 		update(id, "content", newContent);
 	}
 	
-	public static void updateOnPicture(int id, int newOnPicture) {
+	public static void updateOnAlbum(int id, int newOnPicture) {
 		update(id, "onPicture", newOnPicture);
 	}
 	

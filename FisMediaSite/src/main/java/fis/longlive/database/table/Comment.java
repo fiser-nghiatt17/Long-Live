@@ -24,7 +24,7 @@ public class Comment implements Serializable {
 	@Lob
 	private String content;
 
-	private int onPicture;
+	private int onAlbum;
 
 	private int user;
 
@@ -55,12 +55,12 @@ public class Comment implements Serializable {
 		this.content = content;
 	}
 
-	public int getOnPicture() {
-		return this.onPicture;
+	public int getOnAlbum() {
+		return this.onAlbum;
 	}
 
-	public void setOnPicture(int onPicture) {
-		this.onPicture = onPicture;
+	public void setOnAlbum(int onAlbum) {
+		this.onAlbum = onAlbum;
 	}
 
 	public int getUser() {

@@ -1,27 +1,54 @@
 package fis.longlive.database.table;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 /**
- * The persistent class for the album database table.
+ * The persistent class for the albums database table.
  * 
  */
 @Entity
-@Table(name="album")
+@Table(name="albums")
 @NamedQuery(name="Album.findAll", query="SELECT a FROM Album a")
-public class Album implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class Album  {
 	@Id
 	private int albumID;
 
-	private int author;
+	private String albumName;
 
-	private int category;
+	private int likeAmount;
 
-	private String name;
+	private int viewAmount;
+
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="author")
+	private User user;
+
+	//bi-directional many-to-one association to Category
+	@ManyToOne
+	@JoinColumn(name="category")
+	private Category categoryBean;
+
+	//bi-directional many-to-one association to Comment
+	@OneToMany(mappedBy="album")
+	private List<Comment> comments;
+
+	//bi-directional many-to-one association to Like
+	@OneToMany(mappedBy="album")
+	private List<Like> likes;
+
+	//bi-directional many-to-one association to Picture
+	@OneToMany(mappedBy="album")
+	private List<Picture> pictures;
 
 	public Album() {
 	}
@@ -34,28 +61,110 @@ public class Album implements Serializable {
 		this.albumID = albumID;
 	}
 
-	public int getAuthor() {
-		return this.author;
+	public String getAlbumName() {
+		return this.albumName;
 	}
 
-	public void setAuthor(int author) {
-		this.author = author;
+	public void setAlbumName(String albumName) {
+		this.albumName = albumName;
 	}
 
-	public int getCategory() {
-		return this.category;
+	public int getLikeAmount() {
+		return this.likeAmount;
 	}
 
-	public void setCategory(int category) {
-		this.category = category;
+	public void setLikeAmount(int likeAmount) {
+		this.likeAmount = likeAmount;
 	}
 
-	public String getName() {
-		return this.name;
+	public int getViewAmount() {
+		return this.viewAmount;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setViewAmount(int viewAmount) {
+		this.viewAmount = viewAmount;
+	}
+
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Category getCategoryBean() {
+		return this.categoryBean;
+	}
+
+	public void setCategoryBean(Category categoryBean) {
+		this.categoryBean = categoryBean;
+	}
+
+	public List<Comment> getComments() {
+		return this.comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public Comment addComment(Comment comment) {
+		getComments().add(comment);
+		comment.setAlbum(this);
+
+		return comment;
+	}
+
+	public Comment removeComment(Comment comment) {
+		getComments().remove(comment);
+		comment.setAlbum(null);
+
+		return comment;
+	}
+
+	public List<Like> getLikes() {
+		return this.likes;
+	}
+
+	public void setLikes(List<Like> likes) {
+		this.likes = likes;
+	}
+
+	public Like addLike(Like like) {
+		getLikes().add(like);
+		like.setAlbum(this);
+
+		return like;
+	}
+
+	public Like removeLike(Like like) {
+		getLikes().remove(like);
+		like.setAlbum(null);
+
+		return like;
+	}
+
+	public List<Picture> getPictures() {
+		return this.pictures;
+	}
+
+	public void setPictures(List<Picture> pictures) {
+		this.pictures = pictures;
+	}
+
+	public Picture addPicture(Picture picture) {
+		getPictures().add(picture);
+		picture.setAlbum(this);
+
+		return picture;
+	}
+
+	public Picture removePicture(Picture picture) {
+		getPictures().remove(picture);
+		picture.setAlbum(null);
+
+		return picture;
 	}
 
 }

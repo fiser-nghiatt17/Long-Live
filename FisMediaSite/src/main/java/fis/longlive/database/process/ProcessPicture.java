@@ -1,108 +1,77 @@
 package fis.longlive.database.process;
 
-import java.sql.Date;
+import java.util.Date;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
+import fis.longlive.database.table.Album;
 import fis.longlive.database.table.Picture;
 
-public final class ProcessPicture {
-	private static EntityManagerFactory eFactory;
-	private static EntityManager eManager;
+public final class ProcessPicture extends Process {
+	private static final int PICTURE_NAME = 0;
+	private static final int IN_ALBUM = 1;
+	private static final int PICTURE_URL = 2;
+	private static final int UPLOAD_DATE = 3;
+	private static final int DESCRIPTION = 4;
 	
-	private static void beginTransaction() {
-		eFactory = Persistence.createEntityManagerFactory("FisMediaSite");
-		eManager = eFactory.createEntityManager();
-		eManager.getTransaction().begin();
+	public static void insertPicture(Picture picture) {
+		beginProcess();
+		getEntityManager().persist(picture);
+		endProcess();
 	}
 	
-	private static void endTransaction() {
-		eManager.close();
-		eFactory.close();
+	public static void deletePicture(int pictureID) {
+		getEntityManager().remove(selectPicture(pictureID));
 	}
 	
-	public static void insert(Picture picture) {
-		beginTransaction();
-		eManager.persist(picture);
-		eManager.getTransaction().commit();
-		endTransaction();
-	}
-	
-	public static void delete(int id) {
-		beginTransaction();
-		eManager.remove(eManager.find(Picture.class, id));
-		eManager.getTransaction().commit();
-		endTransaction();
-	}
-	
-	public static Picture select(int id) {
-		beginTransaction();
-		Picture picture = eManager.find(Picture.class, id);
-		endTransaction();
+	public static Picture selectPicture(int pictureID) {
+		beginProcess();
+		Picture picture = getEntityManager().find(Picture.class, pictureID);
+		endProcess();
 		return picture;
 	}
 	
-	private static void update(int id, String field, Object value) {
-		beginTransaction();
+	private static void updatePicture(int pictureID, Object newValue, int type) {
+		beginProcess();
 		
-		Picture picture = eManager.find(Picture.class, id);
+		Picture picture = selectPicture(pictureID);
 		
-		switch (field) {
-			case "pictureID": 
-				picture.setPictureID((Integer) value);
+		switch (type) {
+			case PICTURE_NAME:
+				picture.setPictureName((String) newValue);
 				break;
-			case "name":
-				picture.setName((String) value);
+			case IN_ALBUM:
+				picture.setAlbum((Album) newValue);
 				break;
-			case "url": 
-				picture.setUrl((String) value);
+			case PICTURE_URL:
+				picture.setPictureURL((String) newValue);
 				break;
-			case "description":
-				picture.setDescription((String) value);
+			case UPLOAD_DATE:
+				picture.setUploadDate((Date) newValue);
 				break;
-			case "dateUpdate": 
-				picture.setDateUpdate((Date) value);
-				break;
-			case "view":
-				picture.setView((Integer) value);
-				break;
-			case "album":
-				picture.setAlbum((Integer) value); 
-			default:
+			case DESCRIPTION:
+				picture.setDescription((String) newValue);
 				break;
 		}
-		eManager.getTransaction().commit();
 		
-		endTransaction();
+		endProcess();
 	}
 	
-	public static void updatePictureID(int id, int newID) {
-		update(id, "pictureID", newID);
+	public static void updatePictureName(int pictureID, String newPictureName) {
+		updatePicture(pictureID, newPictureName, PICTURE_NAME);
 	}
 	
-	public static void updateName(int id, String newName) {
-		update(id, "name", newName);
+	public static void updateInAlbum(int pictureID, Album newInAlbum) {
+		updatePicture(pictureID, newInAlbum, IN_ALBUM);
 	}
 	
-	public static void updateAlbum(int id, int newAlbum) {
-		update(id, "album", newAlbum);
+	public static void updatePictureURL(int pictureID, String newPictureURL) {
+		updatePicture(pictureID, newPictureURL, PICTURE_URL);
 	}
 	
-	public static void updateUrl(int id, String newUrl) {
-		update(id, "url", newUrl);
+	public static void updateUploadDate(int pictureID, Date newUploadDate) {
+		updatePicture(pictureID, newUploadDate, UPLOAD_DATE);
 	}
 	
-	public static void updateView(int id, int newView) {
-		update(id, "view", newView);
-	}
-	
-	public static void updateDescription(int id, String newDescription) {
-		update(id, "description", newDescription);
-	}
-	
-	public static void updateBirthday(int id, Date newBirthday) {
-		update(id, "birthday", newBirthday);
+	public static void updateDescription(int pictureID, String newDescription) {
+		updatePicture(pictureID, newDescription, DESCRIPTION);
 	}
 }

@@ -1,78 +1,50 @@
 package fis.longlive.database.process;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import fis.longlive.database.table.Category;
 
-public final class ProcessCategory {
-	private static EntityManagerFactory eFactory;
-	private static EntityManager eManager;
+public final class ProcessCategory extends Process {
+	private static final int CATEGORY_NAME = 0;
+	private static final int DESCRIPTION = 1;
 	
-	private static void beginTransaction() {
-		eFactory = Persistence.createEntityManagerFactory("FisMediaSite");
-		eManager = eFactory.createEntityManager();
-		eManager.getTransaction().begin();
+	public static void insertCategory(Category category) {
+		beginProcess();
+		getEntityManager().persist(category);
+		endProcess();
 	}
 	
-	private static void endTransaction() {
-		eManager.close();
-		eFactory.close();
+	public static void deleteCategory(int categoryID) {
+		getEntityManager().remove(selectCategory(categoryID));
 	}
 	
-	public static void insert(Category category) {
-		beginTransaction();
-		eManager.persist(category);
-		eManager.getTransaction().commit();
-		endTransaction();
-	}
-	
-	public static void delete(int id) {
-		beginTransaction();
-		eManager.remove(eManager.find(Category.class, id));
-		eManager.getTransaction().commit();
-		endTransaction();
-	}
-	
-	public static Category select(int id) {
-		beginTransaction();
-		Category category = eManager.find(Category.class, id);
-		endTransaction();
+	public static Category selectCategory(int categoryID) {
+		beginProcess();
+		Category category = getEntityManager().find(Category.class, categoryID);
+		endProcess();
 		return category;
 	}
 	
-	private static void update(int id, String type, Object value) {
-		beginTransaction();
+	private static void updateCategory(int categoryID, Object newValue, int type) {
+		beginProcess();
 		
-		Category category = eManager.find(Category.class, id);
+		Category category = selectCategory(categoryID);
 		
 		switch (type) {
-			case "categoryID":
-				category.setCategoryID((Integer) value);
+			case CATEGORY_NAME: 
+				category.setCategoryName((String) newValue);
 				break;
-			case "name":
-				category.setName((String) value);
-				break;
-			case "description":
-				category.setDescription((String) value);
-				break;
-			default:
+			case DESCRIPTION:
+				category.setDescription((String) newValue);
 				break;
 		}
 		
-		endTransaction();
+		endProcess();
 	}
 	
-	public static void updateCategoryID(int id, int newID) {
-		update(id, "categoryID", newID);
+	public static void updateCategoryName(int categoryID, String newCategoryName) {
+		updateCategory(categoryID, newCategoryName, CATEGORY_NAME);
 	}
 	
-	public static void updateName(int id, String newName) {
-		update(id, "name", newName);
-	}
-	
-	public static void updateDescription(int id, String newDescription) {
-		update(id, "description", newDescription);
+	public static void updateDescription(int categoryID, String newDescription) {
+		updateCategory(categoryID, newDescription, DESCRIPTION);
 	}
 }

@@ -18,145 +18,177 @@ USE `longlive`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `album`
+-- Table structure for table `albums`
 --
 
-DROP TABLE IF EXISTS `album`;
+DROP TABLE IF EXISTS `albums`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `album` (
+CREATE TABLE `albums` (
   `albumID` int(11) NOT NULL AUTO_INCREMENT,
   `author` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `albumName` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `category` int(11) DEFAULT NULL,
+  `viewAmount` int(11) DEFAULT '0',
+  `likeAmount` int(11) DEFAULT '0',
   PRIMARY KEY (`albumID`),
   KEY `author` (`author`),
   KEY `category` (`category`),
-  CONSTRAINT `album_ibfk_1` FOREIGN KEY (`author`) REFERENCES `user` (`username`),
-  CONSTRAINT `album_ibfk_2` FOREIGN KEY (`category`) REFERENCES `category` (`categoryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `albums_ibfk_1` FOREIGN KEY (`author`) REFERENCES `users` (`username`),
+  CONSTRAINT `albums_ibfk_2` FOREIGN KEY (`category`) REFERENCES `categories` (`categoryID`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `album`
+-- Dumping data for table `albums`
 --
 
-LOCK TABLES `album` WRITE;
-/*!40000 ALTER TABLE `album` DISABLE KEYS */;
-/*!40000 ALTER TABLE `album` ENABLE KEYS */;
+LOCK TABLES `albums` WRITE;
+/*!40000 ALTER TABLE `albums` DISABLE KEYS */;
+INSERT INTO `albums` VALUES (1,'hungct2','some',1,3,31),(2,'nghiatt17','abc',2,4,23),(3,'tumv2','angry',6,9,41),(6,'cuonglv13','Future in my eyes',3,7,30),(7,'sinhlt3','Creative Suite',7,23,81);
+/*!40000 ALTER TABLE `albums` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `category`
+-- Table structure for table `categories`
 --
 
-DROP TABLE IF EXISTS `category`;
+DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `category` (
+CREATE TABLE `categories` (
   `categoryID` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `categoryName` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`categoryID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `category`
+-- Dumping data for table `categories`
 --
 
-LOCK TABLES `category` WRITE;
-/*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (1,'natural',NULL),(2,'sport',NULL),(3,'cultural',NULL),(4,'animal',NULL),(5,'forest',NULL),(6,'baby',NULL),(7,'car',NULL),(8,'travel',NULL),(9,'food',NULL),(10,'other',NULL);
-/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'natural','Natural Type'),(2,'sport','Sport Type'),(3,'cultural','Cultural Type'),(4,'animal','Animal Type'),(5,'forest','Forest Type'),(6,'baby','Baby Type'),(7,'car','Car Type'),(8,'travel','Travel Type'),(9,'food','Food Type'),(10,'other','Other Type');
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `comment`
+-- Table structure for table `comments`
 --
 
-DROP TABLE IF EXISTS `comment`;
+DROP TABLE IF EXISTS `comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `comment` (
+CREATE TABLE `comments` (
   `commentID` int(11) NOT NULL AUTO_INCREMENT,
-  `user` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `commentUser` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `onAlbum` int(11) NOT NULL,
   `commentTime` datetime DEFAULT NULL,
   `content` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`commentID`),
-  KEY `user` (`user`),
+  KEY `user` (`commentUser`),
   KEY `onPicture` (`onAlbum`),
-  CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`onAlbum`) REFERENCES `album` (`albumID`),
-  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`username`)
+  CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`commentUser`) REFERENCES `users` (`username`),
+  CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`onAlbum`) REFERENCES `albums` (`albumID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `comment`
+-- Dumping data for table `comments`
 --
 
-LOCK TABLES `comment` WRITE;
-/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `picture`
+-- Table structure for table `likes`
 --
 
-DROP TABLE IF EXISTS `picture`;
+DROP TABLE IF EXISTS `likes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `picture` (
+CREATE TABLE `likes` (
+  `likeID` int(11) NOT NULL,
+  `likeUser` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `onAlbum` int(11) NOT NULL,
+  `state` bit(1) DEFAULT b'0',
+  PRIMARY KEY (`likeID`),
+  KEY `likeUser` (`likeUser`),
+  KEY `onAlbum` (`onAlbum`),
+  CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`likeUser`) REFERENCES `users` (`username`),
+  CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`onAlbum`) REFERENCES `albums` (`albumID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `likes`
+--
+
+LOCK TABLES `likes` WRITE;
+/*!40000 ALTER TABLE `likes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `likes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pictures`
+--
+
+DROP TABLE IF EXISTS `pictures`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pictures` (
   `pictureID` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `album` int(11) DEFAULT NULL,
-  `url` text COLLATE utf8_unicode_ci,
-  `dateUpdate` date DEFAULT NULL,
-  `view` int(11) DEFAULT NULL,
+  `pictureName` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `inAlbum` int(11) DEFAULT NULL,
+  `pictureURL` text COLLATE utf8_unicode_ci,
+  `uploadDate` date DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`pictureID`),
-  KEY `album` (`album`),
-  CONSTRAINT `picture_ibfk_1` FOREIGN KEY (`album`) REFERENCES `album` (`albumID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `album` (`inAlbum`),
+  CONSTRAINT `pictures_ibfk_1` FOREIGN KEY (`inAlbum`) REFERENCES `albums` (`albumID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `picture`
+-- Dumping data for table `pictures`
 --
 
-LOCK TABLES `picture` WRITE;
-/*!40000 ALTER TABLE `picture` DISABLE KEYS */;
-/*!40000 ALTER TABLE `picture` ENABLE KEYS */;
+LOCK TABLES `pictures` WRITE;
+/*!40000 ALTER TABLE `pictures` DISABLE KEYS */;
+INSERT INTO `pictures` VALUES (1,'a picture',1,'http://localhost/apicture.jpg','2015-02-23','Something'),(2,'angry bird',3,'http://localhost/bird1.jpg','2013-04-11','A big bird');
+/*!40000 ALTER TABLE `pictures` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `fullname` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `sex` bit(1) DEFAULT NULL,
-  `email` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `birthday` date DEFAULT NULL,
+  `userGender` bit(1) DEFAULT b'1',
+  `userEmail` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `userBirthday` date DEFAULT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `users`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('anhtt50','anhtt50','Thai Tuan Anh',NULL,'anhtt50@fpt.com.vn',NULL),('cuonglv13','cuonglv13','Le Van Cuong',NULL,'cuonglv13@fpt.com.vn',NULL),('hungct2','hungct2','Chu Thanh Hung',NULL,'hungct2@fpt.com.vn',NULL),('nghiatt17','nghiatt17','Tran Tuan Nghia',NULL,'nghiatt17@fpt.com.vn',NULL),('sinhlt3','sinhlt3','Luu Truong Sinh',NULL,'sinhlt3@fpt.com.vn',NULL),('tumv2','tumv2','Ma Van Tu',NULL,'tumv2@fpt.com.vn',NULL);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES ('anhtt50','anhtt50','Thai Tuan Anh',NULL,'anhtt50@fpt.com.vn',NULL),('cuonglv13','cuonglv13','Le Van Cuong',NULL,'cuonglv13@fpt.com.vn',NULL),('hungct2','hungct2','Chu Thanh Hung',NULL,'hungct2@fpt.com.vn',NULL),('nghiatt17','nghiatt17','Tran Tuan Nghia',NULL,'nghiatt17@fpt.com.vn',NULL),('sinhlt3','sinhlt3','Luu Truong Sinh',NULL,'sinhlt3@fpt.com.vn',NULL),('tumv2','tumv2','Ma Van Tu',NULL,'tumv2@fpt.com.vn',NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -168,4 +200,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-21  9:39:55
+-- Dump completed on 2015-11-21 22:39:19

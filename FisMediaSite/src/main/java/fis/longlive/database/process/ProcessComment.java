@@ -1,92 +1,70 @@
 package fis.longlive.database.process;
 
-import java.sql.Date;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
+import fis.longlive.database.table.Album;
 import fis.longlive.database.table.Comment;
+import fis.longlive.database.table.User;
 
-public final class ProcessComment {
-	private static EntityManagerFactory eFactory;
-	private static EntityManager eManager;
+import java.util.Date; 
+
+public final class ProcessComment extends Process {
+	private static final int COMMENT_USER = 0;
+	private static final int ON_ALBUM = 1;
+	private static final int COMMENT_TIME = 2;
+	private static final int CONTENT = 3;
 	
-	private static void beginTransaction() {
-		eFactory = Persistence.createEntityManagerFactory("FisMediaSite");
-		eManager = eFactory.createEntityManager();
-		eManager.getTransaction().begin();
+	public static void insertComment(Comment comment) {
+		beginProcess();
+		getEntityManager().persist(comment);
+		endProcess();
 	}
 	
-	private static void endTransaction() {
-		eManager.close();
-		eFactory.close();
+	public static void deleteComment(int commentID) {
+		getEntityManager().remove(selectComment(commentID));
 	}
 	
-	public static void insert(Comment comment) {
-		beginTransaction();
-		eManager.persist(comment);
-		eManager.getTransaction().commit();
-		endTransaction();
-	}
-	
-	public static void delete(int id) {
-		beginTransaction();
-		eManager.remove(eManager.find(Comment.class, id));
-		eManager.getTransaction().commit();
-		endTransaction();
-	}
-	
-	public static Comment select(int id) {
-		beginTransaction();
-		Comment comment = eManager.find(Comment.class, id);
-		endTransaction();
+	public static Comment selectComment(int commentID) {
+		beginProcess();
+		Comment comment = getEntityManager().find(Comment.class, commentID);
+		endProcess();
 		return comment;
 	}
 	
-	private static void update(int id, String type, Object value) {
-		beginTransaction();
+	private static void updateComment(int commentID, Object newValue, int type) {
+		beginProcess();
 		
-		Comment comment = eManager.find(Comment.class, id);
+		Comment comment = selectComment(commentID);
 		
 		switch (type) {
-			case "categoryID":
-				comment.setCommentID((Integer) value);
+			case COMMENT_USER:
+				comment.setUser((User) newValue);
 				break;
-			case "user":
-				comment.setUser((Integer) value);
-			case "onAlbum":
-				comment.setOnAlbum((Integer) value);
+			case ON_ALBUM:
+				comment.setAlbum((Album) newValue);
 				break;
-			case "content":
-				comment.setContent((String) value);
+			case COMMENT_TIME:
+				comment.setCommentTime((Date) newValue);
 				break;
-			case "commentTime":
-				comment.setCommentTime((Date) value);
-			default:
+			case CONTENT:
+				comment.setContent((String) newValue);
 				break;
 		}
 		
-		endTransaction();
+		endProcess();
 	}
 	
-	public static void updateCommentID(int id, int newID) {
-		update(id, "commentID", newID);
+	public static void updateCommentUser(int commentID, User newCommentUser) {
+		updateComment(commentID, newCommentUser, COMMENT_USER);
 	}
 	
-	public static void updateUser(int id, int newUser) {
-		update(id, "user", newUser);
+	public static void updateOnAlbum(int commentID, Album newOnAlbum) {
+		updateComment(commentID, newOnAlbum, ON_ALBUM);
 	}
 	
-	public static void updateContent(int id, String newContent) {
-		update(id, "content", newContent);
+	public static void updateCommentTime(int commentID, Date newCommentTime) {
+		updateComment(commentID, newCommentTime, COMMENT_TIME);
 	}
 	
-	public static void updateOnAlbum(int id, int newOnPicture) {
-		update(id, "onPicture", newOnPicture);
-	}
-	
-	public static void updateCommentTime(int id, int newCommentTime) {
-		update(id, "commentTime", newCommentTime);
+	public static void updateContent(int commentID, String newContent) {
+		updateComment(commentID, newContent, CONTENT);
 	}
 }

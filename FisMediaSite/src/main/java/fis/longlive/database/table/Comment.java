@@ -1,20 +1,26 @@
 package fis.longlive.database.table;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
- * The persistent class for the comment database table.
+ * The persistent class for the comments database table.
  * 
  */
 @Entity
-@Table(name="comment")
+@Table(name="comments")
 @NamedQuery(name="Comment.findAll", query="SELECT c FROM Comment c")
-public class Comment implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class Comment  {
 	@Id
 	private int commentID;
 
@@ -24,9 +30,15 @@ public class Comment implements Serializable {
 	@Lob
 	private String content;
 
-	private int onAlbum;
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	@JoinColumn(name="commentUser")
+	private User user;
 
-	private int user;
+	//bi-directional many-to-one association to Album
+	@ManyToOne
+	@JoinColumn(name="onAlbum")
+	private Album album;
 
 	public Comment() {
 	}
@@ -55,20 +67,20 @@ public class Comment implements Serializable {
 		this.content = content;
 	}
 
-	public int getOnAlbum() {
-		return this.onAlbum;
-	}
-
-	public void setOnAlbum(int onAlbum) {
-		this.onAlbum = onAlbum;
-	}
-
-	public int getUser() {
+	public User getUser() {
 		return this.user;
 	}
 
-	public void setUser(int user) {
+	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Album getAlbum() {
+		return this.album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
 	}
 
 }

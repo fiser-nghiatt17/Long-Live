@@ -1,102 +1,75 @@
 package fis.longlive.database.process;
 
-import java.sql.Date;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.Date;
 
 import fis.longlive.database.table.User;
 
-public final class ProcessUser {
+public final class ProcessUser extends Process {
+	private static final int PASSWORD = 0;
+	private static final int FULLNAME = 1;
+	private static final int USER_GENDER = 2;
+	private static final int USER_EMAIL = 3;
+	private static final int USER_BIRTHDAY = 4;
 	
-	private static EntityManagerFactory eFactory;
-	private static EntityManager eManager;
-	
-	private static void beginTransaction() {
-		eFactory = Persistence.createEntityManagerFactory("FisMediaSite");
-		eManager = eFactory.createEntityManager();
-		eManager.getTransaction().begin();
+	public static void insertUser(User user) {
+		beginProcess();
+		getEntityManager().persist(user);
+		endProcess();
 	}
 	
-	private static void endTransaction() {
-		eManager.close();
-		eFactory.close();
+	public static void deleteUser(String username) {
+		getEntityManager().remove(selectUser(username));
 	}
 	
-	public static void insert(User user) {
-		beginTransaction();
-		eManager.persist(user);
-		eManager.getTransaction().commit();
-		endTransaction();
-	}
-	
-	public static void delete(String username) {
-		beginTransaction();
-		eManager.remove(eManager.find(User.class, username));
-		eManager.getTransaction().commit();
-		endTransaction();
-	}
-	
-	public static User select(String username) {
-		beginTransaction();
-		User user = eManager.find(User.class, username);
-		endTransaction();
+	public static User selectUser(String username) {
+		beginProcess();
+		User user = getEntityManager().find(User.class, username);
+		endProcess();
 		return user;
 	}
 	
-	private static void update(String username, String field, Object value) {
-		beginTransaction();
+	private static void updateUser(String username, Object newValue, int type) {
+		beginProcess();
 		
-		User user = eManager.find(User.class, username);
+		User user = selectUser(username);
 		
-		switch (field) {
-			case "username":
-				user.setUsername((String) value);
+		switch (type) {
+			case PASSWORD:
+				user.setPassword((String) newValue);
 				break;
-			case "password": 
-				user.setPassword((String) value);
+			case FULLNAME:
+				user.setFullname((String) newValue);
 				break;
-			case "email":
-				user.setEmail((String) value);
+			case USER_GENDER:
+				user.setUserGender((Boolean) newValue);
 				break;
-			case "fullname": 
-				user.setFullname((String) value);
+			case USER_EMAIL:
+				user.setUserEmail((String) newValue);
 				break;
-			case "sex":
-				user.setSex((Boolean) value);
-				break;
-			case "birthday":
-				user.setBirthday((Date) value); 
-			default:
-				break;
+			case USER_BIRTHDAY:
+				user.setUserBirthday((Date) newValue);
 		}
-		eManager.getTransaction().commit();
 		
-		endTransaction();
-	}
-	
-	public static void updateUsername(String username, String newUsername) {
-		update(username, "username", newUsername);
+		endProcess();
 	}
 	
 	public static void updatePassword(String username, String newPassword) {
-		update(username, "password", newPassword);
+		updateUser(username, newPassword, PASSWORD);
 	}
 	
 	public static void updateFullname(String username, String newFullname) {
-		update(username, "fullname", newFullname);
+		updateUser(username, newFullname, FULLNAME);
 	}
 	
-	public static void updateEmail(String username, String newEmail) {
-		update(username, "email", newEmail);
+	public static void updateUserGender(String username, boolean newUserGender) {
+		updateUser(username, newUserGender, USER_GENDER);
 	}
 	
-	public static void updateSex(String username, boolean newSex) {
-		update(username, "sex", newSex);
+	public static void updateUserEmail(String username, String newUserEmail) {
+		updateUser(username, newUserEmail, USER_EMAIL);
 	}
 	
-	public static void updateBirthday(String username, Date newBirthday) {
-		update(username, "birthday", newBirthday);
+	public static void updateUserBirthday(String username, Date newUserBirthday) {
+		updateUser(username, newUserBirthday, USER_BIRTHDAY);
 	}
 }

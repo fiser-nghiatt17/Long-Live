@@ -1,86 +1,75 @@
 package fis.longlive.database.process;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import fis.longlive.database.table.Album;
+import fis.longlive.database.table.Category;
+import fis.longlive.database.table.User;
 
-public final class ProcessAlbum {
-	private static EntityManagerFactory eFactory;
-	private static EntityManager eManager;
+public final class ProcessAlbum extends Process {
+	private static final int ALBUM_NAME = 0;
+	private static final int LIKE_AMOUNT = 1;
+	private static final int VIEW_AMOUNT = 2;
+	private static final int AUTHOR = 3;
+	private static final int CATEGORY = 4;
 	
-	private static void beginTransaction() {
-		eFactory = Persistence.createEntityManagerFactory("FisMediaSite");
-		eManager = eFactory.createEntityManager();
-		eManager.getTransaction().begin();
+	public static void insertAlbum(Album album) {
+		beginProcess();
+		getEntityManager().persist(album);
+		endProcess();
 	}
 	
-	private static void endTransaction() {
-		eManager.close();
-		eFactory.close();
+	public static void deleteAlbum(int albumID) {
+		beginProcess();
+		getEntityManager().remove(selectAlbum(albumID));
+		endProcess();
 	}
 	
-	public static void insert(Album album) {
-		beginTransaction();
-		eManager.persist(album);
-		eManager.getTransaction().commit();
-		endTransaction();
+	public static Album selectAlbum(int albumID) {
+		beginProcess();
+		return getEntityManager().find(Album.class, albumID);
 	}
 	
-	public static void delete(int id) {
-		beginTransaction();
-		eManager.remove(eManager.find(Album.class, id));
-		eManager.getTransaction().commit();
-		endTransaction();
-	}
-	
-	public static Album select(int id) {
-		beginTransaction();
-		Album album = eManager.find(Album.class, id);
-		endTransaction();
-		return album;
-	}
-	
-	private static void update(int id, String type, Object value) {
-		beginTransaction();
+	private static void updateAlbum(int albumID, Object newValue, int type) {
+		beginProcess();
 		
-		Album album = eManager.find(Album.class, id);
+		Album album = selectAlbum(albumID);
+		
 		switch (type) {
-			case "albumID":
-				album.setAlbumID((Integer) value);
+			case ALBUM_NAME: 
+				album.setAlbumName((String) newValue);
 				break;
-			case "author":
-				album.setAuthor((Integer) value);
+			case LIKE_AMOUNT:
+				album.setLikeAmount((Integer) newValue);
 				break;
-			case "category":
-				album.setCategory((Integer) value);
+			case VIEW_AMOUNT:
+				album.setViewAmount((Integer) newValue);
 				break;
-			case "name":
-				album.setName((String) value);
+			case AUTHOR:
+				album.setUser((User) newValue);
 				break;
-			default:
-				break;
+			case CATEGORY:
+				album.setCategoryBean((Category) newValue);
 		}
 		
-		eManager.getTransaction().commit();
-		
-		endTransaction();
+		endProcess();
 	}
 	
-	public static void updateAlbumID(int id, int newID) {
-		update(id, "albumID", newID);
+	public static void updateAlbumName(int albumID, String newAlbumName) {
+		updateAlbum(albumID, newAlbumName, ALBUM_NAME);
 	}
 	
-	public static void updateName(int id, String newName) {
-		update(id, "name", newName);
+	public static void updateLikeAmount(int albumID, int newLikeAmount) {
+		updateAlbum(albumID, newLikeAmount, LIKE_AMOUNT);
 	}
 	
-	public static void updateAuthor(int id, int newAuthor) {
-		update(id, "author", newAuthor);
+	public static void updateViewAmount(int albumID, int newViewAmount) {
+		updateAlbum(albumID, newViewAmount, VIEW_AMOUNT);
 	}
 	
-	public static void updateCategory(int id, int newCategory) {
-		update(id, "category", newCategory);
+	public static void updateAuthor(int albumID, User newAuthor) {
+		updateAlbum(albumID, newAuthor, AUTHOR);
+	}
+	
+	public static void updateCategory(int albumID, Category newCategory) {
+		updateAlbum(albumID, newCategory, CATEGORY);
 	}
 }

@@ -1,37 +1,44 @@
 package fis.longlive.database.table;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
- * The persistent class for the picture database table.
+ * The persistent class for the pictures database table.
  * 
  */
 @Entity
-@Table(name="picture")
+@Table(name="pictures")
 @NamedQuery(name="Picture.findAll", query="SELECT p FROM Picture p")
-public class Picture implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class Picture  {
 	@Id
 	private int pictureID;
-
-	private int album;
-
-	@Temporal(TemporalType.DATE)
-	private Date dateUpdate;
 
 	@Lob
 	private String description;
 
-	private String name;
+	private String pictureName;
 
 	@Lob
-	private String url;
+	private String pictureURL;
 
-	private int view;
+	@Temporal(TemporalType.DATE)
+	private Date uploadDate;
+
+	//bi-directional many-to-one association to Album
+	@ManyToOne
+	@JoinColumn(name="inAlbum")
+	private Album album;
 
 	public Picture() {
 	}
@@ -44,22 +51,6 @@ public class Picture implements Serializable {
 		this.pictureID = pictureID;
 	}
 
-	public int getAlbum() {
-		return this.album;
-	}
-
-	public void setAlbum(int album) {
-		this.album = album;
-	}
-
-	public Date getDateUpdate() {
-		return this.dateUpdate;
-	}
-
-	public void setDateUpdate(Date dateUpdate) {
-		this.dateUpdate = dateUpdate;
-	}
-
 	public String getDescription() {
 		return this.description;
 	}
@@ -68,28 +59,36 @@ public class Picture implements Serializable {
 		this.description = description;
 	}
 
-	public String getName() {
-		return this.name;
+	public String getPictureName() {
+		return this.pictureName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPictureName(String pictureName) {
+		this.pictureName = pictureName;
 	}
 
-	public String getUrl() {
-		return this.url;
+	public String getPictureURL() {
+		return this.pictureURL;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setPictureURL(String pictureURL) {
+		this.pictureURL = pictureURL;
 	}
 
-	public int getView() {
-		return this.view;
+	public Date getUploadDate() {
+		return this.uploadDate;
 	}
 
-	public void setView(int view) {
-		this.view = view;
+	public void setUploadDate(Date uploadDate) {
+		this.uploadDate = uploadDate;
+	}
+
+	public Album getAlbum() {
+		return this.album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
 	}
 
 }

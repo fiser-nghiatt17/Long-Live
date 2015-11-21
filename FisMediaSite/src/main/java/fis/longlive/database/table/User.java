@@ -1,51 +1,60 @@
 package fis.longlive.database.table;
 
-import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
- * The persistent class for the user database table.
+ * The persistent class for the users database table.
  * 
  */
 @Entity
-@Table(name="user")
+@Table(name="users")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
-public class User implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class User  {
 	@Id
 	private String username;
-	
-	@Temporal(TemporalType.DATE)
-	private Date birthday;
-
-	private String email;
 
 	private String fullname;
 
 	private String password;
 
-	private boolean sex;
+	@Temporal(TemporalType.DATE)
+	private Date userBirthday;
+
+	private String userEmail;
+
+	private boolean userGender;
+
+	//bi-directional many-to-one association to Album
+	@OneToMany(mappedBy="user")
+	private List<Album> albums;
+
+	//bi-directional many-to-one association to Comment
+	@OneToMany(mappedBy="user")
+	private List<Comment> comments;
+
+	//bi-directional many-to-one association to Like
+	@OneToMany(mappedBy="user")
+	private List<Like> likes;
 
 	public User() {
 	}
 
-	public Date getBirthday() {
-		return this.birthday;
+	public String getUsername() {
+		return this.username;
 	}
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-
-	public String getEmail() {
-		return this.email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getFullname() {
@@ -64,20 +73,94 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public boolean getSex() {
-		return this.sex;
+	public Date getUserBirthday() {
+		return this.userBirthday;
 	}
 
-	public void setSex(boolean sex) {
-		this.sex = sex;
+	public void setUserBirthday(Date userBirthday) {
+		this.userBirthday = userBirthday;
 	}
 
-	public String getUsername() {
-		return this.username;
+	public String getUserEmail() {
+		return this.userEmail;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
+	public boolean getUserGender() {
+		return this.userGender;
+	}
+
+	public void setUserGender(boolean userGender) {
+		this.userGender = userGender;
+	}
+
+	public List<Album> getAlbums() {
+		return this.albums;
+	}
+
+	public void setAlbums(List<Album> albums) {
+		this.albums = albums;
+	}
+
+	public Album addAlbum(Album album) {
+		getAlbums().add(album);
+		album.setUser(this);
+
+		return album;
+	}
+
+	public Album removeAlbum(Album album) {
+		getAlbums().remove(album);
+		album.setUser(null);
+
+		return album;
+	}
+
+	public List<Comment> getComments() {
+		return this.comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public Comment addComment(Comment comment) {
+		getComments().add(comment);
+		comment.setUser(this);
+
+		return comment;
+	}
+
+	public Comment removeComment(Comment comment) {
+		getComments().remove(comment);
+		comment.setUser(null);
+
+		return comment;
+	}
+
+	public List<Like> getLikes() {
+		return this.likes;
+	}
+
+	public void setLikes(List<Like> likes) {
+		this.likes = likes;
+	}
+
+	public Like addLike(Like like) {
+		getLikes().add(like);
+		like.setUser(this);
+
+		return like;
+	}
+
+	public Like removeLike(Like like) {
+		getLikes().remove(like);
+		like.setUser(null);
+
+		return like;
 	}
 
 }

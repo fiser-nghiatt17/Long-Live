@@ -1,3 +1,4 @@
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <main class="mdl-layout__content">
    <div class="page-content"><!-- Your content goes here -->
 	  <div class="mdl-grid">
@@ -59,10 +60,10 @@
 
 <!-- New album Popup -->
 <div class="modal fade" id="fis-new-album-container">
-    <form class="fis-new-album-container" action="profile">
-        <input type="file" class="fis-choose-file">
+    <form class="fis-new-album-container" action="createAlbum" method="post" enctype="multipart/form-data">
+        <input type="file" class="fis-choose-file" name="userImage" />
         <div class="mdl-textfield mdl-js-textfield">
-            <textarea class="mdl-textfield__input" type="text" rows= "3" id="fis-title-file" ></textarea>
+            <textarea class="mdl-textfield__input" type="text" rows= "3" id="fis-title-file" name="albumName"></textarea>
             <label class="mdl-textfield__label" for="fis-title-file">Enter Album Name here ...</label>
         </div>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored fis-add-album-btn">

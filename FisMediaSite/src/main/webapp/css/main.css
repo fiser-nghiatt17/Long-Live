@@ -117,8 +117,10 @@
 .fis-comment {
   margin: 5px auto;
   width: 1200px;
-  height: 500px;
-  background: #fff; }
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
 
 /*End View Album Page-------------------------*/
 /*Profile Page--------------------------------*/

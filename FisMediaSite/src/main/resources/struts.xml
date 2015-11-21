@@ -64,4 +64,11 @@
 		</action>
 	</package>
 
+	 <package name="uploadImage" extends="defaultTile">
+		<action name="createAlbum" class="fis.longlive.actions.FileUploadAction" method="createAlbum">
+			<result name="success" type="tiles">profile</result>
+			<result name="input" type="tiles">home</result>
+		</action>
+	</package>
+
 </struts>

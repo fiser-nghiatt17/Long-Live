@@ -31,29 +31,26 @@ public final class ProcessUser {
 		endTransaction();
 	}
 	
-	public static void delete(int id) {
+	public static void delete(String username) {
 		beginTransaction();
-		eManager.remove(select(id));
+		eManager.remove(eManager.find(User.class, username));
 		eManager.getTransaction().commit();
 		endTransaction();
 	}
 	
-	public static User select(int id) {
+	public static User select(String username) {
 		beginTransaction();
-		User user = eManager.find(User.class, id);
+		User user = eManager.find(User.class, username);
 		endTransaction();
 		return user;
 	}
 	
-	private static void update(int id, String field, Object value) {
+	private static void update(String username, String field, Object value) {
 		beginTransaction();
 		
-		User user = select(id);
+		User user = eManager.find(User.class, username);
 		
 		switch (field) {
-			case "userID": 
-				user.setUserID((Integer) value);
-				break;
 			case "username":
 				user.setUsername((String) value);
 				break;
@@ -67,7 +64,7 @@ public final class ProcessUser {
 				user.setFullname((String) value);
 				break;
 			case "sex":
-				user.setSex((Byte) value);
+				user.setSex((Boolean) value);
 				break;
 			case "birthday":
 				user.setBirthday((Date) value); 
@@ -79,31 +76,27 @@ public final class ProcessUser {
 		endTransaction();
 	}
 	
-	public static void updateUserID(int id, int newID) {
-		update(id, "userID", newID);
+	public static void updateUsername(String username, String newUsername) {
+		update(username, "username", newUsername);
 	}
 	
-	public static void updateUsername(int id, String newUsername) {
-		update(id, "username", newUsername);
+	public static void updatePassword(String username, String newPassword) {
+		update(username, "password", newPassword);
 	}
 	
-	public static void updatePassword(int id, String newPassword) {
-		update(id, "password", newPassword);
+	public static void updateFullname(String username, String newFullname) {
+		update(username, "fullname", newFullname);
 	}
 	
-	public static void updateFullname(int id, String newFullname) {
-		update(id, "fullname", newFullname);
+	public static void updateEmail(String username, String newEmail) {
+		update(username, "email", newEmail);
 	}
 	
-	public static void updateEmail(int id, String newEmail) {
-		update(id, "email", newEmail);
+	public static void updateSex(String username, boolean newSex) {
+		update(username, "sex", newSex);
 	}
 	
-	public static void updateSex(int id, byte newSex) {
-		update(id, "sex", newSex);
-	}
-	
-	public static void updateBirthday(int id, Date newBirthday) {
-		update(id, "birthday", newBirthday);
+	public static void updateBirthday(String username, Date newBirthday) {
+		update(username, "birthday", newBirthday);
 	}
 }

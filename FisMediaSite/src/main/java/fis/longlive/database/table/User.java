@@ -16,8 +16,8 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int userID;
-
+	private String username;
+	
 	@Temporal(TemporalType.DATE)
 	private Date birthday;
 
@@ -27,19 +27,9 @@ public class User implements Serializable {
 
 	private String password;
 
-	private byte sex;
-
-	private String username;
+	private boolean sex;
 
 	public User() {
-	}
-	
-	public int getUserID() {
-		return this.userID;
-	}
-
-	public void setUserID(int userID) {
-		this.userID = userID;
 	}
 
 	public Date getBirthday() {
@@ -74,11 +64,11 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public byte getSex() {
+	public boolean getSex() {
 		return this.sex;
 	}
 
-	public void setSex(byte sex) {
+	public void setSex(boolean sex) {
 		this.sex = sex;
 	}
 

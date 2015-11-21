@@ -32,7 +32,7 @@ public final class ProcessPicture {
 	
 	public static void delete(int id) {
 		beginTransaction();
-		eManager.remove(select(id));
+		eManager.remove(eManager.find(Picture.class, id));
 		eManager.getTransaction().commit();
 		endTransaction();
 	}
@@ -47,7 +47,7 @@ public final class ProcessPicture {
 	private static void update(int id, String field, Object value) {
 		beginTransaction();
 		
-		Picture picture = select(id);
+		Picture picture = eManager.find(Picture.class, id);
 		
 		switch (field) {
 			case "pictureID": 

@@ -2,20 +2,72 @@ $(document).ready(function(){
     checkUrlToActiveNav();
     handlerSubmit();
     viewAAlbum();
+    sliderHomePage();
 });
+
+var errorMessages = {
+    rules:{
+        username: {
+            required: true,
+            minlength: 6,
+            maxlength: 20
+        },
+        password: {
+            required: true,
+            minlength: 6,
+            maxlength: 20
+        },
+        confirmPassword: {
+            required: true,
+            minlength: 6,
+            maxlength: 20,
+            equalTo: "#signUpPassword"
+        },
+        fullName: {
+            required: true,
+            minlength: 6,
+            maxlength: 20
+        },
+        userImage:{
+            required: true,
+            accept: "image/*",
+            fileSize: 1048576
+        },
+        albumName:{
+            required: true
+        }
+    },
+    messages:{
+        username: {
+            required: "This field is required",
+            minlength: "Username must be 6-20 characters",
+            maxlength: "Username must be 6-20 characters"
+        },
+        password: {
+            required: "This field is required",
+            minlength: "Password must be 6-20 characters",
+            maxlength: "Password must be 6-20 characters"
+        },
+        confirmPassword: {
+            required: "This field is required",
+            minlength: "Password must be 6-20 characters",
+            maxlength: "Password must be 6-20 characters",
+            equalTo: "Not match"
+        },
+        fullName: {
+            required: "This field is required",
+            minlength: "Too short",
+            maxlength: "Too long"
+        },
+        userImage:"File must be JPG, GIF or PNG, less than 1MB"
+    }
+};
 
 function checkUrlToActiveNav(){
     var pgurl = window.location.href.split("/").pop();
-    var indexOfQm = pgurl.search("\\?");
+    var indexOfDot = pgurl.search("\\.");
     var url;
-
-    if (indexOfQm == -1){
-        url = pgurl;
-        var indexOfDot = url.search("\\.");
-        url = (indexOfDot == -1) ? url : url.substr(0, indexOfDot);
-    }else{
-        url = pgurl.substr(0, indexOfQm);
-    }
+    url = (indexOfDot == -1) ? pgurl : pgurl.substr(0, indexOfDot);
 
     $(".fis-main-nav a").each(function(){
         if($(this).attr("href") == url || $(this).attr("href") == '' )
@@ -37,103 +89,12 @@ function loginHandle(){
     fisLoader.hide();
     loginForm.validate({
         rules:{
-            username: {
-                required: true,
-                minlength: 5,
-                maxlength: 15
-            },
-            password: {
-                required: true,
-                minlength: 5,
-                maxlength: 15
-            }
+            username: errorMessages.rules.username,
+            password: errorMessages.rules.password
         },
         messages:{
-            username: {
-                required: "This field is required",
-                minlength: "Username must be 6-20 characters",
-                maxlength: "Username must be 6-20 characters"
-            },
-            password: {
-                required: "This field is required",
-                minlength: "Username must be 6-20 characters",
-                maxlength: "Username must be 6-20 characters"
-            }
-        },
-        errorClass: "fis-error",
-        submitHandler: function(form){
-            fisLoader.show();
-
-            $.ajax({
-                url: form.action,
-                type: form.method,
-                dataType: 'json',
-                data: $(form).serialize(),
-                success: function(res, status){
-                    console.log(status);
-                    fisLoader.hide();
-                   if(res.result == "login"){
-                       loginForm.find(".fis-login-title")
-                           .append("<label class='fis-error'>Wrong User Name or Password</label>");
-                   }else{
-                       window.location.replace("http://localhost:8080/FisMediaSite/profile");
-                   }
-                }
-            });
-        }
-    });
-}
-
-function signupHandle(){
-    var signUpForm = $("#loginSignUp");
-    var fisLoader = $(".fis-loader");
-    fisLoader.hide();
-    signUpForm.validate({
-        rules:{
-            username: {
-                required: true,
-                minlength: 6,
-                maxlength: 20
-            },
-            password: {
-                required: true,
-                minlength: 6,
-                maxlength: 20
-            },
-            confirmPassword: {
-                required: true,
-                minlength: 6,
-                maxlength: 20,
-                equalTo: "#signUpPassword"
-            },
-            fullName: {
-                required: true,
-                minlength: 6,
-                maxlength: 20
-            }
-        },
-        messages:{
-            username: {
-                required: "This field is required",
-                minlength: "Username must be 6-20 characters",
-                maxlength: "Username must be 6-20 characters"
-            },
-            password: {
-                required: "This field is required",
-                minlength: "Password must be 6-20 characters",
-                maxlength: "Password must be 6-20 characters"
-            },
-            confirmPassword: {
-                required: "This field is required",
-                minlength: "Password must be 6-20 characters",
-                maxlength: "Password must be 6-20 characters",
-                equalTo: "Not match"
-            },
-            fullName: {
-                required: "This field is required",
-                minlength: "Too short",
-                maxlength: "Too long"
-            }
+            username: errorMessages.messages.username,
+            password: errorMessages.messages.password
         },
         errorClass: "fis-error",
         submitHandler: function(form){
@@ -147,11 +108,51 @@ function signupHandle(){
                 success: function(res, status){
                     console.log(res);
                     fisLoader.hide();
+                   if(res.result == "login"){
+                       loginForm.find(".fis-login-title")
+                           .append("<label class='fis-error'>Wrong User Name or Password</label>");
+                   }else{
+                       window.location.replace("http://localhost:8080/FisMediaSite/profile?username=" + res.username);
+                   }
+                }
+            });
+        }
+    });
+}
+
+function signupHandle(){
+    var signUpForm = $("#loginSignUp");
+    var fisLoader = $(".fis-loader");
+    fisLoader.hide();
+    signUpForm.validate({
+        rules:{
+            username: errorMessages.rules.username,
+            password: errorMessages.rules.password,
+            confirmPassword: errorMessages.rules.confirmPassword,
+            fullName: errorMessages.rules.fullName
+        },
+        messages:{
+            username: errorMessages.messages.username,
+            password: errorMessages.messages.password,
+            confirmPassword: errorMessages.messages.confirmPassword,
+            fullName: errorMessages.messages.fullName
+        },
+        errorClass: "fis-error",
+        submitHandler: function(form){
+            fisLoader.show();
+
+            $.ajax({
+                url: form.action,
+                type: form.method,
+                dataType: 'json',
+                data: $(form).serialize(),
+                success: function(res, status){
+                    fisLoader.hide();
                     if(res.result == "login"){
                         signUpForm.find(".fis-login-title")
                             .append("<label class='fis-error'>User name already exits</label>");
                     }else{
-                        window.location.replace("http://localhost:8080/FisMediaSite/profile");
+                        window.location.replace("http://localhost:8080/FisMediaSite/profile?username=" + res.username);
                     }
                 }
             });
@@ -160,7 +161,47 @@ function signupHandle(){
 }
 
 function settingHandle(){
-
+    var $settingForm = $(".fis-setting");
+    var fisLoader = $(".fis-loader");
+    fisLoader.hide();
+    $settingForm.validate({
+        rules:{
+            fullName: errorMessages.rules.fullName,
+            username: errorMessages.rules.username,
+            oldPassword: errorMessages.rules.password,
+            newPassword: errorMessages.rules.password,
+            retypeNewPassword: {
+                required: errorMessages.rules.confirmPassword.required,
+                minlength: errorMessages.rules.confirmPassword.minlength,
+                maxlength: errorMessages.rules.confirmPassword.maxlength,
+                equalTo: "#setting-new-password"
+            }
+        },
+        errorClass: 'fis-error',
+        submitHandler: function(form){
+            fisLoader.show();
+            $.ajax({
+                url: form.action,
+                type: form.method,
+                dataType: 'json',
+                data: $(form).serialize(),
+                success: function(res, status){
+                    var message = res.message;
+                    var styleMessage = "fis-error";
+                    if (message === "Saved successfully !"){
+                        styleMessage = "fis-success";
+                    }
+                    fisLoader.hide();
+                    for (var i=2;i<=4;i++){
+                        $settingForm.find("input:eq("+i+")").val("");
+                    }
+                    $settingForm.find("label").html("");
+                    $settingForm
+                        .prepend("<label class=\""+ styleMessage +"\" style='font-size: large'>" + message + "</label>");
+                }
+            });
+        }
+    });
 }
 
 function uploadImageHandle(){
@@ -169,17 +210,11 @@ function uploadImageHandle(){
 
     $uploadForm.validate({
         rules:{
-            userImage:{
-                required: true,
-                accept: "image/*",
-                fileSize: 1048576
-            },
-            albumName:{
-                required: true
-            }
+            userImage:errorMessages.rules.userImage,
+            albumName:errorMessages.rules.albumName
         },
         messages:{
-            userImage:"File must be JPG, GIF or PNG, less than 1MB"
+            userImage:errorMessages.messages.userImage
         },
         submitHandler: function(form){
             //ajax here
@@ -189,17 +224,11 @@ function uploadImageHandle(){
 
     $uploadAImage.validate({
         rules:{
-            userImage:{
-                required: true,
-                accept: "image/*",
-                fileSize: 1048576
-            },
-            albumName:{
-                required: true
-            }
+            userImage:errorMessages.rules.userImage,
+            albumName:errorMessages.rules.albumName
         },
         messages:{
-            userImage:"File must be JPG, GIF or PNG, less than 1MB"
+            userImage:errorMessages.messages.userImage
         },
         submitHandler: function(form){
             //ajax here
@@ -227,3 +256,21 @@ function viewAAlbum(){
 
     //ajax here
 }
+
+function sliderHomePage(){
+    var $sliderHomePage = $(".fis-slider");
+    $sliderHomePage.find(".fis-card-container:gt(0)").hide();
+
+    var run = null;
+    $sliderHomePage.hover(function(){
+        var self = $(this);
+        var count = self.find(".fis-card-container").length;
+        if(count > 1){
+            run = setInterval(function(){
+                self.find(".fis-card-container:first")
+                    .fadeOut(1000).next().fadeIn(1000).end().appendTo(self);
+            }, 1500);
+        }
+    },function(){ clearInterval(run)});
+}
+

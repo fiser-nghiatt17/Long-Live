@@ -5,7 +5,7 @@
 
 <struts>
 
-	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.devMode" value="false"/>
 
 	<package name="defaultTile" extends="struts-default">
 		<result-types>
@@ -20,13 +20,13 @@
 		<action name="editAAlbum">
 			<result type="tiles">editAAlbum</result>
 		</action>
-		<action name="setting">
-			<result type="tiles">setting</result>
-		</action>
 		<action name="home">
 			<result type="tiles">home</result>
 		</action>
-		<action name="logOut" class="fis.longlive.actions.LoginAction" method="logout">
+		<action name="setting">
+			<result type="tiles">setting</result>
+		</action>
+		<action name="logOut" class="fis.longlive.actions.UserAction" method="logout">
 			<result name="success" type="redirectAction">home</result>
 		</action>
 		<action name="newest">
@@ -38,7 +38,7 @@
 		<action name="mostFavorite">
 			<result type="tiles">home</result>
 		</action>
-		<action name="profile" class="fis.longlive.actions.LoginAction" method="checkSession">
+		<action name="profile" class="fis.longlive.actions.UserAction" method="checkSession">
 			<result name="login" type="redirectAction">home</result>
 			<result name="success" type="tiles">profile</result>
 		</action>
@@ -51,16 +51,20 @@
 		</action>
 	</package> -->
 
-	<package name="loginAjax" extends="json-default">
-		<action name="login" class="fis.longlive.actions.LoginAction">
+	<package name="Ajax" extends="json-default">
+		<action name="login" class="fis.longlive.actions.UserAction">
 			<result type="json" name="success">
 			</result>
 			<result type="json" name="login" />
 		</action>
-		<action name="signup" class="fis.longlive.actions.SignUpAction" method="checkSignUp">
+		<action name="signup" class="fis.longlive.actions.UserAction" method="signUp">
 			<result type="json" name="success">
 			</result>
 			<result type="json" name="login" />
+		</action>
+		<action name="chageInfo" class="fis.longlive.actions.SettingAction" method="chageInfo">
+			<result type="json" name="success">
+			</result>
 		</action>
 	</package>
 
@@ -70,5 +74,11 @@
 			<result name="input" type="tiles">home</result>
 		</action>
 	</package>
+
+	<!--<package name="serveAll" namespace="" extends="defaultTile">
+		<action name="*">
+			<result type="tiles">home</result>
+		</action>
+	</package>-->
 
 </struts>

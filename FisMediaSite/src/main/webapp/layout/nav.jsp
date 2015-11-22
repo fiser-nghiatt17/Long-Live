@@ -3,7 +3,9 @@
         <div class="mdl-layout__header-row">
             <!-- Title -->
             <div>
-                <span class="mdl-layout-title" style="cursor: pointer; margin-right: 20px;">Home</span>
+                <span class="mdl-layout-title">
+                    <a href="home" style="cursor: pointer; margin-right: 20px; text-decoration: none; color: #fff">Home</a>
+                </span>
             </div>
             <!-- Add spacer, to align navigation to the right -->
             <div class="mdl-layout-spacer"></div>
@@ -23,7 +25,7 @@
 
                 <% if(session.getAttribute("username") != null) {%>
                      <a class="mdl-navigation__link  fis-after-login" id="fis-menu-lower-right">
-                    <%= session.getAttribute("username")%></a>
+                    <%= session.getAttribute("fullName")%></a>
                 <%} else {%>
                     <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-signup-container">Sign Up</a>
                     <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-login-container">Log In</a>
@@ -31,8 +33,8 @@
 
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
                     for="fis-menu-lower-right">
-                    <a href="setting"><li class="mdl-menu__item">Setting</li></a>
-                    <a href="profile"><li class="mdl-menu__item">Profile</li></a>
+                    <a href=<%= "\"profile?username="+ session.getAttribute("username") + "\"" %>><li class="mdl-menu__item">Profile</li></a>
+                    <a  href=<%= "\"setting?username="+ session.getAttribute("username") + "\"" %>><li class="mdl-menu__item">Setting</li></a>
                     <a href="logOut"><li class="mdl-menu__item">Logout</li></a>
                 </ul>
             </nav>
@@ -49,11 +51,11 @@
                 <a class="mdl-navigation__link"  href="viewAAlbum">View a album</a>
             </div>
             <% if(session.getAttribute("username") != null) {%>
-                <a class="mdl-navigation__link" href="profile">Profile</a>
+                <a class="mdl-navigation__link" href=<%= "\"profile?username="+ session.getAttribute("username") + "\"" %>>Profile</a>
                 <div class="fis-sub-nav">
                     <a class="mdl-navigation__link"  href="editAAlbum">Edit A Album</a>
                 </div>
-                <a class="mdl-navigation__link" href="setting">Setting</a>
+                <a class="mdl-navigation__link" href=<%= "\"setting?username="+ session.getAttribute("username") + "\"" %>>Setting</a>
                 <a class="mdl-navigation__link" href="logOut">Log out</a>
             <%} else {%>
                 <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-signup-container">Sign Up</a>

@@ -14,22 +14,19 @@
                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Save</button>
              </form>
    	  	</div>
-
-   	  	<div class="mdl-cell mdl-cell--3-col">
-   	  		<div class="fis-card  mdl-card mdl-shadow--6dp" style="background: url('images/image.jpg') center / cover">
-                  <div class="mdl-card__title"><!-- Delete Image -->
-                      <button class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon"
-                              data-toggle="modal" data-target="#fis-delete-popup">
-                          <i class="material-icons">delete</i>
-                      </button>
-                  </div><!-- End Delete Image -->
-                  <div class="mdl-card--expand"></div>
-             </div>
-   	  	</div>
-   	  	<div class="mdl-cell mdl-cell--3-col">
-   	  	</div>
-   	  	<div class="mdl-cell mdl-cell--3-col">
-   	  	</div>
+          <%for(int i=1; i<5; i++){%>
+              <div class="mdl-cell mdl-cell--3-col">
+                <div class="fis-card  mdl-card mdl-shadow--6dp" style="background: url(<%="\'images/1 ("+i+").jpg\'"%>) center / cover">
+                      <div class="mdl-card__title"><!-- Delete Image -->
+                          <button class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon"
+                                  data-toggle="modal" data-target="#fis-delete-popup">
+                              <i class="material-icons">delete</i>
+                          </button>
+                      </div><!-- End Delete Image -->
+                      <div class="mdl-card--expand"></div>
+                 </div>
+            </div>
+          <%}%>
    	  </div>
    </div><!-- End Your content goes here -->
 </main>

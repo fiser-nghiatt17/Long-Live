@@ -11,48 +11,50 @@
 		              <span>Total: 15</span>
 		         </div>
 	  	    </div>
-   			<div class="mdl-cell mdl-cell--3-col">
-   				<div class="fis-card-container">
-                            <div class="fis-card  mdl-card mdl-shadow--6dp" style="background: url('images/image.jpg') center / cover">
-                                <div class="mdl-card__title">
-            <!-- Edit album -->    <button id="fis-edit-album-right-1"
-                                            class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon">
-                                        <i class="material-icons">more_vert</i>
-                                     </button>
-                                    <div class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                                        for="fis-edit-album-right-1">
-                                        <a href="editAAlbum" style="color: #616161">
-                                            <li class="mdl-menu__item">Edit</li>
-                                        </a>
-                                        <a href="#" style="color: #616161" data-toggle="modal" data-target="#fis-delete-popup">
-                                           <li class="mdl-menu__item">Delete</li>
-                                        </a>
+            <%for(int i=1;i<=8;i++){%>
+                <div class="mdl-cell mdl-cell--3-col">
+                    <div class="fis-slider">
+                        <%for(int j=i*3-2; j<=i*3; j++){%>
+                            <div class="fis-card-container">
+                                    <div class="fis-card  mdl-card mdl-shadow--6dp" style="background: url(<%="\'images/1 ("+j+").jpg\'"%>) center / cover">
+                                        <div class="mdl-card__title">
+                    <!-- Edit album -->    <button id="fis-edit-album-right-<%=j%>"
+                                                    class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon">
+                                                <i class="material-icons">more_vert</i>
+                                             </button>
+                                            <div class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                                                for="fis-edit-album-right-<%=j%>">
+                                                <a href="editAAlbum" style="color: #616161">
+                                                    <li class="mdl-menu__item">Edit</li>
+                                                </a>
+                                                <a href="#" style="color: #616161" data-toggle="modal" data-target="#fis-delete-popup">
+                                                   <li class="mdl-menu__item">Delete</li>
+                                                </a>
+                                            </div>
+            <!-- End Edit album -->    </div>
+                                        <div class="mdl-card--expand"></div>
+                                        <a style="cursor: pointer" href="viewAAlbum"> <!-- Link to See album -->
+                                            <div class="fis-card-hover mdl-card__actions">
+                                                    <p class="fis-card-title">Nature</p>
+                                                    <p class="fis-card-user">Jenefer lawrence</p>
+                                                <div class="fis-card-hover-icon">
+                                                    <span>
+                                                        <i class="icon material-icons">visibility
+                                                        </i><span class="fis-card-hover-icon-plus">269</span>
+                                                    </span>
+                                                    <span style="position: relative; left: 7px">
+                                                        <i class="icon material-icons">favorite
+                                                        </i><span class="fis-card-hover-icon-plus">60</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </a> <!-- End link to See album -->
                                     </div>
-    <!-- End Edit album -->    </div>
-                                <div class="mdl-card--expand"></div>
-                                <a style="cursor: pointer" href="viewAAlbum"> <!-- Link to See album -->
-                                    <div class="fis-card-hover mdl-card__actions">
-                                            <p class="fis-card-title">Nature</p>
-                                            <p class="fis-card-user">Jenefer lawrence</p>
-                                        <div class="fis-card-hover-icon">
-                                            <span>
-                                                <i class="icon material-icons">visibility
-                                                </i><span class="fis-card-hover-icon-plus">269</span>
-                                            </span>
-                                            <span style="position: relative; left: 7px">
-                                                <i class="icon material-icons">favorite
-                                                </i><span class="fis-card-hover-icon-plus">60</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a> <!-- End link to See album -->
                             </div>
+                        <%}%>
                     </div>
-		   	</div>
-		   	<div class="mdl-cell mdl-cell--3-col">
-		   	</div>
-		   	<div class="mdl-cell mdl-cell--3-col">
-		   	</div>
+                </div>
+            <%}%>
   	   </div>
    	
    </div><!-- End Your content goes here -->

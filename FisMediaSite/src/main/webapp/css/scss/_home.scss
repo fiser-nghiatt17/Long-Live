@@ -26,6 +26,9 @@
 .fis-error{
   color: #ff0a00;
 }
+.fis-success{
+  color: green;
+}
 .fis-upload-container{
   margin: 120px auto;
   width: 400px;
@@ -50,16 +53,23 @@
 
 /*Card*/
 
+.fis-slider{
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
 .fis-card{
   width: 100%;
   height: 300px;
-  margin: 5px auto;
+  position: relative;
 }
 
 .fis-card-container{
+  width: 100%;
+  position: absolute;
   background: #fff;
-  padding: 0;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 /*Card icon*/

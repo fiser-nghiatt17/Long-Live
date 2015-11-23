@@ -25,7 +25,7 @@
 
                 <% if(session.getAttribute("username") != null) {%>
                      <a class="mdl-navigation__link  fis-after-login" id="fis-menu-lower-right">
-                         <%= session.getAttribute("fullname")%>
+                         <%= session.getAttribute("fullName")%>
                      </a>
                 <%} else {%>
                     <a class="mdl-navigation__link" data-toggle="modal" data-target="#fis-signup-container">Sign Up</a>

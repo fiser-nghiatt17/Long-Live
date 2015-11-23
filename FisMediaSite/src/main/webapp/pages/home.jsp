@@ -6,7 +6,12 @@
                 <div class="mdl-cell mdl-cell--3-col">
                     <div class="fis-slider">
                         <div class="fis-card-container">
-                            <a style="cursor: pointer; text-decoration: none" href="viewAAlbum"><!-- Link to view a album  -->
+                            <s:url action="viewAAlbum" var="viewAlbum">
+                                <s:param name="albumId">
+                                    <s:property value="albumId"/>
+                                </s:param>
+                            </s:url>
+                            <a style="cursor: pointer; text-decoration: none" href="<s:property value="viewAlbum" />"><!-- Link to view a album  -->
                                 <div class="fis-card  mdl-card mdl-shadow--6dp"
                                      style="background: url('<s:property value="#a.picURL"/> ') center / cover">
                                     <div class="mdl-card__title mdl-card--expand">

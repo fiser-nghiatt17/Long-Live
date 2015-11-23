@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import fis.longlive.database.process.ProcessUser;
 import fis.longlive.database.table.User;
 import org.apache.struts2.ServletActionContext;
+
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
@@ -28,6 +29,7 @@ public class UserAction extends ActionSupport{
 
         }else{
             result = LOGIN;
+            return LOGIN;
         }
         return result;
     }
@@ -56,15 +58,6 @@ public class UserAction extends ActionSupport{
     public void setSession(User user){
         session.setAttribute("fullName", user.getFullname());
         session.setAttribute("username", user.getUsername());
-    }
-
-    public String checkSession() {
-        String login = (String) session.getAttribute("username");
-        if (login == null) {
-            return LOGIN;
-        } else {
-            return SUCCESS;
-        }
     }
 
     public String getUsername() {

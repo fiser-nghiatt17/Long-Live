@@ -14,7 +14,7 @@
 		<action name="">
 			<result type="tiles">home</result>
 		</action>
-		<action name="viewAAlbum">
+		<action name="viewAAlbum" class="fis.longlive.actions.AlbumAction">
 			<result type="tiles">viewAAlbum</result>
 		</action>
 		<action name="editAAlbum">
@@ -26,7 +26,7 @@
 		<action name="setting">
 			<result type="tiles">setting</result>
 		</action>
-		<action name="logOut" class="fis.longlive.actions.UserAction" method="logout">
+		<action name="logOut" class="fis.longlive.actions.ProfileAction" method="logout">
 			<result name="success" type="redirectAction">home</result>
 		</action>
 		<action name="newest">
@@ -38,7 +38,7 @@
 		<action name="mostFavorite">
 			<result type="tiles">home</result>
 		</action>
-		<action name="profile" class="fis.longlive.actions.UserAction" method="checkSession">
+		<action name="profile" class="fis.longlive.actions.ProfileAction">
 			<result name="login" type="redirectAction">home</result>
 			<result name="success" type="tiles">profile</result>
 		</action>
@@ -53,11 +53,10 @@
 
 	<package name="Ajax" extends="json-default">
 		<action name="login" class="fis.longlive.actions.UserAction">
-			<result type="json" name="success">
-			</result>
+			<result type="json" name="success">profile</result>
 			<result type="json" name="login" />
 		</action>
-		<action name="signup" class="fis.longlive.actions.UserAction" method="signUp">
+		<action name="signup" class="fis.longlive.actions.ProfileAction" method="signUp">
 			<result type="json" name="success">
 			</result>
 			<result type="json" name="login" />

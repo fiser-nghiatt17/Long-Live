@@ -10,9 +10,7 @@
 <title><tiles:insertAttribute name="title"/></title>
 <tiles:insertAttribute name="cssLib" />
 </head>
-
 <body>
-
 <tiles:insertAttribute name="nav" />
 
 <tiles:insertAttribute name="body" />

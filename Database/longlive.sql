@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `longlive` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
-USE `longlive`;
--- MySQL dump 10.13  Distrib 5.5.44, for debian-linux-gnu (i686)
+-- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: longlive
 -- ------------------------------------------------------
--- Server version	5.5.44-0+deb8u1
+-- Server version	5.7.9-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -36,7 +34,7 @@ CREATE TABLE `albums` (
   KEY `category` (`category`),
   CONSTRAINT `albums_ibfk_1` FOREIGN KEY (`author`) REFERENCES `users` (`username`),
   CONSTRAINT `albums_ibfk_2` FOREIGN KEY (`category`) REFERENCES `categories` (`categoryID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +43,7 @@ CREATE TABLE `albums` (
 
 LOCK TABLES `albums` WRITE;
 /*!40000 ALTER TABLE `albums` DISABLE KEYS */;
-INSERT INTO `albums` VALUES (1,'hungct2','some',1,3,31),(2,'nghiatt17','abc',2,4,23),(3,'tumv2','angry',6,9,41),(6,'cuonglv13','Future in my eyes',3,7,30),(7,'sinhlt3','Creative Suite',7,23,81);
+INSERT INTO `albums` VALUES (1,'hungct2','Chim Ung',1,3,31),(2,'nghiatt17','Jenifer',2,4,23),(3,'tumv2','Trees',6,9,41),(6,'cuonglv13','My eyes',3,7,30),(7,'sinhlt3','Creative Suite',7,23,81),(8,'sinhlt3','Nature',7,23,81),(9,'tumv2','Manga',7,23,81);
 /*!40000 ALTER TABLE `albums` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +148,7 @@ CREATE TABLE `pictures` (
   PRIMARY KEY (`pictureID`),
   KEY `album` (`inAlbum`),
   CONSTRAINT `pictures_ibfk_1` FOREIGN KEY (`inAlbum`) REFERENCES `albums` (`albumID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +157,7 @@ CREATE TABLE `pictures` (
 
 LOCK TABLES `pictures` WRITE;
 /*!40000 ALTER TABLE `pictures` DISABLE KEYS */;
-INSERT INTO `pictures` VALUES (1,'a picture',1,'http://localhost/apicture.jpg','2015-02-23','Something'),(2,'angry bird',3,'http://localhost/bird1.jpg','2013-04-11','A big bird');
+INSERT INTO `pictures` VALUES (1,'a picture',1,'images/1 (1).jpg','2015-02-23','Something'),(2,'angry bird',1,'images/1 (2).jpg','2013-04-11','A big bird'),(3,'Big bird   ',7,'images/1 (5).jpg','2015-11-10','A big bird'),(4,'Big bird2',7,'images/1 (6).jpg','2015-11-24',NULL),(5,'Big bird3   ',7,'images/1 (7).jpg','2015-11-23',NULL),(6,'Big bird3   ',7,'images/1 (8).jpg','2015-11-23',NULL),(7,'angry bird',1,'images/1 (3).jpg','2013-04-11','A big bird'),(8,'angry bird',2,'images/1 (4).jpg','2013-04-11','A big bird'),(9,'angry bird',2,'images/1 (9).jpg','2013-04-11','A big bird'),(10,'angry bird',2,'images/1 (10).jpg','2013-04-11','A big bird'),(11,'angry bird',3,'images/1 (11).jpg','2013-04-11','A big bird'),(12,'angry bird',3,'images/1 (12).jpg','2013-04-11','A big bird'),(13,'angry bird',3,'images/1 (13).jpg','2013-04-11','A big bird'),(14,'angry bird',3,'images/1 (14).jpg','2013-04-11','A big bird'),(15,'angry bird',6,'images/1 (15).jpg','2013-04-11','A big bird'),(16,'angry bird',6,'images/1 (16).jpg','2013-04-11','A big bird'),(17,'angry bird',6,'images/1 (17).jpg','2013-04-11','A big bird'),(18,'angry bird',6,'images/1 (18).jpg','2013-04-11','A big bird'),(19,'angry bird',8,'images/1 (19).jpg','2013-04-11','A big bird'),(20,'angry bird',8,'images/1 (20).jpg','2013-04-11','A big bird'),(21,'angry bird',8,'images/1 (21).jpg','2013-04-11','A big bird'),(22,'angry bird',8,'images/1 (22).jpg','2013-04-11','A big bird'),(23,'angry bird',9,'images/1 (23).jpg','2013-04-11','A big bird'),(24,'angry bird',9,'images/1 (24).jpg','2013-04-11','A big bird');
 /*!40000 ALTER TABLE `pictures` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +185,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('anhtt50','anhtt50','Thai Tuan Anh',NULL,'anhtt50@fpt.com.vn',NULL),('cuonglv13','cuonglv13','Le Van Cuong',NULL,'cuonglv13@fpt.com.vn',NULL),('hungct2','hungct2','Chu Thanh Hung',NULL,'hungct2@fpt.com.vn',NULL),('nghiatt17','nghiatt17','Tran Tuan Nghia',NULL,'nghiatt17@fpt.com.vn',NULL),('sinhlt3','sinhlt3','Luu Truong Sinh',NULL,'sinhlt3@fpt.com.vn',NULL),('tumv2','tumv2','Ma Van Tu',NULL,'tumv2@fpt.com.vn',NULL);
+INSERT INTO `users` VALUES ('','','','\0',NULL,NULL),('anhtt50','anhtt50','Thai Tuan Anh',NULL,'anhtt50@fpt.com.vn',NULL),('cuonglv13','cuonglv13','Le Van Cuong',NULL,'cuonglv13@fpt.com.vn',NULL),('hungct2','hungct2','Chu Thanh Hung',NULL,'hungct2@fpt.com.vn',NULL),('nghiatt17','nghiatt17','Tran Tuan Nghia',NULL,'nghiatt17@fpt.com.vn',NULL),('sinhlt3','123456','Luu Truong Sinh',NULL,'sinhlt3@fpt.com.vn',NULL),('sinhlt31','123456','SinhBlack','\0',NULL,NULL),('sinhlt35','123456','SinhBlack','\0',NULL,NULL),('tumv2','tumv2','Ma Van Tu',NULL,'tumv2@fpt.com.vn',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -200,4 +198,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-21 22:39:19
+-- Dump completed on 2015-11-23 19:54:17

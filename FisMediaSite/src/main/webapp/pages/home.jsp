@@ -1,5 +1,5 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<main class="mdl-layout__content">
+<main class="mdl-layout__content fis-home-main">
     <div class="page-content"><!-- Your content goes here -->
         <div class="mdl-grid">
             <%--<s:iterator value="homeDisplays" var="a">

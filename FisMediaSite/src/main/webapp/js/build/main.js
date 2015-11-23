@@ -1,10 +1,3 @@
-$(document).ready(function(){
-    checkUrlToActiveNav();
-    handlerSubmit();
-    viewAAlbum();
-    sliderHomePage();
-});
-
 var errorMessages = {
     rules:{
         username: {
@@ -37,7 +30,7 @@ var errorMessages = {
             required: true
         }
     },
-    messages:{
+    messages:{/*ss*/
         username: {
             required: "This field is required",
             minlength: "Username must be 6-20 characters",
@@ -63,6 +56,21 @@ var errorMessages = {
     }
 };
 
+$(document).ready(function(){
+    checkUrlToActiveNav();
+    handlerSubmit();
+    viewAAlbum();
+    sliderHomePage();
+    loadMore();
+});
+
+function handlerSubmit(){
+    loginHandle();
+    signupHandle();
+    settingHandle();
+    uploadImageHandle();
+}
+
 function checkUrlToActiveNav(){
     var pgurl = window.location.href.split("/").pop();
     var indexOfDot = pgurl.search("\\.");
@@ -72,17 +80,9 @@ function checkUrlToActiveNav(){
     $(".fis-main-nav a").each(function(){
         if($(this).attr("href") == url || $(this).attr("href") == '' )
             $(this).addClass("fis-nav-active");
-    })
+    });
 
 }
-
-function handlerSubmit(){
-    loginHandle();
-    signupHandle();
-    settingHandle();
-    uploadImageHandle();
-}
-
 function loginHandle(){
     var loginForm = $("#loginForm");
     var fisLoader = $(".fis-loader");
@@ -108,12 +108,12 @@ function loginHandle(){
                 success: function(res, status){
                     console.log(res);
                     fisLoader.hide();
-                   if(res.result == "login"){
-                       loginForm.find(".fis-login-title")
-                           .append("<label class='fis-error'>Wrong User Name or Password</label>");
-                   }else{
-                       window.location.replace("http://localhost:8080/FisMediaSite/profile?username=" + res.username);
-                   }
+                    if(res.result == "login"){
+                        loginForm.find(".fis-login-title")
+                            .append("<label class='fis-error'>Wrong User Name or Password</label>");
+                    }else{
+                        window.location.replace("http://localhost:8080/FisMediaSite/profile?username=" + res.username);
+                    }
                 }
             });
         }
@@ -159,7 +159,6 @@ function signupHandle(){
         }
     });
 }
-
 function settingHandle(){
     var $settingForm = $(".fis-setting");
     var fisLoader = $(".fis-loader");
@@ -203,7 +202,6 @@ function settingHandle(){
         }
     });
 }
-
 function uploadImageHandle(){
     var $uploadForm = $(".fis-new-album-container");
     var $uploadAImage = $(".upload-a-image");
@@ -236,7 +234,6 @@ function uploadImageHandle(){
         errorClass: 'fis-error'
     });
 }
-
 function viewAAlbum(){
     var plus = $(".fis-plus");
     var isPlus = false;
@@ -273,4 +270,19 @@ function sliderHomePage(){
         }
     },function(){ clearInterval(run)});
 }
+function loadMore(){
+    var documentHeight = $(document).height();
+    var windowHeight = $(window).height();
+    var loadingPoint = documentHeight - windowHeight;
+    console.log(documentHeight);
+    $(".fis-home-main").on('scroll', function(){
+        if($(this).scrollTop() > loadingPoint){
+            loadingPoint += documentHeight;
+            console.log("Loding point: " + loadingPoint);
+            console.log("Scroll Top: " + $(this).scrollTop());
+            for(var i=0; i<4; i++)
+                $(this).find(".mdl-grid").append("<div class='mdl-cell mdl-cell--3-col' ><div style='width: 100%; height: 1000px; background: red;'></div></div>");
+        }
+    });
 
+}

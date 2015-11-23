@@ -14,27 +14,26 @@
             <s:iterator value="user.albums" status="albumIndex" var="album">
                 <div class="mdl-cell mdl-cell--3-col">
                     <div class="fis-slider">
+						 <button id="fis-edit-album-right-<s:property value="%{#albumIndex.index}" />"
+                                                class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon">
+                                <i class="material-icons">more_vert</i>
+                         </button>
+						 <div class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+							 for="fis-edit-album-right-<s:property value="%{#albumIndex.index}" />">
+							<a href="editAAlbum" style="color: #616161">
+								<li class="mdl-menu__item">Edit</li>
+							</a>
+							<a href="#" style="color: #616161" data-toggle="modal"
+							   data-target="#fis-delete-popup">
+								<li class="mdl-menu__item">Delete</li>
+							</a>
+						 </div>
                         <s:iterator value="pictures" status="pictureIndex" var="picture">
                             <div class="fis-card-container">
                                 <div class="fis-card  mdl-card mdl-shadow--6dp" style="background: url('<s:property
                                         value="#picture.pictureURL"/>') center / cover">
-                                    <div class="mdl-card__title">
-                                        <!-- Edit album -->
-                                        <button id="fis-edit-album-right-<s:property value="%{#albumIndex.index}" />"
-                                                class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon">
-                                            <i class="material-icons">more_vert</i>
-                                        </button>
-                                        <div class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                                             for="fis-edit-album-right-<s:property value="%{#albumIndex.index}" />">
-                                            <a href="editAAlbum" style="color: #616161">
-                                                <li class="mdl-menu__item">Edit</li>
-                                            </a>
-                                            <a href="#" style="color: #616161" data-toggle="modal"
-                                               data-target="#fis-delete-popup">
-                                                <li class="mdl-menu__item">Delete</li>
-                                            </a>
-                                        </div>
-                                        <!-- End Edit album -->    </div>
+                                    <div class="mdl-card__title"> 
+									</div>
                                     <div class="mdl-card--expand"></div>
                                     <s:url action="viewAAlbum" var="viewAlbum">
                                         <s:param name="albumId">

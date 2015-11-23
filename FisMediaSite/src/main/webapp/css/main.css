@@ -159,7 +159,8 @@
 .fis-edit-album-right {
   position: absolute;
   right: 8px;
-  top: 8px; }
+  top: 8px;
+  z-index: 999; }
 
 /*End Profile Page---------------------------*/
 /*Edit album page----------------------------*/

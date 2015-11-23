@@ -6,7 +6,7 @@
                     <div class="fis-slider">
                     <%for(int j=i*3-2; j<=i*3; j++){%>
                         <div class="fis-card-container">
-                            <a style="cursor: pointer" href="viewAAlbum"><!-- Link to view a album  -->
+                            <a style="cursor: pointer; text-decoration: none" href="viewAAlbum"><!-- Link to view a album  -->
                                 <div class="fis-card  mdl-card mdl-shadow--6dp" style="background: url(<%="\'images/1 ("+j+").jpg\'"%>) center / cover">
                                     <div class="mdl-card__title mdl-card--expand">
                                     </div>

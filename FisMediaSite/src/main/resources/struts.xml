@@ -15,7 +15,7 @@
 			<result name="success" type="tiles">home</result>
 		</action>
 		<action name="viewAAlbum" class="fis.longlive.actions.AlbumAction">
-			<result type="tiles">viewAAlbum</result>
+			<result name="success" type="tiles">viewAAlbum</result>
 		</action>
 		<action name="editAAlbum">
 			<result type="tiles">editAAlbum</result>
@@ -32,11 +32,11 @@
 		<action name="newest">
 			<result type="tiles">home</result>
 		</action>
-		<action name="mostView">
-			<result type="tiles">home</result>
+		<action name="mostView" class="fis.longlive.actions.HomeAction" method="mostView">
+			<result name="success" type="tiles">home</result>
 		</action>
-		<action name="mostFavorite">
-			<result type="tiles">home</result>
+		<action name="mostFavorite" class="fis.longlive.actions.HomeAction" method="mostLike">
+			<result name ="success" type="tiles">home</result>
 		</action>
 		<action name="profile" class="fis.longlive.actions.ProfileAction">
 			<result name="login" type="redirectAction">home</result>

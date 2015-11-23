@@ -2,11 +2,11 @@
 <main class="mdl-layout__content">
     <div class="page-content"><!-- Your content goes here -->
         <div class="mdl-grid">
-            <s:iterator value="homeDisplays" status = "index" var="a">
+            <s:iterator value="homeDisplays" var="a">
                 <div class="mdl-cell mdl-cell--3-col">
                     <div class="fis-slider">
                         <div class="fis-card-container">
-                            <a style="cursor: pointer" href="viewAAlbum"><!-- Link to view a album  -->
+                            <a style="cursor: pointer; text-decoration: none" href="viewAAlbum"><!-- Link to view a album  -->
                                 <div class="fis-card  mdl-card mdl-shadow--6dp"
                                      style="background: url('<s:property value="#a.picURL"/> ') center / cover">
                                     <div class="mdl-card__title mdl-card--expand">

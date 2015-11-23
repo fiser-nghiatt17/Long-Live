@@ -6,12 +6,27 @@ package fis.longlive.actions;
 import fis.longlive.database.process.ProcessAlbum;
 import fis.longlive.database.table.Album;
 
+import java.util.Collections;
 import java.util.List;
 
 public class HomeAction {
     private List<Album> album;
     public String execute() {
         album = ProcessAlbum.selectAllAlbum();
+        return "success";
+    }
+
+    public String mostView(){
+        album = ProcessAlbum.selectAllAlbum();
+        Collections.sort(album);
+        //album=album.subList(0,8);
+        return "success";
+    }
+
+    public String mostLike(){
+        album = ProcessAlbum.selectAllAlbum();
+        Collections.sort(album,Album.albumlike);
+        //album=album.subList(0,8);
         return "success";
     }
 

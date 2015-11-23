@@ -4,6 +4,9 @@ import fis.longlive.database.table.Album;
 import fis.longlive.database.table.Category;
 import fis.longlive.database.table.User;
 
+import javax.persistence.Query;
+import java.util.List;
+
 public final class ProcessAlbum extends Process {
 	private static final int ALBUM_NAME = 0;
 	private static final int LIKE_AMOUNT = 1;
@@ -26,7 +29,13 @@ public final class ProcessAlbum extends Process {
 		
 		endProcess();
 	}
-	
+
+	public static List<Album> selectAllAlbum(){
+		beginProcess();
+		Query query = getEntityManager().createQuery("SELECT a FROM Album a");
+		return (List<Album>) query.getResultList();
+	}
+
 	public static Album selectAlbum(int albumID) {
 		beginProcess();
 		return getEntityManager().find(Album.class, albumID);

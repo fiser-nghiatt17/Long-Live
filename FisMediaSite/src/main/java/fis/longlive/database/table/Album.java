@@ -1,5 +1,6 @@
 package fis.longlive.database.table;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="albums")
 @NamedQuery(name="Album.findAll", query="SELECT a FROM Album a")
-public class Album  {
+public class Album implements Comparable<Album>{
 	@Id
 	private int albumID;
 
@@ -167,4 +168,20 @@ public class Album  {
 		return picture;
 	}
 
+	@Override
+	public int compareTo(Album album) {
+		int compareview=((Album)album).getViewAmount();
+		return compareview-this.viewAmount;
+	}
+
+	public static Comparator<Album> albumlike = new Comparator<Album>() {
+
+		public int compare(Album a1, Album a2) {
+
+			int like1 = a1.getLikeAmount();
+			int like2 = a2.getLikeAmount();
+
+			return like2 - like1;
+
+		}};
 }

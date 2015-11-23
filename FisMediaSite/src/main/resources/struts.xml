@@ -26,7 +26,7 @@
 		<action name="setting">
 			<result type="tiles">setting</result>
 		</action>
-		<action name="logOut" class="fis.longlive.actions.ProfileAction" method="logout">
+		<action name="logOut" class="fis.longlive.actions.UserAction" method="logout">
 			<result name="success" type="redirectAction">home</result>
 		</action>
 		<action name="newest">
@@ -56,7 +56,7 @@
 			<result type="json" name="success">profile</result>
 			<result type="json" name="login" />
 		</action>
-		<action name="signup" class="fis.longlive.actions.ProfileAction" method="signUp">
+		<action name="signup" class="fis.longlive.actions.UserAction" method="signUp">
 			<result type="json" name="success">
 			</result>
 			<result type="json" name="login" />

@@ -16,7 +16,13 @@ public final class ProcessLike extends Process {
 	}
 	
 	public static void deleteLike(int likeID) {
-		getEntityManager().remove(selectLike(likeID));
+		beginProcess();
+		
+		Like like = getEntityManager().find(Like.class, likeID);
+		getEntityManager().remove(like);
+		getEntityManager().getTransaction().commit();
+		
+		endProcess();
 	}
 	
 	public static Like selectLike(int likeID) {
@@ -29,7 +35,7 @@ public final class ProcessLike extends Process {
 	private static void updateLike(int likeID, Object newValue, int type) {
 		beginProcess();
 		
-		Like like = selectLike(likeID);
+		Like like = getEntityManager().find(Like.class, likeID);
 		
 		switch (type) {
 			case LIKE_USER:
@@ -42,6 +48,7 @@ public final class ProcessLike extends Process {
 				like.setState((Boolean) newValue);
 				break;
 		}
+		getEntityManager().persist(like);
 		
 		endProcess();
 	}

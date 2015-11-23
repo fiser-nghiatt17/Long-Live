@@ -18,7 +18,13 @@ public final class ProcessUser extends Process {
 	}
 	
 	public static void deleteUser(String username) {
-		getEntityManager().remove(selectUser(username));
+		beginProcess();
+		
+		User user = getEntityManager().find(User.class, username);
+		getEntityManager().remove(user);
+		getEntityManager().getTransaction().commit();
+		
+		endProcess();
 	}
 	
 	public static User selectUser(String username) {
@@ -31,7 +37,7 @@ public final class ProcessUser extends Process {
 	private static void updateUser(String username, Object newValue, int type) {
 		beginProcess();
 		
-		User user = selectUser(username);
+		User user = getEntityManager().find(User.class, username);
 		
 		switch (type) {
 			case PASSWORD:
@@ -48,7 +54,9 @@ public final class ProcessUser extends Process {
 				break;
 			case USER_BIRTHDAY:
 				user.setUserBirthday((Date) newValue);
+				break;
 		}
+		getEntityManager().persist(user);
 		
 		endProcess();
 	}

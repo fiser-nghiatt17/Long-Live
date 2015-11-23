@@ -1,10 +1,10 @@
 package fis.longlive.database.process;
 
+import java.util.Date;
+
 import fis.longlive.database.table.Album;
 import fis.longlive.database.table.Comment;
 import fis.longlive.database.table.User;
-
-import java.util.Date; 
 
 public final class ProcessComment extends Process {
 	private static final int COMMENT_USER = 0;
@@ -19,7 +19,13 @@ public final class ProcessComment extends Process {
 	}
 	
 	public static void deleteComment(int commentID) {
-		getEntityManager().remove(selectComment(commentID));
+		beginProcess();
+		
+		Comment comment = getEntityManager().find(Comment.class, commentID);
+		getEntityManager().remove(comment);
+		getEntityManager().getTransaction().commit();
+		
+		endProcess();
 	}
 	
 	public static Comment selectComment(int commentID) {
@@ -32,7 +38,7 @@ public final class ProcessComment extends Process {
 	private static void updateComment(int commentID, Object newValue, int type) {
 		beginProcess();
 		
-		Comment comment = selectComment(commentID);
+		Comment comment = getEntityManager().find(Comment.class, commentID);
 		
 		switch (type) {
 			case COMMENT_USER:
@@ -48,6 +54,7 @@ public final class ProcessComment extends Process {
 				comment.setContent((String) newValue);
 				break;
 		}
+		getEntityManager().persist(comment);
 		
 		endProcess();
 	}

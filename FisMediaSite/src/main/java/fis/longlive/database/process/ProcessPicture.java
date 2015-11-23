@@ -19,7 +19,13 @@ public final class ProcessPicture extends Process {
 	}
 	
 	public static void deletePicture(int pictureID) {
-		getEntityManager().remove(selectPicture(pictureID));
+		beginProcess();
+		
+		Picture picture = getEntityManager().find(Picture.class, pictureID);
+		getEntityManager().remove(picture);
+		getEntityManager().getTransaction().commit();
+		
+		endProcess();
 	}
 	
 	public static Picture selectPicture(int pictureID) {
@@ -32,7 +38,7 @@ public final class ProcessPicture extends Process {
 	private static void updatePicture(int pictureID, Object newValue, int type) {
 		beginProcess();
 		
-		Picture picture = selectPicture(pictureID);
+		Picture picture = getEntityManager().find(Picture.class, pictureID);
 		
 		switch (type) {
 			case PICTURE_NAME:
@@ -51,6 +57,7 @@ public final class ProcessPicture extends Process {
 				picture.setDescription((String) newValue);
 				break;
 		}
+		getEntityManager().persist(picture);
 		
 		endProcess();
 	}

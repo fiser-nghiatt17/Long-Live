@@ -13,7 +13,13 @@ public final class ProcessCategory extends Process {
 	}
 	
 	public static void deleteCategory(int categoryID) {
-		getEntityManager().remove(selectCategory(categoryID));
+		beginProcess();
+		
+		Category category = getEntityManager().find(Category.class, categoryID);
+		getEntityManager().remove(category);
+		getEntityManager().getTransaction().commit();
+		
+		endProcess();
 	}
 	
 	public static Category selectCategory(int categoryID) {
@@ -26,7 +32,7 @@ public final class ProcessCategory extends Process {
 	private static void updateCategory(int categoryID, Object newValue, int type) {
 		beginProcess();
 		
-		Category category = selectCategory(categoryID);
+		Category category = getEntityManager().find(Category.class, categoryID);
 		
 		switch (type) {
 			case CATEGORY_NAME: 
@@ -36,6 +42,8 @@ public final class ProcessCategory extends Process {
 				category.setDescription((String) newValue);
 				break;
 		}
+		
+		getEntityManager().persist(category);
 		
 		endProcess();
 	}

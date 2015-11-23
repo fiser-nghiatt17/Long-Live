@@ -20,8 +20,8 @@
 		<action name="editAAlbum">
 			<result type="tiles">editAAlbum</result>
 		</action>
-		<action name="home">
-			<result type="tiles">home</result>
+		<action name="home" class="fis.longlive.actions.HomeAction">
+			<result type="tiles" name="success">home</result>
 		</action>
 		<action name="setting">
 			<result type="tiles">setting</result>

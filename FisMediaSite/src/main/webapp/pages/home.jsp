@@ -5,10 +5,6 @@
             <s:iterator value="album" status="albumIndex" var="album">
                 <div class="mdl-cell mdl-cell--3-col">
                     <div class="fis-slider">
-                        <button id="fis-edit-album-right-<s:property value="%{#albumIndex.index}" />"
-                                class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon">
-                            <i class="material-icons">more_vert</i>
-                        </button>
                         <s:iterator value="pictures" status="pictureIndex" var="picture">
                             <div class="fis-card-container">
                                 <s:url action="viewAAlbum" var="viewAlbum">

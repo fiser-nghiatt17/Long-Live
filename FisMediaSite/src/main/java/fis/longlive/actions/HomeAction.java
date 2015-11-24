@@ -11,32 +11,57 @@ import java.util.List;
 
 public class HomeAction {
     private List<Album> album;
-    private String test = ":V";
+    private int numberOfLoading = 0;
+
+    private List<Album> albums;
+    private int numberOfPiceturePerRq = 5;
+    private int startIndex;
+    private int endIndex;
+
     public String execute() {
-        album = ProcessAlbum.selectAllAlbum();
+        albums = ProcessAlbum.selectAllAlbum();
+        boots();
+        album = albums.subList(startIndex, endIndex);
         return "success";
     }
 
     public String mostView(){
-        album = ProcessAlbum.selectAllAlbum();
-        Collections.sort(album);
-        //album=album.subList(0,8);
+        albums = ProcessAlbum.selectAllAlbum();
+        Collections.sort(albums);
+        boots();
+        album = albums.subList(startIndex, endIndex);
         return "success";
     }
 
     public String mostLike(){
-        album = ProcessAlbum.selectAllAlbum();
-        Collections.sort(album,Album.albumlike);
-        //album=album.subList(0,8);
+        albums = ProcessAlbum.selectAllAlbum();
+        Collections.sort(albums,Album.albumlike);
+        boots();
+        album = albums.subList(startIndex, endIndex);
         return "success";
     }
 
+    public void boots(){
+        startIndex = numberOfLoading*numberOfPiceturePerRq;
+        endIndex = startIndex + numberOfPiceturePerRq;
+
+        if (endIndex > albums.size())
+            endIndex = albums.size();
+    }
     public List<Album> getAlbum() {
         return album;
     }
 
     public void setAlbum(List<Album> album) {
         this.album = album;
+    }
+
+    public int getNumberOfLoading() {
+        return numberOfLoading;
+    }
+
+    public void setNumberOfLoading(int numberOfLoading) {
+        this.numberOfLoading = numberOfLoading;
     }
 }
 

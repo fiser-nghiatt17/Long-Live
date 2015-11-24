@@ -11,6 +11,7 @@ import java.util.List;
 
 public class HomeAction {
     private List<Album> album;
+    private String test = ":V";
     public String execute() {
         album = ProcessAlbum.selectAllAlbum();
         return "success";

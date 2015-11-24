@@ -49,7 +49,7 @@
                 <a class="mdl-navigation__link"  href="newest">Newest</a>
                 <a class="mdl-navigation__link"  href="mostView">Most view</a>
                 <a class="mdl-navigation__link"  href="mostFavorite">Most favorite</a>
-                <a class="mdl-navigation__link"  href="viewAAlbum">View a album</a>
+                <%--<a class="mdl-navigation__link"  href="viewAAlbum">View a album</a>--%>
             </div>
             <% if(session.getAttribute("username") != null) {%>
                 <a class="mdl-navigation__link" href=<%= "\"profile?username="+ session.getAttribute("username") + "\"" %>>Profile</a>

@@ -24,6 +24,12 @@ public class AlbumAction extends ActionSupport {
         return SUCCESS;
     }
 
+    public String editAlbum(){
+        album = ProcessAlbum.selectAlbum(albumId);
+        pictures = album.getPictures();
+        return "success";
+    }
+
     public Album getAlbum() {
         return album;
     }

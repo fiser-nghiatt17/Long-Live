@@ -13,10 +13,10 @@
                             <div class="fis-card-container">
                                 <s:url action="viewAAlbum" var="viewAlbum">
                                     <s:param name="albumId">
-                                        <s:property value="albumID"/>
+                                        <s:property value="album.albumID"/>
                                     </s:param>
                                 </s:url>
-                                <a style="cursor: pointer" href="<s:property value="viewAlbum" />">
+                                <a style="cursor: pointer; text-decoration: none" href="<s:property value="viewAlbum" />">
                                     <div class="fis-card  mdl-card mdl-shadow--6dp" style="background: url('<s:property
                                             value="#picture.pictureURL"/>') center / cover">
                                         <div class="mdl-card__title">

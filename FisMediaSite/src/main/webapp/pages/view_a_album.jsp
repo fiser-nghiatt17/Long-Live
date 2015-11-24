@@ -11,7 +11,7 @@
             </p>
 
             <p>
-                <s:property value="author.username"/>
+                <s:property value="author.fullname"/>
             </p>
 
             <div class="fis-album-info-icon">

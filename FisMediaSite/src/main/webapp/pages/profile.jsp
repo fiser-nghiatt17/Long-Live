@@ -14,26 +14,31 @@
             <s:iterator value="user.albums" status="albumIndex" var="album">
                 <div class="mdl-cell mdl-cell--3-col">
                     <div class="fis-slider">
-						 <button id="fis-edit-album-right-<s:property value="%{#albumIndex.index}" />"
-                                                class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon">
-                                <i class="material-icons">more_vert</i>
-                         </button>
-						 <div class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-							 for="fis-edit-album-right-<s:property value="%{#albumIndex.index}" />">
-							<a href="editAAlbum" style="color: #616161">
-								<li class="mdl-menu__item">Edit</li>
-							</a>
-							<a href="#" style="color: #616161" data-toggle="modal"
-							   data-target="#fis-delete-popup">
-								<li class="mdl-menu__item">Delete</li>
-							</a>
-						 </div>
+                        <s:url action="editAAlbum" var="editAlbum">
+                            <s:param name="albumId">
+                                <s:property value="albumID"/>
+                            </s:param>
+                        </s:url>
+                        <button id="fis-edit-album-right-<s:property value="%{#albumIndex.index}" />"
+                                class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons">more_vert</i>
+                        </button>
+                        <div class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                             for="fis-edit-album-right-<s:property value="%{#albumIndex.index}" />">
+                            <a href="<s:property value="editAlbum" />" style="color: #616161">
+                                <li class="mdl-menu__item">Edit</li>
+                            </a>
+                            <a href="#" style="color: #616161" data-toggle="modal"
+                               data-target="#fis-delete-popup">
+                                <li class="mdl-menu__item">Delete</li>
+                            </a>
+                        </div>
                         <s:iterator value="pictures" status="pictureIndex" var="picture">
                             <div class="fis-card-container">
                                 <div class="fis-card  mdl-card mdl-shadow--6dp" style="background: url('<s:property
                                         value="#picture.pictureURL"/>') center / cover">
-                                    <div class="mdl-card__title"> 
-									</div>
+                                    <div class="mdl-card__title">
+                                    </div>
                                     <div class="mdl-card--expand"></div>
                                     <s:url action="viewAAlbum" var="viewAlbum">
                                         <s:param name="albumId">
@@ -50,17 +55,19 @@
                                             <div class="fis-card-hover-icon">
                                                     <span>
                                                         <i class="icon material-icons">visibility
-                                                        </i><span class="fis-card-hover-icon-plus">269</span>
+                                                        </i><span class="fis-card-hover-icon-plus"><s:property
+                                                            value="album.viewAmount"/></span>
                                                     </span>
                                                     <span style="position: relative; left: 7px">
                                                         <i class="icon material-icons">favorite
-                                                        </i><span class="fis-card-hover-icon-plus">60</span>
+                                                        </i><span class="fis-card-hover-icon-plus"><s:property
+                                                            value="album.likeAmount"/></span>
                                                     </span>
                                             </div>
-                            </div>
+                                        </div>
                                     </a> <!-- End link to See album -->
-                    </div>
-                </div>
+                                </div>
+                            </div>
                         </s:iterator>
                     </div>
                 </div>
@@ -90,8 +97,7 @@
 <div class="modal fade" id="fis-delete-popup">
     <div class="fis-ask">
         <p>Are you sure to delete this album ?</p>
-        <button class="mdl-button mdl-js-button mdl-button--raised  mdl-button--accent" data-dismiss="modal">Yes
-        </button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" data-dismiss="modal">Yes</button>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-dismiss="modal">No</button>
     </div>
 </div>

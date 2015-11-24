@@ -12,15 +12,18 @@ public class ProfileAction extends ActionSupport {
     private User user;
     private HttpSession session = ServletActionContext.getRequest().getSession();
 
+    private String isOwner = "false";
+
     public String execute() {
         user = ProcessUser.selectUser(username);
         if (user == null)
             return LOGIN;
-//        String username = (String) session.getAttribute("username");
-//        if (username == null)
-//            return LOGIN;
+        String owner = (String) session.getAttribute("username");
+        if (owner == null)
+            return LOGIN;
+        if(owner.equals(username))
+            isOwner = "true";
         return SUCCESS;
-
     }
 
     public String getUsername() {
@@ -37,5 +40,13 @@ public class ProfileAction extends ActionSupport {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getIsOwner() {
+        return isOwner;
+    }
+
+    public void setIsOwner(String isOwner) {
+        this.isOwner = isOwner;
     }
 }

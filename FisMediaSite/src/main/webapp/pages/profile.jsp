@@ -1,23 +1,32 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
+
 <main class="mdl-layout__content">
     <div class="page-content"><!-- Your content goes here -->
+        <s:set name="isOwner" value="isOwner"/>
+        <s:if test="%{#isOwner == 'false'}">
+            <h4 style="margin-left: 15px; font-weight: bold"><s:property value="username"/>'s albums</h4>
+        </s:if>
         <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--3-col">
-                <div class="fis-edit-album-section mdl-shadow--3dp">
-                    <button class="fis-add-album mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-                            data-toggle="modal" data-target="#fis-new-album-container">
-                        New Album
-                    </button>
-                    <span>Total: 15</span>
+            <s:if test="%{#isOwner == 'true'}">
+                <div class="mdl-cell mdl-cell--3-col">
+                    <div class="fis-edit-album-section mdl-shadow--3dp">
+                        <button class="fis-add-album mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                                data-toggle="modal" data-target="#fis-new-album-container">
+                            New Album
+                        </button>
+                        <span>Total: 15</span>
+                    </div>
                 </div>
-            </div>
+            </s:if>
             <s:iterator value="user.albums" status="albumIndex" var="album">
                 <div class="mdl-cell mdl-cell--3-col">
                     <div class="fis-slider">
+                        <s:if test="%{#isOwner == 'true'}">
 						 <button id="fis-edit-album-right-<s:property value="%{#albumIndex.index}" />"
                                                 class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon">
                                 <i class="material-icons">more_vert</i>
                          </button>
+                        </s:if>
 						 <div class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
 							 for="fis-edit-album-right-<s:property value="%{#albumIndex.index}" />">
 							<a href="editAAlbum" style="color: #616161">

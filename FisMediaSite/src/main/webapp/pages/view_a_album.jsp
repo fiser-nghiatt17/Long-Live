@@ -15,13 +15,13 @@
             </p>
 
             <div class="fis-album-info-icon">
-                    <span style="cursor: pointer" class="fis-plus">
+                    <span style="cursor: pointer">
                         <i class="icon material-icons">visibility
-                        </i><span class="fis-card-hover-icon-plus">666</span>
+                        </i><span class="fis-card-hover-icon-plus"><s:property value="album.viewAmount"/></span>
                     </span>
-                    <span style="margin-left: 5px; cursor: pointer" class="fis-plus">
+                    <span style="margin-left: 5px; cursor: pointer" class="fis-plus" data-album-id=<s:property value="albumId"/>>
                         <i class="icon material-icons">favorite
-                        </i><span class="fis-card-hover-icon-plus">888</span>
+                        </i><span class="fis-card-hover-icon-plus"><s:property value="album.likeAmount"/></span>
                     </span>
             </div>
         </div>

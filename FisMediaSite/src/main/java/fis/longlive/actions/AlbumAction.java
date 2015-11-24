@@ -16,8 +16,11 @@ public class AlbumAction extends ActionSupport {
     private Album album;
     private User author;
     private List<Picture> pictures;
+    private int like;
 
     public String execute() {
+        album = ProcessAlbum.selectAlbum(albumId);
+        ProcessAlbum.updateViewAmount(albumId, album.getViewAmount() + 1);
         album = ProcessAlbum.selectAlbum(albumId);
         pictures = album.getPictures();
         author = album.getUser();
@@ -27,6 +30,12 @@ public class AlbumAction extends ActionSupport {
     public String editAlbum(){
         album = ProcessAlbum.selectAlbum(albumId);
         pictures = album.getPictures();
+        return "success";
+    }
+
+    public String likeAlbum() {
+        album = ProcessAlbum.selectAlbum(albumId);
+        ProcessAlbum.updateLikeAmount(albumId, album.getLikeAmount() + like);
         return "success";
     }
 
@@ -60,5 +69,13 @@ public class AlbumAction extends ActionSupport {
 
     public void setPictures(List<Picture> pictures) {
         this.pictures = pictures;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setLike(int like) {
+        this.like = like;
     }
 }

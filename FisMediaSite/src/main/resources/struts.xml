@@ -65,6 +65,10 @@
 			<result type="json" name="success">
 			</result>
 		</action>
+		<action name="likeAlbum" class="fis.longlive.actions.AlbumAction" method="likeAlbum">
+			<result type="json" name="success">
+			</result>
+		</action>
 	</package>
 
 	 <package name="uploadImage" extends="defaultTile">

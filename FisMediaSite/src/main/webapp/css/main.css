@@ -138,6 +138,9 @@
   align-items: center; }
 
 /*End View Album Page-------------------------*/
+.fis-like {
+  color: #2948ff; }
+
 /*Profile Page--------------------------------*/
 .fis-edit-album-section {
   width: 100%;

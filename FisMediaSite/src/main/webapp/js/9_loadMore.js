@@ -5,8 +5,8 @@ function loadMore(){
     var $mainTag = $(".fis-home-main");
     var $pageContent = $(".page-content");
 
-    var $loadingTemplate = $("#fis-image-loader").html();
-    var renderLoadingImage = Mustache.render($loadingTemplate, {});
+    //var $loadingTemplate = $("#fis-image-loader").html();
+    //var renderLoadingImage = Mustache.render($loadingTemplate, {});
 
     $mainTag.on('scroll', function(){
         var pageContentHeight = $pageContent.height();

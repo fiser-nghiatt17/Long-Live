@@ -5,4 +5,5 @@
 <script src="lib/material.min.js"></script>
 <script src="lib/galleria-1.4.2.min.js"></script>
 <script src="lib/galleria.classic.min.js"></script>
+<script src="lib/mustache.min.js"></script>
 <script src="js/build/main.js"></script>

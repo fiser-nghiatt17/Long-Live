@@ -259,7 +259,23 @@ function sliderHomePage(){
     $sliderHomePage.find(".fis-card-container:gt(0)").hide();
 
     var run = null;
-    $sliderHomePage.hover(function(){
+    var $grid = $(".mdl-grid");
+
+    $grid.delegate(".fis-slider", "mouseenter mouseleave", function(event){
+        var self = $(this);
+        var count = self.find(".fis-card-container").length;
+        if (event.type === "mouseenter"){
+            if(count > 1){
+                run = setInterval(function(){
+                   self.find(".fis-card-container:first")
+                        .fadeOut(1000).next().fadeIn(1000).end().appendTo(self);
+                }, 1500);
+            }
+        }else{
+            clearInterval(run)
+        }
+    });
+    /*$sliderHomePage.hover(function(){
         var self = $(this);
         var count = self.find(".fis-card-container").length;
         if(count > 1){
@@ -268,20 +284,38 @@ function sliderHomePage(){
                     .fadeOut(1000).next().fadeIn(1000).end().appendTo(self);
             }, 1500);
         }
-    },function(){ clearInterval(run)});
+    },function(){ clearInterval(run)});*/
 }
 function loadMore(){
-    var documentHeight = $(document).height();
-    var windowHeight = $(window).height();
-    var loadingPoint = documentHeight - windowHeight;
-    console.log(documentHeight);
-    $(".fis-home-main").on('scroll', function(){
-        if($(this).scrollTop() > loadingPoint){
-            loadingPoint += documentHeight;
-            console.log("Loding point: " + loadingPoint);
-            console.log("Scroll Top: " + $(this).scrollTop());
-            for(var i=0; i<4; i++)
-                $(this).find(".mdl-grid").append("<div class='mdl-cell mdl-cell--3-col' ><div style='width: 100%; height: 1000px; background: red;'></div></div>");
+    var url = window.location.href.split("/").pop();
+
+    var $mainTag = $(".fis-home-main");
+    var $pageContent = $(".page-content");
+
+    var $loadingTemplate = $("#fis-image-loader").html();
+    var renderLoadingImage = Mustache.render($loadingTemplate, {});
+
+    $mainTag.on('scroll', function(){
+        var pageContentHeight = $pageContent.height();
+        var mainTagHeight = $mainTag.height();
+        var self = $(this);
+        if(self.scrollTop() >= pageContentHeight - mainTagHeight){
+
+            for(var i=1; i<=7; i++)
+                self.find(".mdl-grid").append(renderLoadingImage);
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                dataType: 'html',
+                success: function(res, status){
+                    self.find(".fis-image-loader").remove();
+
+                    var toAppend = $(res).find(".mdl-cell--3-col");
+                    toAppend.css("display", "none");
+                    toAppend.appendTo( self.find(".mdl-grid")).fadeIn(1000);
+                }
+            });
         }
     });
 

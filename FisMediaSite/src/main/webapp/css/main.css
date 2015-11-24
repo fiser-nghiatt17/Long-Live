@@ -100,6 +100,12 @@
   top: -6px;
   left: 3px; }
 
+.fis-image-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #efdfff; }
+
 /*End Home Page--------------------------*/
 /*View Album Page-------------------------*/
 .galleria {

@@ -69,6 +69,14 @@
 			<result type="json" name="success">
 			</result>
 		</action>
+		<action name="deleteAAlbum" class="fis.longlive.actions.ProfileAction" method="deleteAAlbum">
+			<result type="json" name="success">
+			</result>
+		</action>
+		<action name="deleteAPicture" class="fis.longlive.actions.ProfileAction" method="deleteAPicture">
+			<result type="json" name="success">
+			</result>
+		</action>
 	</package>
 
 	 <package name="uploadImage" extends="defaultTile">

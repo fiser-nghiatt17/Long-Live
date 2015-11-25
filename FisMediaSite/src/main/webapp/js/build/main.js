@@ -1,3 +1,57 @@
+function deleteHandler(){
+    deleteAAlbum();
+    deleteAPicture();
+}
+
+function deleteAAlbum(){
+    var $clickDelete = $(".fis-click-delete-album");
+    var $confirmDeleteAlbum = $(".fis-confirm-delete-album");
+    var albumId = null;
+
+    $clickDelete.on("click", function(){
+        albumId = $(this).attr("data-album-id");
+        console.log(albumId);
+    });
+
+    $confirmDeleteAlbum.on("click", function(){
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            data: {albumId: albumId},
+            url: "deleteAAlbum",
+            success: function(res){
+                console.log(res);
+            }
+        });
+    });
+}
+
+function deleteAPicture(){
+    var $clickDelete = $(".fis-click-delete-picture");
+    var $confirmDeletePicture = $(".fis-confirm-delete-picture");
+    var pictureId = null;
+    var self;
+
+    $clickDelete.on("click", function(){
+        pictureId = $(this).attr("data-picture-id");
+        console.log(pictureId);
+        self = $(this);
+    });
+
+    $confirmDeletePicture.on("click", function(){
+        self.closest(".mdl-cell").remove();
+        console.log("sss");
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            data: {pictureId: pictureId},
+            url: "deleteAPicture",
+            success: function(res){
+                console.log(res);
+            }
+        });
+    });
+}
 var errorMessages = {
     rules:{
         username: {
@@ -69,6 +123,7 @@ function handlerSubmit(){
     signupHandle();
     settingHandle();
     uploadImageHandle();
+    deleteHandler();
 }
 
 function checkUrlToActiveNav(){
@@ -308,8 +363,8 @@ function loadMore(){
     var $mainTag = $(".fis-home-main");
     var $pageContent = $(".page-content");
 
-    var $loadingTemplate = $("#fis-image-loader").html();
-    var renderLoadingImage = Mustache.render($loadingTemplate, {});
+    //var $loadingTemplate = $("#fis-image-loader").html();
+   //var renderLoadingImage = Mustache.render($loadingTemplate, {});
     //$mainTag.find(".mdl-grid").append(renderLoadingImage);
 
     $mainTag.on('scroll', function(){
@@ -318,14 +373,14 @@ function loadMore(){
         var self = $(this);
 
         if(self.scrollTop() >= pageContentHeight - mainTagHeight){
-            $mainTag.find(".mdl-grid").append(renderLoadingImage);
+            //$mainTag.find(".mdl-grid").append(renderLoadingImage);
             $.ajax({
                 url: url,
                 type: "POST",
                 data:{numberOfLoading: numberOfLoading},
                 dataType: 'html',
                 success: function(res, status){
-                    $(".fis-image-loader").remove();
+                    //$(".fis-image-loader").remove();
                     var toAppend = $(res).find(".mdl-cell--3-col");
                     toAppend.css("display", "none");
                     toAppend.find(".fis-slider .fis-card-container:gt(0)").hide();

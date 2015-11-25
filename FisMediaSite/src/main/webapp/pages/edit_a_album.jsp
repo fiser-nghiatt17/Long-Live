@@ -21,8 +21,8 @@
                     <div class="fis-card  mdl-card mdl-shadow--6dp" style="background: url('<s:property
                             value="#picture.pictureURL"/>') center / cover">
                         <div class="mdl-card__title"><!-- Delete Image -->
-                            <button class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon"
-                                    data-toggle="modal" data-target="#fis-delete-popup">
+                            <button class="fis-edit-album-right mdl-button mdl-js-button mdl-button--icon fis-click-delete-picture"
+                                    data-toggle="modal" data-target="#fis-delete-popup" data-picture-id=<s:property value="pictureID"/> >
                                 <i class="material-icons">delete</i>
                             </button>
                         </div><!-- End Delete Image -->
@@ -37,7 +37,7 @@
 <div class="modal fade" id="fis-delete-popup">
     <div class="fis-ask">
         <p>Are you sure to delete this picture ?</p>
-        <button class="mdl-button mdl-js-button mdl-button--raised  mdl-button--accent" data-dismiss="modal">Yes
+        <button class="mdl-button mdl-js-button mdl-button--raised  mdl-button--accent fis-confirm-delete-picture" data-dismiss="modal">Yes
         </button>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-dismiss="modal">No</button>
     </div>

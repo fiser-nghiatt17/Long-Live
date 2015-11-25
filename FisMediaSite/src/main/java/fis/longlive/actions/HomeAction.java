@@ -47,6 +47,9 @@ public class HomeAction {
 
         if (endIndex > albums.size())
             endIndex = albums.size();
+
+        if (startIndex >= albums.size())
+            startIndex = albums.size();
     }
     public List<Album> getAlbum() {
         return album;

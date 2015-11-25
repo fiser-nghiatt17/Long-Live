@@ -11,4 +11,5 @@ function handlerSubmit(){
     signupHandle();
     settingHandle();
     uploadImageHandle();
+    deleteHandler();
 }

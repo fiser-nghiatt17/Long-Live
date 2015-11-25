@@ -28,8 +28,8 @@
                             <a href="<s:property value="editAlbum" />" style="color: #616161">
                                 <li class="mdl-menu__item">Edit</li>
                             </a>
-                            <a href="#" style="color: #616161" data-toggle="modal"
-                               data-target="#fis-delete-popup">
+                            <a href="#" style="color: #616161" data-toggle="modal" class="fis-click-delete-album"
+                               data-target="#fis-delete-popup" data-album-id=<s:property value="albumID" /> >
                                 <li class="mdl-menu__item">Delete</li>
                             </a>
                         </div>
@@ -97,7 +97,7 @@
 <div class="modal fade" id="fis-delete-popup">
     <div class="fis-ask">
         <p>Are you sure to delete this album ?</p>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" data-dismiss="modal">Yes</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent fis-confirm-delete-album" data-dismiss="modal">Yes</button>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" data-dismiss="modal">No</button>
     </div>
 </div>

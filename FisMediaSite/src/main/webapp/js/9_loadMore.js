@@ -7,7 +7,6 @@ function loadMore(){
 
     var $loadingTemplate = $("#fis-image-loader").html();
     var renderLoadingImage = Mustache.render($loadingTemplate, {});
-
     //$mainTag.find(".mdl-grid").append(renderLoadingImage);
 
     $mainTag.on('scroll', function(){
@@ -16,16 +15,14 @@ function loadMore(){
         var self = $(this);
 
         if(self.scrollTop() >= pageContentHeight - mainTagHeight){
-
-           /* for(var i=1; i<=7; i++)
-                self.find(".mdl-grid").append(renderLoadingImage);*/
+            $mainTag.find(".mdl-grid").append(renderLoadingImage);
             $.ajax({
                 url: url,
                 type: "POST",
                 data:{numberOfLoading: numberOfLoading},
                 dataType: 'html',
                 success: function(res, status){
-                    //self.find(".fis-image-loader").remove();
+                    $(".fis-image-loader").remove();
                     var toAppend = $(res).find(".mdl-cell--3-col");
                     toAppend.css("display", "none");
                     toAppend.find(".fis-slider .fis-card-container:gt(0)").hide();

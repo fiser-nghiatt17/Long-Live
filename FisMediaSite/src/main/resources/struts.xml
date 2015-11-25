@@ -8,6 +8,7 @@
 	<constant name="struts.devMode" value="false"/>
 
 	<package name="defaultTile" extends="struts-default">
+
 		<result-types>
 			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
 		</result-types>
@@ -17,14 +18,8 @@
 		<action name="viewAAlbum" class="fis.longlive.actions.AlbumAction">
 			<result name="success" type="tiles">viewAAlbum</result>
 		</action>
-		<action name="editAAlbum" class="fis.longlive.actions.AlbumAction" method="editAlbum">
-			<result name="success" type="tiles">editAAlbum</result>
-		</action>
 		<action name="home" class="fis.longlive.actions.HomeAction">
 			<result type="tiles" name="success">home</result>
-		</action>
-		<action name="setting">
-			<result type="tiles">setting</result>
 		</action>
 		<action name="logOut" class="fis.longlive.actions.UserAction" method="logout">
 			<result name="success" type="redirectAction">home</result>
@@ -38,18 +33,33 @@
 		<action name="mostFavorite" class="fis.longlive.actions.HomeAction" method="mostLike">
 			<result name ="success" type="tiles">home</result>
 		</action>
+	</package>
+
+	<package name="requiredLogin" extends="defaultTile">
+		<interceptors>
+			<interceptor class="fis.longlive.interceptors.LoginInterceptor" name="loginInterceptor">
+			</interceptor>
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<action name="setting">
+			<interceptor-ref name="loginStack" />
+			<result type="redirectAction" name="login">home</result>
+			<result type="tiles">setting</result>
+		</action>
 		<action name="profile" class="fis.longlive.actions.ProfileAction">
+			<interceptor-ref name="loginStack" />
 			<result name="login" type="redirectAction">home</result>
 			<result name="success" type="tiles">profile</result>
 		</action>
-	</package>
-
-	<!-- <package name="default" extends="defaultTile">
-		<action name="login" class="fis.longlive.actions.LoginAction">
-			<result type="tiles" name="success">profile</result>
-			<result type="tiles" name="login">home</result>
+		<action name="editAAlbum" class="fis.longlive.actions.AlbumAction" method="editAlbum">
+			<interceptor-ref name="loginStack" />
+			<result name="login" type="redirectAction">home</result>
+			<result name="success" type="tiles">editAAlbum</result>
 		</action>
-	</package> -->
+	</package>
 
 	<package name="Ajax" extends="json-default">
 		<action name="login" class="fis.longlive.actions.UserAction">

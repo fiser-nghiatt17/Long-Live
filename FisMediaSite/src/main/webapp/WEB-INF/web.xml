@@ -20,6 +20,8 @@
 	<error-page>
 		<error-code>404</error-code>
 		<location>/pages/404.jsp</location>
+		<error-code>500</error-code>
+		<location>/pages/404.jsp</location>
 	</error-page>
 	<filter>
 	  <filter-name>struts2</filter-name>

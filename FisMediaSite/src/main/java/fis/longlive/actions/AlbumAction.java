@@ -2,10 +2,13 @@ package fis.longlive.actions;
 
 import com.opensymphony.xwork2.ActionSupport;
 import fis.longlive.database.process.ProcessAlbum;
+import fis.longlive.database.process.ProcessUser;
 import fis.longlive.database.table.Album;
 import fis.longlive.database.table.Picture;
 import fis.longlive.database.table.User;
+import org.apache.struts2.ServletActionContext;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -17,6 +20,7 @@ public class AlbumAction extends ActionSupport {
     private User author;
     private List<Picture> pictures;
     private int like;
+    private String isOwner;
 
     public String execute() {
         album = ProcessAlbum.selectAlbum(albumId);
@@ -30,6 +34,13 @@ public class AlbumAction extends ActionSupport {
     public String editAlbum(){
         album = ProcessAlbum.selectAlbum(albumId);
         pictures = album.getPictures();
+
+        author = album.getUser();
+        HttpSession session = ServletActionContext.getRequest().getSession();
+        if(author.getUsername().equals(session.getAttribute("username")))
+            isOwner = "true";
+        else isOwner = "false";
+
         return "success";
     }
 
@@ -78,4 +89,13 @@ public class AlbumAction extends ActionSupport {
     public void setLike(int like) {
         this.like = like;
     }
+
+    public String getIsOwner() {
+        return isOwner;
+    }
+
+    public void setIsOwner(String isOwner) {
+        this.isOwner = isOwner;
+    }
+
 }

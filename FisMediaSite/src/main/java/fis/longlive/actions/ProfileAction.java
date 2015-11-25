@@ -20,13 +20,15 @@ public class ProfileAction extends ActionSupport {
 
     public String execute() {
         user = ProcessUser.selectUser(username);
+
         if (user == null)
             return LOGIN;
+
         String owner = (String) session.getAttribute("username");
-        if (owner == null)
-            return LOGIN;
+
         if(owner.equals(username))
             isOwner = "true";
+
         return SUCCESS;
     }
 

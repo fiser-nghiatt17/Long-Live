@@ -17,7 +17,6 @@ public final class ProcessCategory extends Process {
 		
 		Category category = getEntityManager().find(Category.class, categoryID);
 		getEntityManager().remove(category);
-		getEntityManager().getTransaction().commit();
 		
 		endProcess();
 	}

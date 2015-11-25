@@ -10,6 +10,8 @@ public class Process {
 	private static EntityManagerFactory eFactory;
 	private static EntityManager eManager;
 	
+	private static boolean flagCommit = false;
+	
 	protected static EntityManager getEntityManager() {
 		return Process.eManager;
 	}
@@ -30,5 +32,9 @@ public class Process {
 	
 	private static boolean isOpen() {
 		return (eFactory.isOpen() && eManager.isOpen());
+	}
+	
+	public static boolean checkFlag() {
+		return flagCommit;
 	}
 }

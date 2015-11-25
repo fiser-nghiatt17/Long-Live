@@ -5,6 +5,7 @@ import fis.longlive.database.table.Category;
 import fis.longlive.database.table.User;
 
 import javax.persistence.Query;
+
 import java.util.List;
 
 public final class ProcessAlbum extends Process {
@@ -25,12 +26,12 @@ public final class ProcessAlbum extends Process {
 		
 		Album album = getEntityManager().find(Album.class, albumID);
 		getEntityManager().remove(album);
-		getEntityManager().getTransaction().commit();
 		
 		endProcess();
 	}
 
-	public static List<Album> selectAllAlbum(){
+	@SuppressWarnings("unchecked")
+    public static List<Album> selectAllAlbum(){
 		beginProcess();
 		Query query = getEntityManager().createQuery("SELECT a FROM Album a");
 		return (List<Album>) query.getResultList();

@@ -20,7 +20,6 @@ public final class ProcessLike extends Process {
 		
 		Like like = getEntityManager().find(Like.class, likeID);
 		getEntityManager().remove(like);
-		getEntityManager().getTransaction().commit();
 		
 		endProcess();
 	}

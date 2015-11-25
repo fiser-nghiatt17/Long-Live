@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="comments")
 @NamedQuery(name="Comment.findAll", query="SELECT c FROM Comment c")
-public class Comment  {
+public class Comment {
 	@Id
 	private int commentID;
 

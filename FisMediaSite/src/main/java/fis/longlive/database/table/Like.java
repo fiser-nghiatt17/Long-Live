@@ -15,21 +15,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name="likes")
 @NamedQuery(name="Like.findAll", query="SELECT l FROM Like l")
-public class Like  {
+public class Like {
 	@Id
 	private int likeID;
 
 	private boolean state;
 
-	//bi-directional many-to-one association to Album
-	@ManyToOne
-	@JoinColumn(name="onAlbum")
-	private Album album;
-
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="likeUser")
 	private User user;
+
+	//bi-directional many-to-one association to Album
+	@ManyToOne
+	@JoinColumn(name="onAlbum")
+	private Album album;
 
 	public Like() {
 	}
@@ -50,20 +50,20 @@ public class Like  {
 		this.state = state;
 	}
 
-	public Album getAlbum() {
-		return this.album;
-	}
-
-	public void setAlbum(Album album) {
-		this.album = album;
-	}
-
 	public User getUser() {
 		return this.user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Album getAlbum() {
+		return this.album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
 	}
 
 }

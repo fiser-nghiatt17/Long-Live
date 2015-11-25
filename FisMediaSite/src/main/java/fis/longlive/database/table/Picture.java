@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="pictures")
 @NamedQuery(name="Picture.findAll", query="SELECT p FROM Picture p")
-public class Picture  {
+public class Picture {
 	@Id
 	private int pictureID;
 

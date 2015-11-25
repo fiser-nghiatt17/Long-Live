@@ -23,7 +23,6 @@ public final class ProcessComment extends Process {
 		
 		Comment comment = getEntityManager().find(Comment.class, commentID);
 		getEntityManager().remove(comment);
-		getEntityManager().getTransaction().commit();
 		
 		endProcess();
 	}

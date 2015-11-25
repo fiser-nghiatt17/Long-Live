@@ -22,7 +22,6 @@ public final class ProcessUser extends Process {
 		
 		User user = getEntityManager().find(User.class, username);
 		getEntityManager().remove(user);
-		getEntityManager().getTransaction().commit();
 		
 		endProcess();
 	}

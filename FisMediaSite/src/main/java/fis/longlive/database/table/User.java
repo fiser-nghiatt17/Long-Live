@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="users")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
-public class User  {
+public class User{
 	@Id
 	private String username;
 

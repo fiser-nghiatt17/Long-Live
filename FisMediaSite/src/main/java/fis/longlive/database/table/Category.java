@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="categories")
 @NamedQuery(name="Category.findAll", query="SELECT c FROM Category c")
-public class Category  {
+public class Category {
 	@Id
 	private int categoryID;
 

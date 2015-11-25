@@ -23,7 +23,6 @@ public final class ProcessPicture extends Process {
 		
 		Picture picture = getEntityManager().find(Picture.class, pictureID);
 		getEntityManager().remove(picture);
-		getEntityManager().getTransaction().commit();
 		
 		endProcess();
 	}

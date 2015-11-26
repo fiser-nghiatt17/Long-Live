@@ -322,6 +322,25 @@ function viewAAlbum(){
             }
         });
     });
+
+    commentSection();
+}
+
+function commentSection(){
+    var $fisCommentInputText = $(".fis-comment-input-text");
+    var $fisCommentSubmit = $(".fis-comment-submit");
+    var $fisCommentCancel = $(".fis-comment-cancel");
+
+    $fisCommentInputText.focus(function(){
+        $fisCommentSubmit.removeClass("fis-hide");
+        $(this).attr("rows", 5);
+    });
+
+    $fisCommentCancel.on("click", function(e){
+        e.preventDefault();
+        $fisCommentSubmit.addClass("fis-hide");
+        $fisCommentInputText.attr("rows", 3);
+    });
 }
 
 function sliderHomePage(){

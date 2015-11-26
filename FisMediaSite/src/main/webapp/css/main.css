@@ -135,7 +135,62 @@
   background: #fff;
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  padding-bottom: 50px; }
+  .fis-comment .fis-comment-input-container {
+    width: 50%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between; }
+    .fis-comment .fis-comment-input-container .fis-avatar-comment {
+      width: 17%;
+      cursor: pointer; }
+      .fis-comment .fis-comment-input-container .fis-avatar-comment img {
+        width: 60%;
+        height: 60px;
+        display: block;
+        margin: 0 auto; }
+    .fis-comment .fis-comment-input-container .fis-comment-input {
+      width: 80%;
+      display: flex;
+      flex-direction: column; }
+      .fis-comment .fis-comment-input-container .fis-comment-input .fis-comment-input-text {
+        width: 100%; }
+      .fis-comment .fis-comment-input-container .fis-comment-input .fis-comment-submit {
+        align-self: flex-end; }
+        .fis-comment .fis-comment-input-container .fis-comment-input .fis-comment-submit button {
+          margin: 5px 0; }
+  .fis-comment .fis-comment-list {
+    width: 600px; }
+  .fis-comment .fis-comment-item {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    margin: 40px 0 20px 0; }
+    .fis-comment .fis-comment-item .fis-avatar-comment-list {
+      width: 17%;
+      cursor: pointer; }
+      .fis-comment .fis-comment-item .fis-avatar-comment-list img {
+        width: 60px;
+        height: 60px;
+        display: block;
+        margin: 0 auto; }
+    .fis-comment .fis-comment-item .fis-comment-content {
+      width: 90%;
+      word-wrap: break-word; }
+      .fis-comment .fis-comment-item .fis-comment-content .fis-comment-header {
+        font-weight: bold;
+        cursor: pointer; }
+        .fis-comment .fis-comment-item .fis-comment-content .fis-comment-header span {
+          font-weight: normal;
+          font-size: small;
+          margin-left: 5px; }
+
+.fis-hide {
+  display: none; }
 
 /*End View Album Page-------------------------*/
 .fis-like {

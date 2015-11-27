@@ -5,7 +5,6 @@ import fis.longlive.database.table.Category;
 import fis.longlive.database.table.User;
 
 import javax.persistence.Query;
-
 import java.util.List;
 
 public final class ProcessAlbum extends Process {
@@ -39,7 +38,9 @@ public final class ProcessAlbum extends Process {
 
 	public static Album selectAlbum(int albumID) {
 		beginProcess();
-		return getEntityManager().find(Album.class, albumID);
+		Album album = getEntityManager().find(Album.class, albumID);
+		getEntityManager().refresh(album);
+		return album;
 	}
 	
 	private static void updateAlbum(int albumID, Object newValue, int type) {

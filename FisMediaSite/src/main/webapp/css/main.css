@@ -183,11 +183,13 @@
       word-wrap: break-word; }
       .fis-comment .fis-comment-item .fis-comment-content .fis-comment-header {
         font-weight: bold;
+        color: #3F51B5;
         cursor: pointer; }
         .fis-comment .fis-comment-item .fis-comment-content .fis-comment-header span {
           font-weight: normal;
           font-size: small;
-          margin-left: 5px; }
+          margin-left: 5px;
+          color: #757575; }
 
 .fis-hide {
   display: none; }

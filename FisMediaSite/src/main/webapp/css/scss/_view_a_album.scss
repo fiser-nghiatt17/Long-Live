@@ -88,11 +88,15 @@
       word-wrap: break-word;
       .fis-comment-header{
         font-weight: bold;
+        color: #3F51B5;
         cursor: pointer;
+
         span{
           font-weight: normal;
           font-size: small;
           margin-left: 5px;
+          color: #757575;
+
         }
       }
     }

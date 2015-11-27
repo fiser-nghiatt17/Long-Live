@@ -14,6 +14,14 @@
                     </div>
                 </div>
             </s:if>
+            <s:if test="%{#isOwner == 'false'}">
+                <div class="mdl-cell mdl-cell--3-col">
+                    <div  class="fis-edit-album-section mdl-shadow--3dp">
+                        <p style="font-size: large; margin-top: 15px; font-weight: bold"><s:property value="user.fullname"/></p>
+                        <p style="margin-top: 0px"><s:property value="user.username"/></p>
+                    </div>
+                </div>
+            </s:if>
 
             <s:iterator value="user.albums" status="albumIndex" var="album">
                 <div class="mdl-cell mdl-cell--3-col">

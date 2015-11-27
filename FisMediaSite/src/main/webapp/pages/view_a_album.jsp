@@ -7,11 +7,18 @@
             </s:iterator>
         </div>
         <div class="fis-album-info mdl-shadow--3dp">
-            <p><span style="font-size: 30px"><s:property value="album.albumName"/></span>
+            <p><span style="font-size: xx-large"><s:property value="album.albumName"/></span>
             </p>
-            <p>
-                <s:property value="author.fullname"/>
-            </p>
+            <s:url action="profile" var="viewProfile">
+                <s:param name="username">
+                    <s:property value="author.username"/>
+                </s:param>
+            </s:url>
+            <a href="<s:property value="viewProfile"/>" >
+                <p style="font-weight: 600; color: #424242">
+                    <s:property value="author.username"/>
+                </p>
+            </a>
 
             <div class="fis-album-info-icon">
                     <span style="cursor: pointer">
@@ -29,6 +36,9 @@
             <!-- <div class="fb-comments" data-href="http://localhost:8080/FisMediaSite/viewAAlbum" data-width="600" data-numposts="5"></div> -->
             <!-- <div id="fb-root"></div> -->
             <div class="fis-comment-input-container">
+                <div class="fis-avatar-comment">
+                    <img src="images/avatar2.png"/>
+                </div>
                 <form class="fis-comment-input" action="addComment" type="post">
                     <textarea class=" fis-comment-input-text" type="text" rows="3" name="newComment"></textarea>
                     <div class="fis-comment-submit fis-hide">
@@ -42,10 +52,20 @@
             <div class="fis-comment-list">
                 <s:iterator value="comments" var="comment">
                 <div class="fis-comment-item">
+                    <div class="fis-avatar-comment-list">
+                       <a href="sf"> <img src="images/avatar2.png"/></a>
+                    </div>
                     <div class="fis-comment-content">
-                        <div class="fis-comment-header"><s:property value="user.username"/>
-                            <span><s:property value="commentIime"/></span>
-                        </div>
+                        <s:url action="profile" var="viewProfile">
+                            <s:param name="username">
+                                <s:property value="user.username"/>
+                            </s:param>
+                        </s:url>
+                        <a style="text-decoration: none;" href="<s:property value="viewProfile"/>">
+                            <div class="fis-comment-header"><s:property value="user.username"/>
+                                <span><s:property value="commentTime"/></span>
+                            </div>
+                        </a>
                         <div class="fis-comment-body">
                             <s:property value="content"/>
                         </div>

@@ -49,6 +49,7 @@ public class FileUploadAction extends ActionSupport implements ServletRequestAwa
                 picture.setAlbum(album);
                 ProcessPicture.insertPicture(picture);
             }
+            ProcessAlbum.selectAlbum(album.getAlbumID());
         } catch (Exception e) {
             e.printStackTrace();
             addActionError(e.getMessage());

@@ -10,7 +10,7 @@
                                 data-toggle="modal" data-target="#fis-new-album-container">
                             New Album
                         </button>
-                        <span>Total: 15</span>
+                        <span>Total: <s:property value="user.albums.size"/> </span>
                     </div>
                 </div>
             </s:if>

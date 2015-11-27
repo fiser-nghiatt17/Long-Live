@@ -29,11 +29,8 @@
             <!-- <div class="fb-comments" data-href="http://localhost:8080/FisMediaSite/viewAAlbum" data-width="600" data-numposts="5"></div> -->
             <!-- <div id="fb-root"></div> -->
             <div class="fis-comment-input-container">
-                <div class="fis-avatar-comment">
-                    <img src="images/avatar.jpg"/>
-                </div>
-                <form class="fis-comment-input" action="viewAAlbum" type="post">
-                    <textarea class=" fis-comment-input-text" type="text" rows= "3"></textarea>
+                <form class="fis-comment-input" action="addComment" type="post">
+                    <textarea class=" fis-comment-input-text" type="text" rows="3" name="newComment"></textarea>
                     <div class="fis-comment-submit fis-hide">
                         <button type="submit" class="fis-comment-cancel mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
                                 style="background: #fff; color: #898989">Cancel</button>
@@ -43,20 +40,18 @@
                 </form>
             </div>
             <div class="fis-comment-list">
-                <% for(int i=0; i<8; i++){%>
+                <s:iterator value="comments" var="comment">
                 <div class="fis-comment-item">
-                    <div class="fis-avatar-comment-list">
-                        <img src="images/avatar.jpg"/>
-                    </div>
                     <div class="fis-comment-content">
-                        <div class="fis-comment-header">Jenifer Nghia <span>2 hours</span></div>
-                        <div class="fis-comment-body">Hahahaha sooo good!Hahahaha sooo good!
-                            Hahahaha sooo good!Hahahaha sooo good!Hahahaha sooo good!Hahahaha sooo good!Hahahaha sooo good!
-                            Hu lala
+                        <div class="fis-comment-header"><s:property value="user.username"/>
+                            <span><s:property value="commentIime"/></span>
+                        </div>
+                        <div class="fis-comment-body">
+                            <s:property value="content"/>
                         </div>
                     </div>
                 </div>
-                <%}%>
+                </s:iterator>
             </div>
         </div>
 

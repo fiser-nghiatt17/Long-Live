@@ -1,14 +1,18 @@
 package fis.longlive.actions;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import fis.longlive.database.process.ProcessAlbum;
+import fis.longlive.database.process.ProcessComment;
 import fis.longlive.database.process.ProcessUser;
 import fis.longlive.database.table.Album;
+import fis.longlive.database.table.Comment;
 import fis.longlive.database.table.Picture;
 import fis.longlive.database.table.User;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +23,8 @@ public class AlbumAction extends ActionSupport {
     private Album album;
     private User author;
     private List<Picture> pictures;
+    private List<Comment> comments;
+    private String newComment;
     private int like;
     private String isOwner;
 
@@ -27,7 +33,9 @@ public class AlbumAction extends ActionSupport {
         ProcessAlbum.updateViewAmount(albumId, album.getViewAmount() + 1);
         album = ProcessAlbum.selectAlbum(albumId);
         pictures = album.getPictures();
+        comments = album.getComments();
         author = album.getUser();
+        ActionContext.getContext().getSession().put("albumId", albumId);
         return SUCCESS;
     }
 
@@ -48,6 +56,20 @@ public class AlbumAction extends ActionSupport {
         album = ProcessAlbum.selectAlbum(albumId);
         ProcessAlbum.updateLikeAmount(albumId, album.getLikeAmount() + like);
         return "success";
+    }
+
+    public String addComment() {
+        String username = (String) ServletActionContext.getRequest().getSession().getAttribute("username");
+        albumId = (int) ActionContext.getContext().getSession().get("albumId");
+        User user = ProcessUser.selectUser(username);
+        album = ProcessAlbum.selectAlbum(albumId);
+        Comment comment = new Comment();
+        comment.setAlbum(album);
+        comment.setCommentTime(new Date());
+        comment.setUser(user);
+        comment.setContent(newComment);
+        ProcessComment.insertComment(comment);
+        return SUCCESS;
     }
 
     public Album getAlbum() {
@@ -98,4 +120,19 @@ public class AlbumAction extends ActionSupport {
         this.isOwner = isOwner;
     }
 
+    public String getNewComment() {
+        return newComment;
+    }
+
+    public void setNewComment(String newComment) {
+        this.newComment = newComment;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }

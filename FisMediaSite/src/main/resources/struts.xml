@@ -50,7 +50,6 @@
 			<result type="tiles">setting</result>
 		</action>
 		<action name="profile" class="fis.longlive.actions.ProfileAction">
-			<interceptor-ref name="loginStack" />
 			<result name="login" type="redirectAction">home</result>
 			<result name="success" type="tiles">profile</result>
 		</action>
@@ -91,7 +90,10 @@
 
 	 <package name="uploadImage" extends="defaultTile">
 		<action name="createAlbum" class="fis.longlive.actions.FileUploadAction" method="createAlbum">
-			<result name="success" type="tiles">profile</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">profile</param>
+				<param name="username">${username}</param>
+			</result>
 			<result name="input" type="tiles">home</result>
 		</action>
 	</package>

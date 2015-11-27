@@ -26,7 +26,7 @@ public class ProfileAction extends ActionSupport {
 
         String owner = (String) session.getAttribute("username");
 
-        if(owner.equals(username))
+        if (owner != null && owner.equals(username))
             isOwner = "true";
 
         return SUCCESS;

@@ -1,15 +1,8 @@
 package fis.longlive.database.table;
 
+import javax.persistence.*;
 import java.util.Comparator;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 
 /**
@@ -21,6 +14,7 @@ import javax.persistence.Table;
 @NamedQuery(name="Album.findAll", query="SELECT a FROM Album a")
 public class Album implements Comparable<Album>{
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int albumID;
 
 	private String albumName;

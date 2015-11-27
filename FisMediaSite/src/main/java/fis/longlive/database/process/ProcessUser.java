@@ -1,8 +1,8 @@
 package fis.longlive.database.process;
 
-import java.util.Date;
-
 import fis.longlive.database.table.User;
+
+import java.util.Date;
 
 public final class ProcessUser extends Process {
 	private static final int PASSWORD = 0;
@@ -29,6 +29,7 @@ public final class ProcessUser extends Process {
 	public static User selectUser(String username) {
 		beginProcess();
 		User user = getEntityManager().find(User.class, username);
+		getEntityManager().refresh(user);
 		endProcess();
 		return user;
 	}

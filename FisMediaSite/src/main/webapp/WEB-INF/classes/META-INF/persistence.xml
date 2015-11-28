@@ -8,7 +8,8 @@
 		<class>fis.longlive.database.table.User</class>
   
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/longlive"/>
+            <property name="javax.persistence.jdbc.url" 
+                      value="jdbc:mysql://localhost:3306/longlive?useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8"/>
             <property name="javax.persistence.jdbc.user" value="longlive"/>
             <property name="javax.persistence.jdbc.password" value="longlive"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

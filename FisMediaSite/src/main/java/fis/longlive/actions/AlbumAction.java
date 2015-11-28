@@ -4,21 +4,27 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import fis.longlive.database.process.ProcessAlbum;
 import fis.longlive.database.process.ProcessComment;
+import fis.longlive.database.process.ProcessPicture;
 import fis.longlive.database.process.ProcessUser;
 import fis.longlive.database.table.Album;
 import fis.longlive.database.table.Comment;
 import fis.longlive.database.table.Picture;
 import fis.longlive.database.table.User;
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.ServletRequestAware;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by nghiatran on 11/22/15.
  */
-public class AlbumAction extends ActionSupport {
+public class AlbumAction extends ActionSupport implements ServletRequestAware {
     private int albumId;
     private Album album;
     private User author;
@@ -27,6 +33,11 @@ public class AlbumAction extends ActionSupport {
     private String newComment;
     private int like;
     private String isOwner;
+    private File[] userImage;
+    private String[] userImageFileName;
+    private String[] userImageContentType;
+
+    private HttpServletRequest servletRequest;
 
     public String execute() {
         album = ProcessAlbum.selectAlbum(albumId);
@@ -49,7 +60,35 @@ public class AlbumAction extends ActionSupport {
             isOwner = "true";
         else isOwner = "false";
 
+        ActionContext.getContext().getSession().put("albumId", albumId);
+
         return "success";
+    }
+
+    public String addPictures() {
+        albumId = (int) ActionContext.getContext().getSession().get("albumId");
+        album = ProcessAlbum.selectAlbum(albumId);
+        try {
+            int userImageCount = userImage.length;
+            for (int i = 0; i < userImageCount; i++) {
+                Picture picture = new Picture();
+                String filePath = servletRequest.getServletContext().getRealPath("/").concat("images");
+                String[] filenameSplits = userImageFileName[i].split("\\.");
+                String newFilename = UUID.randomUUID() + "." + filenameSplits[filenameSplits.length - 1];
+                File fileToCreate = new File(filePath, newFilename);
+                FileUtils.copyFile(this.userImage[i], fileToCreate);
+                picture.setUploadDate(new Date());
+                picture.setPictureName(userImageFileName[i]);
+                picture.setPictureURL("images/" + newFilename);
+                picture.setAlbum(album);
+                ProcessPicture.insertPicture(picture);
+            }
+            ProcessAlbum.selectAlbum(album.getAlbumID());
+        } catch (Exception e) {
+            e.printStackTrace();
+            addActionError(e.getMessage());
+        }
+        return SUCCESS;
     }
 
     public String likeAlbum() {
@@ -70,6 +109,30 @@ public class AlbumAction extends ActionSupport {
         comment.setContent(newComment);
         ProcessComment.insertComment(comment);
         return SUCCESS;
+    }
+
+    public File[] getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(File[] userImage) {
+        this.userImage = userImage;
+    }
+
+    public String[] getUserImageFileName() {
+        return userImageFileName;
+    }
+
+    public void setUserImageFileName(String[] userImageFileName) {
+        this.userImageFileName = userImageFileName;
+    }
+
+    public String[] getUserImageContentType() {
+        return userImageContentType;
+    }
+
+    public void setUserImageContentType(String[] userImageContentType) {
+        this.userImageContentType = userImageContentType;
     }
 
     public Album getAlbum() {
@@ -134,5 +197,10 @@ public class AlbumAction extends ActionSupport {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    @Override
+    public void setServletRequest(HttpServletRequest request) {
+        servletRequest = request;
     }
 }

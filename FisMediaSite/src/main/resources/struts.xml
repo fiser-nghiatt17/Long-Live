@@ -58,6 +58,14 @@
 			<result name="login" type="redirectAction">home</result>
 			<result name="success" type="tiles">editAAlbum</result>
 		</action>
+		<action name="updateAlbum" class="fis.longlive.actions.AlbumAction" method="addPictures">
+			<interceptor-ref name="loginInterceptor"/>
+			<result name="login" type="redirectAction">home</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">editAAlbum</param>
+				<param name="albumId">${albumId}</param>
+			</result>
+		</action>
 	</package>
 
 	<package name="Ajax" extends="json-default">

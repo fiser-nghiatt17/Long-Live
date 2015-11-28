@@ -5,9 +5,10 @@
             <s:set name="isOwner" value="isOwner"/>
             <s:if test="%{#isOwner == 'true'}">
                 <div class="mdl-cell mdl-cell--3-col">
-                    <form action="editAAlbum" class="fis-album-detail mdl-shadow--3dp upload-a-image">
-                        <p>Add image</p>
-                        <input class="mdl-textfield__input" type="file" name="userImage">
+                    <form action="updateAlbum" class="fis-album-detail mdl-shadow--3dp upload-a-image" method="post"
+                          enctype="multipart/form-data">
+                        <p>Add images</p>
+                        <input class="mdl-textfield__input" multiple type="file" name="userImage"/>
 
                         <p style="position: relative; top: 20px">Name Album</p>
 

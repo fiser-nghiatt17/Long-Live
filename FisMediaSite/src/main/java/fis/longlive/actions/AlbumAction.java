@@ -27,6 +27,7 @@ public class AlbumAction extends ActionSupport {
     private String newComment;
     private int like;
     private String isOwner;
+    private String[] dirtyComment = {"fuck","shit","assshole","dm","vl","vcl"};
 
     public String execute() {
         album = ProcessAlbum.selectAlbum(albumId);
@@ -39,13 +40,13 @@ public class AlbumAction extends ActionSupport {
         return SUCCESS;
     }
 
-    public String editAlbum(){
+    public String editAlbum() {
         album = ProcessAlbum.selectAlbum(albumId);
         pictures = album.getPictures();
 
         author = album.getUser();
         HttpSession session = ServletActionContext.getRequest().getSession();
-        if(author.getUsername().equals(session.getAttribute("username")))
+        if (author.getUsername().equals(session.getAttribute("username")))
             isOwner = "true";
         else isOwner = "false";
 
@@ -125,6 +126,18 @@ public class AlbumAction extends ActionSupport {
     }
 
     public void setNewComment(String newComment) {
+
+        for (String s : dirtyComment) {
+            String sub = "";
+            if (newComment.contains(s)) {
+                int num = s.length();
+
+                for (int i = 0; i < num; i++) {
+                    sub += "*";
+                }
+            }
+            newComment=newComment.replace(s, sub);
+        }
         this.newComment = newComment;
     }
 

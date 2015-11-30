@@ -35,6 +35,8 @@
         <div class="fis-comment mdl-shadow--3dp">
             <!-- <div class="fb-comments" data-href="http://localhost:8080/FisMediaSite/viewAAlbum" data-width="600" data-numposts="5"></div> -->
             <!-- <div id="fb-root"></div> -->
+
+            <% if(session.getAttribute("username") != null) {%>
             <div class="fis-comment-input-container">
                 <div class="fis-avatar-comment">
                     <img src="images/avatar2.png"/>
@@ -49,6 +51,8 @@
                     </div>
                 </form>
             </div>
+            <%}%>
+
             <div class="fis-comment-list">
                 <s:iterator value="comments" var="comment">
                 <div class="fis-comment-item">

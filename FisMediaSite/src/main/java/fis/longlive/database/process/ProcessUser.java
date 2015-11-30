@@ -29,7 +29,8 @@ public final class ProcessUser extends Process {
 	public static User selectUser(String username) {
 		beginProcess();
 		User user = getEntityManager().find(User.class, username);
-		getEntityManager().refresh(user);
+		if (user != null)
+			getEntityManager().refresh(user);
 		endProcess();
 		return user;
 	}
